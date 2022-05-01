@@ -146,8 +146,6 @@ function preload() {
     this.game.cache.addSound('Audio4B64',null,_base64ToArrayBuffer(Audio4B64));
 
 
-    this.game.load.image('galleta1.png', "assets/galleta1.png");
-      game.load.image('button', 'assets/button_sprite_sheet.png');
 }
 
 var bmd;
@@ -159,71 +157,6 @@ var group2;
 
 var puntosX=[366,385,400,416,427,455,483,505,536,567,562,545,527,503,490,492,501,506,508,479,453,424,396,367,339,310,284,258,231,233,232,242,244,235,207,185,161,150,181,203,231,258,286,299,319,339,348];
 var puntosY=[310,335,365,387,420,449,446,453,459,462,503,517,539,565,582,620,640,675,707,719,716,696,690,664,677,700,707,716,725,688,661,628,600,565,543,516,494,471,462,451,446,444,433,409,383,350,326];
-/*
-var puntosX=[340,420,540,465,465,340,210,210,130,260];
-var puntosY=[275,410,450,550,690,650,690,550,450,410];*/
-
-/*var ptn0=false;
-var ptn1=false;
-var ptn2=false;
-var ptn3=false;
-var ptn4=false;
-var ptn5=false;
-var ptn6=false;
-var ptn7=false;
-var ptn8=false;
-var ptn9=false;*/
-
-
-var ptn0=false;
-var ptn1=false;
-var ptn2=false;
-var ptn3=false;
-var ptn4=false;
-var ptn5=false;
-var ptn6=false;
-var ptn7=false;
-var ptn8=false;
-var ptn9=false;
-var ptn10=false;
-var ptn11=false;
-var ptn12=false;
-var ptn13=false;
-var ptn14=false;
-var ptn15=false;
-var ptn16=false;
-var ptn17=false;
-var ptn18=false;
-var ptn19=false;
-var ptn20=false;
-var ptn21=false;
-var ptn22=false;
-var ptn23=false;
-var ptn24=false;
-var ptn25=false;
-var ptn26=false;
-var ptn27=false;
-var ptn28=false;
-var ptn29=false;
-var ptn30=false;
-var ptn31=false;
-var ptn32=false;
-var ptn33=false;
-var ptn34=false;
-var ptn35=false;
-var ptn36=false;
-var ptn37=false;
-var ptn38=false;
-var ptn39=false;
-var ptn40=false;
-var ptn41=false;
-var ptn42=false;
-var ptn43=false;
-var ptn44=false;
-var ptn45=false;
-var ptn46=false;
-
-
 
 var QuitarMano=false;
 var desarmar=true;
@@ -242,8 +175,6 @@ var tutorialReactivar=false;
 
 
 function onDown() {
-
-   // bubble.alpha = 0.3;
 
 	if(QuitarMano==true){
 			this.handEstrellaMover1.pause();
@@ -268,11 +199,15 @@ function onDown() {
 function onUp() {
 	if(tutorialReactivar==true){
 		tutorialReactivar=false;
-		if(ptn0==true&&ptn1==true&&ptn2==true&&ptn3==true&&ptn4==true&&ptn5==true&&ptn6==true&&ptn7==true&&ptn8==true&&ptn9==true){
-			tutorialReactivar=false;
-		}else{
+		
+		var estadosPointer = group1.iterate('estado', false, Phaser.Group.RETURN_CHILD);
+			
+			if (estadosPointer == null){
+				TweenGalletasPartes();
+			}else{
 			tutorialManoAudio();
-		}	
+		}
+
 	}
 
 }
@@ -382,9 +317,71 @@ function ActivarHandStar() {
 	this.handEstrellaMover9.onComplete.add(function() {this.handEstrellaMover0.start();});
 
 }
+var puntosBlancos=true;
+
+function onDownPuntos (sprite) {
+	
+ 
+ sprite.estado=true;
+			sprite.tint = 0x00ff00;
+			if(sprite.ptn==0){
+				this.TweenGp14Y = this.game.add.tween(this.gp14).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==5){
+				this.TweenGp9Y = this.game.add.tween(this.gp9).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==10){
+				this.TweenGp8Y = this.game.add.tween(this.gp8).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==14){
+				this.TweenGp7Y = this.game.add.tween(this.gp7).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==19){
+				this.TweenGp6Y = this.game.add.tween(this.gp6).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==23){
+				this.TweenGp5Y = this.game.add.tween(this.gp5).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==28){	
+				this.TweenGp4Y = this.game.add.tween(this.gp4).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==33){
+				this.TweenGp3Y = this.game.add.tween(this.gp3).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==37){
+				this.TweenGp2Y = this.game.add.tween(this.gp2).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==42){	
+				this.TweenGp1Y = this.game.add.tween(this.gp1).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}	
+			
+			//console.log("el punto es "+sprite.ptn);
+			var estadosPointer = group1.iterate('estado', false, Phaser.Group.RETURN_CHILD);
+			
+			if (estadosPointer == null){
+				TweenGalletasPartes();
+			}	
+ 
+ 
+ 
+ 
+    
+
+}
+
 
 function ActivarPintar() {
-
+if(puntosBlancos){
+puntosBlancos=false;
 	if(PintarActivar){
 		console.log("Pintar");
 		bmd = game.make.bitmapData(720, 1280);
@@ -400,8 +397,9 @@ function ActivarPintar() {
 	    	sprite1.anchor.setTo(0.5);
 			sprite1.scale.set(0.7);
 	        sprite1.ptn = i;
+			sprite1.estado = false;
 	        sprite1.inputEnabled = true;
-	        sprite1.events.onInputDown.add(onDown, this);
+	        sprite1.events.onInputDown.add(onDownPuntos, this);
 	        sprite1.events.onInputUp.add(onUp, this);
 	        sprite1.alpha=0;
 
@@ -410,7 +408,8 @@ function ActivarPintar() {
 	  
 
 	 	group1.onChildInputOver.add(onOver, this);
-
+		group1.onChildInputDown.add(onDown, this);
+		
 	    bmd2 = game.make.bitmapData(40, 40);
 	    bmd2.circle(10, 10, 10, 'rgba(255,255,255,1)');
 
@@ -418,6 +417,7 @@ function ActivarPintar() {
 
 	    Superior();
 	}
+}
 }
 
 function Superior(){
@@ -723,7 +723,7 @@ function Escena0() {
 function paint(pointer, x, y) {
 
 	if(PintarActivar){
-		console.log("Pintando");
+		//console.log("Pintando");
 		 if (pointer.isDown)
 	    {
 	        bmd.draw(bmd2, x - 16, y - 16);
@@ -735,819 +735,111 @@ function paint(pointer, x, y) {
 function onOver (sprite) {
 
 	if(this.game.device.desktop){//entrada de pc
-		if(sprite.ptn==0&&this.game.input.activePointer.leftButton.isDown){
-			ptn0=true;
-			this.TweenGp14Y = this.game.add.tween(this.gp14).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
+		if(this.game.input.activePointer.leftButton.isDown){
+			sprite.estado=true;
+			sprite.tint = 0xff0000;
+			if(sprite.ptn==0){
+				this.TweenGp14Y = this.game.add.tween(this.gp14).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
 			}
-		}
-
-		if(sprite.ptn==1&&this.game.input.activePointer.leftButton.isDown){
-			ptn1=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==2&&this.game.input.activePointer.leftButton.isDown){
-			ptn2=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==3&&this.game.input.activePointer.leftButton.isDown){
-			ptn3=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==4&&this.game.input.activePointer.leftButton.isDown){
-			ptn4=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==5&&this.game.input.activePointer.leftButton.isDown){
-			ptn5=true;
-			this.TweenGp9Y = this.game.add.tween(this.gp9).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==6&&this.game.input.activePointer.leftButton.isDown){
-			ptn6=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==7&&this.game.input.activePointer.leftButton.isDown){
-			ptn7=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==8&&this.game.input.activePointer.leftButton.isDown){
-			ptn8=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==9&&this.game.input.activePointer.leftButton.isDown){
-			ptn9=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==10&&this.game.input.activePointer.leftButton.isDown){
-			ptn10=true;
-			this.TweenGp8Y = this.game.add.tween(this.gp8).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==11&&this.game.input.activePointer.leftButton.isDown){
-			ptn11=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==12&&this.game.input.activePointer.leftButton.isDown){
-			ptn12=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==13&&this.game.input.activePointer.leftButton.isDown){
-			ptn13=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==14&&this.game.input.activePointer.leftButton.isDown){
-			ptn14=true;
-			this.TweenGp7Y = this.game.add.tween(this.gp7).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==15&&this.game.input.activePointer.leftButton.isDown){
-			ptn15=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==16&&this.game.input.activePointer.leftButton.isDown){
-			ptn16=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==17&&this.game.input.activePointer.leftButton.isDown){
-			ptn17=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==18&&this.game.input.activePointer.leftButton.isDown){
-			ptn18=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-
-		if(sprite.ptn==19&&this.game.input.activePointer.leftButton.isDown){
-			ptn19=true;
-			this.TweenGp6Y = this.game.add.tween(this.gp6).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){				TweenGalletasPartes();
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==20&&this.game.input.activePointer.leftButton.isDown){
-			ptn20=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==21&&this.game.input.activePointer.leftButton.isDown){
-			ptn21=true;
-
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==22&&this.game.input.activePointer.leftButton.isDown){
-			ptn22=true;
-			//alert("punto: "+sprite.ptn);
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==23&&this.game.input.activePointer.leftButton.isDown){
-
-			ptn23=true;
-			this.TweenGp5Y = this.game.add.tween(this.gp5).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-					if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==24&&this.game.input.activePointer.leftButton.isDown){
-			ptn24=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==25&&this.game.input.activePointer.leftButton.isDown){
-			ptn25=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==26&&this.game.input.activePointer.leftButton.isDown){
-			ptn26=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==27&&this.game.input.activePointer.leftButton.isDown){
-			ptn27=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==28&&this.game.input.activePointer.leftButton.isDown){
-			ptn28=true;
-			this.TweenGp4Y = this.game.add.tween(this.gp4).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==29&&this.game.input.activePointer.leftButton.isDown){
-			ptn29=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==30&&this.game.input.activePointer.leftButton.isDown){
-			ptn30=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==31&&this.game.input.activePointer.leftButton.isDown){
-			ptn31=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==32&&this.game.input.activePointer.leftButton.isDown){
-			ptn32=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==33&&this.game.input.activePointer.leftButton.isDown){
-			ptn33=true;
-			this.TweenGp3Y = this.game.add.tween(this.gp3).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==34&&this.game.input.activePointer.leftButton.isDown){
-			ptn34=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==35&&this.game.input.activePointer.leftButton.isDown){
-			ptn35=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==36&&this.game.input.activePointer.leftButton.isDown){
-			ptn36=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==37&&this.game.input.activePointer.leftButton.isDown){
-			ptn37=true;
-			this.TweenGp2Y = this.game.add.tween(this.gp2).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-					if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==38&&this.game.input.activePointer.leftButton.isDown){
-			ptn38=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==39&&this.game.input.activePointer.leftButton.isDown){
-			ptn39=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==40&&this.game.input.activePointer.leftButton.isDown){
-			ptn40=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==41&&this.game.input.activePointer.leftButton.isDown){
-			ptn41=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==42&&this.game.input.activePointer.leftButton.isDown){
-			ptn42=true;
-			this.TweenGp1Y = this.game.add.tween(this.gp1).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==43&&this.game.input.activePointer.leftButton.isDown){
-			ptn43=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==44&&this.game.input.activePointer.leftButton.isDown){
-			ptn44=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==45&&this.game.input.activePointer.leftButton.isDown){
-			ptn45=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==46&&this.game.input.activePointer.leftButton.isDown){
-			ptn46=true;
-			console.log("el punto es "+sprite.ptn);
 			
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
+			if(sprite.ptn==5){
+				this.TweenGp9Y = this.game.add.tween(this.gp9).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
 			}
+			
+			if(sprite.ptn==10){
+				this.TweenGp8Y = this.game.add.tween(this.gp8).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==14){
+				this.TweenGp7Y = this.game.add.tween(this.gp7).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==19){
+				this.TweenGp6Y = this.game.add.tween(this.gp6).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==23){
+				this.TweenGp5Y = this.game.add.tween(this.gp5).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==28){	
+				this.TweenGp4Y = this.game.add.tween(this.gp4).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==33){
+				this.TweenGp3Y = this.game.add.tween(this.gp3).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==37){
+				this.TweenGp2Y = this.game.add.tween(this.gp2).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==42){	
+				this.TweenGp1Y = this.game.add.tween(this.gp1).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}	
+			
+			//console.log("el punto es "+sprite.ptn);
+			var estadosPointer = group1.iterate('estado', false, Phaser.Group.RETURN_CHILD);
+			
+			if (estadosPointer == null){
+				TweenGalletasPartes();
+			}	
+			
 		}
-
-
 	}else{//entrada tactil
-		if(sprite.ptn==0&&this.game.input.pointer1){
-			ptn0=true;
-			this.TweenGp14Y = this.game.add.tween(this.gp14).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
+			if(this.game.input.pointer1){
+			sprite.estado=true;
+			sprite.tint = 0xff0000;
+			if(sprite.ptn==0){
+				this.TweenGp14Y = this.game.add.tween(this.gp14).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
 			}
-		}
-
-		if(sprite.ptn==1&&this.game.input.pointer1){
-			ptn1=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==2&&this.game.input.pointer1){
-			ptn2=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==3&&this.game.input.pointer1){
-			ptn3=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==4&&this.game.input.pointer1){
-			ptn4=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==5&&this.game.input.pointer1){
-			ptn5=true;
-			this.TweenGp9Y = this.game.add.tween(this.gp9).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==6&&this.game.input.pointer1){
-			ptn6=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==7&&this.game.input.pointer1){
-			ptn7=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==8&&this.game.input.pointer1){
-			ptn8=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==9&&this.game.input.pointer1){
-			ptn9=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==10&&this.game.input.pointer1){
-			ptn10=true;
-			this.TweenGp8Y = this.game.add.tween(this.gp8).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==11&&this.game.input.pointer1){
-			ptn11=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==12&&this.game.input.pointer1){
-			ptn12=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==13&&this.game.input.pointer1){
-			ptn13=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==14&&this.game.input.pointer1){
-			ptn14=true;
-			this.TweenGp7Y = this.game.add.tween(this.gp7).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==15&&this.game.input.pointer1){
-			ptn15=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==16&&this.game.input.pointer1){
-			ptn16=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==17&&this.game.input.pointer1){
-			ptn17=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==18&&this.game.input.pointer1){
-			ptn18=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-
-		if(sprite.ptn==19&&this.game.input.pointer1){
-			ptn19=true;
-			this.TweenGp6Y = this.game.add.tween(this.gp6).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){				TweenGalletasPartes();
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==20&&this.game.input.pointer1){
-			ptn20=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==21&&this.game.input.pointer1){
-			ptn21=true;
-
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==22&&this.game.input.pointer1){
-			ptn22=true;
-			//alert("punto: "+sprite.ptn);
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==23&&this.game.input.pointer1){
-
-			ptn23=true;
-			this.TweenGp5Y = this.game.add.tween(this.gp5).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-					if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==24&&this.game.input.pointer1){
-			ptn24=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==25&&this.game.input.pointer1){
-			ptn25=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==26&&this.game.input.pointer1){
-			ptn26=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==27&&this.game.input.pointer1){
-			ptn27=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==28&&this.game.input.pointer1){
-			ptn28=true;
-			this.TweenGp4Y = this.game.add.tween(this.gp4).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==29&&this.game.input.pointer1){
-			ptn29=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==30&&this.game.input.pointer1){
-			ptn30=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==31&&this.game.input.pointer1){
-			ptn31=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==32&&this.game.input.pointer1){
-			ptn32=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==33&&this.game.input.pointer1){
-			ptn33=true;
-			this.TweenGp3Y = this.game.add.tween(this.gp3).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==34&&this.game.input.pointer1){
-			ptn34=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==35&&this.game.input.pointer1){
-			ptn35=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==36&&this.game.input.pointer1){
-			ptn36=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==37&&this.game.input.pointer1){
-			ptn37=true;
-			this.TweenGp2Y = this.game.add.tween(this.gp2).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-					if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==38&&this.game.input.pointer1){
-			ptn38=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==39&&this.game.input.pointer1){
-			ptn39=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==40&&this.game.input.pointer1){
-			ptn40=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==41&&this.game.input.pointer1){
-			ptn41=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-
-		if(sprite.ptn==42&&this.game.input.pointer1){
-			ptn42=true;
-			this.TweenGp1Y = this.game.add.tween(this.gp1).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
-			console.log("el punto es "+sprite.ptn);
-						if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==43&&this.game.input.pointer1){
-			ptn43=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==44&&this.game.input.pointer1){
-			ptn44=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==45&&this.game.input.pointer1){
-			ptn45=true;
-			console.log("el punto es "+sprite.ptn);
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
-			}
-		}
-
-		if(sprite.ptn==46&&this.game.input.pointer1){
-			ptn46=true;
-			console.log("el punto es "+sprite.ptn);
 			
-			if(ptn0==true&& ptn1==true&& ptn2==true&& ptn3==true&& ptn4==true&& ptn5==true&& ptn6==true&& ptn7==true&& ptn8==true&& ptn9==true&& ptn10==true&& ptn11==true&& ptn12==true&& ptn13==true&& ptn14==true&& ptn15==true&& ptn16==true&& ptn17==true&& ptn18==true&& ptn19==true&& ptn20==true&& ptn21==true&& ptn22==true&& ptn23==true&& ptn24==true&& ptn25==true&& ptn26==true&& ptn27==true&& ptn28==true&& ptn29==true&& ptn30==true&& ptn31==true&& ptn32==true&& ptn33==true&& ptn34==true&& ptn35==true&& ptn36==true&& ptn37==true&& ptn38==true&& ptn39==true&& ptn40==true&& ptn41==true&& ptn42==true&& ptn43==true&& ptn44==true&& ptn45==true&& ptn46==true){
-				TweenGalletasPartes();
+			if(sprite.ptn==5){
+				this.TweenGp9Y = this.game.add.tween(this.gp9).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
 			}
+			
+			if(sprite.ptn==10){
+				this.TweenGp8Y = this.game.add.tween(this.gp8).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==14){
+				this.TweenGp7Y = this.game.add.tween(this.gp7).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==19){
+				this.TweenGp6Y = this.game.add.tween(this.gp6).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==23){
+				this.TweenGp5Y = this.game.add.tween(this.gp5).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==28){	
+				this.TweenGp4Y = this.game.add.tween(this.gp4).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==33){
+				this.TweenGp3Y = this.game.add.tween(this.gp3).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);	
+			}
+			
+			if(sprite.ptn==37){
+				this.TweenGp2Y = this.game.add.tween(this.gp2).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}
+			
+			if(sprite.ptn==42){	
+				this.TweenGp1Y = this.game.add.tween(this.gp1).to({y:1580}, 1500, Phaser.Easing.Sinusoidal.InOut, true, 200);
+			}	
+			
+			var estadosPointer = group1.iterate('estado', false, Phaser.Group.RETURN_CHILD);
+			
+			if (estadosPointer == null){
+				TweenGalletasPartes();
+			}	
+			
 		}
 
-	}
-    sprite.tint = 0xff0000;
+		}
+   
 }
 
 function GalletasPartes(){
