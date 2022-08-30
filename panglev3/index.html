@@ -52,14 +52,12 @@
 
 
 
-    <button id="btnCTA" onclick="fnctabtn()"></button>
+    <button id="btnCTA"></button>
 
     <script>
-        function fnctabtn() {
-            console.log("TTTTT")
-            var userAgent = navigator.userAgent || navigator.vendor;
-            window.openAppStore();
-        }
+        $("btnCTA").on("click", function(){
+            window.playableSDK.openAppStore();
+        });
     </script>
 </body>
 
