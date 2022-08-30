@@ -49,12 +49,12 @@
 </head>
 <body>
 <script src= "https://sf16-muse-va.ibytedtos.com/obj/union-fe-nc-i18n/playable/sdk/playable-sdk.js"></script> 
-    <button id="btnCTA"></button>
+<button id="btnCTA" onclick="fnctabtn()"></button>
 
     <script>
-        $("btnCTA").on("click", function(){
+        function fnctabtn() {
             window.playableSDK.openAppStore();
-        });
+        ;
     </script>
 </body>
 
