@@ -18,10 +18,6 @@
 			overflow: hidden;
 
 		}
-
-		body {
-			display:none;
-		}
 	</style>
 	
 	<body>
@@ -35,7 +31,6 @@
 		</script>
 		<script type="text/javascript"  >
 	
-var urlStore = "https://play.google.com/store/apps/details?id=com.NiJo.Walls";
 	
 var game = new Phaser.Game({
   width: 720,
@@ -47,7 +42,7 @@ var game = new Phaser.Game({
 });
 
 function onClickDownload(){
-    mraid.open(urlStore); 
+  FbPlayableAd.onCTAClick();
 }
 
 function _base64ToArrayBuffer(base64) {
@@ -128,6 +123,9 @@ function preload() {
     var panelRB64 = 'data:image/png;base64,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';
    this.game.load.image('panelR.png', panelRB64);
 
+ var btnDescargarRB64 = 'data:image/png;base64,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';
+   this.game.load.image('btnDescargarRB64.png', btnDescargarRB64);
+  
 }
 
 var arrow;
@@ -148,11 +146,9 @@ var toques = 6;
 var AreadeAgarre=2;
 
 function create() { 
-
- if (this.game.sound && this.game.sound.onBlurPausedSounds) {
+if (this.game.sound && this.game.sound.onBlurPausedSounds) {
     this.game.sound.unlock()
   } 
-  
  this.ClickSFX = game.add.audio('SndClickB64',0.5);
   this.BallHitSoundSFX = game.add.audio('SndBallHitSoundB64',0.5);
   this.WinSoundSFX = game.add.audio('SndWinSoundB64',0.5);
@@ -161,6 +157,21 @@ function create() {
   this.game.physics.startSystem(Phaser.Physics.ARCADE);
   this.bg = game.add.sprite(0,0, 'atlas1','bg.png');
 
+
+this.btnDescargar = game.add.sprite(this.game.world.centerX, this.game.height*0.08, 'btnDescargarRB64.png',); 
+ this.btnDescargar.anchor.setTo(0.5);
+  this.btnDescargar.scale.setTo(0.8);
+ this.btnDescargar.inputEnabled = true;
+  this.btnDescargar.events.onInputUp.add(onClickDownload, this);
+ 
+  this.text2 = game.add.text(0, 0, "DOWNLOAD NOW!", { font: "45px Arial", fill: "#ffffff", align: "center" });
+ this.text2.anchor.setTo(0.5);
+ this.btnDescargar.addChild(this.text2);
+ 
+ this.buttonfTween2 = this.game.add.tween(this.btnDescargar.scale).to({x:0.85, y:0.85}, 1000, Phaser.Easing.Quadratic.InOut,true,0,-1,true);
+  
+
+ 
   this.btnReset = game.add.sprite(20, 20, 'atlas2','btnReset.png');
   this.btnReset.scale.set(0.8);
 
@@ -254,7 +265,7 @@ function create() {
 }
 
 function onDragUpdate() {
-       this.game.sound.unlock()
+        this.game.sound.unlock()
 
 	catchFlag = true;
  
@@ -438,44 +449,6 @@ function CreateLevel1 () {
     this.n1l9.addChild(this.n1l5);
     this.n1l9.addChild(this.n1l10);
   
-}
-
-// Wait for the SDK to become ready: 
-if (mraid.getState() === 'loading') {
-    // If the SDK is still loading, add a listener for the 'ready' event:
-    mraid.addEventListener('ready', onSdkReady); 
-} else {
-    // Otherwise, if the SDK is ready, execute your function:
-    onSdkReady(); 
-}
-
-// Implement a function that shows the ad when it first renders:
-function onSdkReady() {
-    // The viewableChange event fires if the ad container's viewability status changes.
-    // Add a listener for the viewabilityChange event, to handle pausing and resuming: 
-    mraid.addEventListener('viewableChange', viewableChangeHandler);
-    // The isViewable method returns whether the ad container is viewable on the screen.
-    if (mraid.isViewable()) {
-        // If the ad container is visible, play the ad:
-        showMyAd(); 
-    }
-}
-
-// Implement a function for executing the ad:
-function showMyAd() { 
-    // Insert code for showing your playable ad.
-    var el = document.body;
-    el.style.display = 'block';
-}
-
-// Implement a function that handles pausing and resuming the ad based on visibility:
-function viewableChangeHandler(viewable) {
-    if(viewable) {
-        // If the ad is viewable, show the ad:
-        showMyAd(); 
-    } else {
-        // If not, pause the ad.
-    }
 }
 		</script>
 	</body>
