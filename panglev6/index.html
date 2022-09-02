@@ -52,8 +52,12 @@
 <button id="btnCTA" onclick="fnctabtn()"></button>
 
     <script>
+
+    	var androidURL = 'https://play.google.com/store/apps/details?id=com.backflipstudios.android.dragonvale&hl=en&gl=US';
+    	var iOSURL = 'https://apps.apple.com/us/app/dragonvale/id440045374';
+
         function fnctabtn() {
-            window.playableSDK.openAppStore();
+            window.playableSDK.openAppStore(androidURL);
         }
 
         window.playableSDK.isViewable().then((viewable) =>{
