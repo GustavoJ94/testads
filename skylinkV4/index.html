@@ -145,6 +145,20 @@ function startLevel2(){
 		tile.index = count++;
     },this);
 
+    this.fillGrey2.removeAll();
+
+    this.fillGrey2.x = this.game.width*0.23;
+    this.fillGrey2.create(0,0, 'atlas','tile.png');
+    this.fillGrey2.setAll('anchor.x', 0.5);
+    this.fillGrey2.setAll('anchor.y', 0.5);
+    this.fillGrey2.align(4, 1, 94, 94,Phaser.CENTER);
+   
+    var tempText = game.add.text(0,0, 'W', this.textWhite);
+    tempText.anchor.set(0.5);
+    tempText.alpha = 0.8;
+
+    this.fillGrey2.children[0].addChild(tempText);
+
     this.fill.removeAll();
     this.fillLetters(this.letters2);
 }
@@ -205,6 +219,7 @@ function tileDown(tile, pointer){
 	    this.clickSFX.play();
 		tile.alpha = 0;
 		tile.inputEnabled = false;
+
 		if(this.fillGrey.children[this.nextTile]){
 			this.fillGrey.children[this.nextTile].frameName = 'tile2.png';
 			this.fillGrey.children[this.nextTile].lastTile = tile.index;
@@ -213,6 +228,7 @@ function tileDown(tile, pointer){
 			tempText = game.add.text(0,0, tile.letter, this.textWhite);
 		    tempText.anchor.set(0.5);
 		    this.fillGrey.children[this.nextTile].addChild(tempText);
+		    this.fillGrey2.children[this.nextTile].alpha = 0;
 		}
 	}
 }
@@ -329,19 +345,20 @@ function setBase(){
    
     var tempText = game.add.text(0,0, 'C', this.textWhite);
     tempText.anchor.set(0.5);
-    tempText.alpha = 0.6;
+    tempText.alpha = 0.8;
 
     var tempText2 = game.add.text(0,0, 'U', this.textWhite);
     tempText2.anchor.set(0.5);
-    tempText2.alpha = 0.6;
+    tempText2.alpha = 0.8;
 
     var tempText3 = game.add.text(0,0, 'P', this.textWhite);
     tempText3.anchor.set(0.5);
-    tempText3.alpha = 0.6;
+    tempText3.alpha = 0.8;
 
     this.fillGrey2.children[0].addChild(tempText);
     this.fillGrey2.children[1].addChild(tempText2);
     this.fillGrey2.children[2].addChild(tempText3);
+
     this.fillGrey = this.game.add.group();
     this.fillGrey.inputEnableChildren = true;
     this.fillGrey.onChildInputUp.add(undo, this);
@@ -358,7 +375,7 @@ function setBase(){
     this.fillGrey.setAll('anchor.y', 0.5);
     this.fillGrey.align(7, 1, 94, 94,Phaser.CENTER);
 
-
+    this.world.bringToTop(this.fillGrey2)
 
     let count = 0;
     this.fillGrey.forEach(function(tile){
