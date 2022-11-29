@@ -270,8 +270,6 @@ function setCTA(){
     this.iosTween = game.add.tween(this.ios.scale).to({ x: 1.1, y: 1.1}, 150, Phaser.Easing.Bounce.Out).to({ x: 1, y: 1}, 150, Phaser.Easing.Bounce.In);
 
     this.titleCTATween.chain(this.CTAbtnTween);
-    this.CTAbtnTween.chain(this.androidTween);
-    this.androidTween.chain(this.iosTween);
 
     this.CTAbtnTween.onComplete.add(function(){this.CTAbtnTween2.start()});
 }
