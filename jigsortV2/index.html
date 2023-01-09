@@ -38,7 +38,7 @@ var game = new Phaser.Game({
 });
 
 function onClickDownload(){
-	alert('your url here');  	
+	//alert('your url here');  	
 }
 
 function _base64ToArrayBuffer(base64) {
@@ -196,48 +196,49 @@ function stopDrag(currentSprite){
 
     if (this.game.physics.arcade.overlap(currentSprite, tile, function() {
 
-			console.log(currentSprite.number,tile.number,currentSprite.targetNumber)
+			if(me.shouldMove){
+	    		if(currentSprite.targetNumber == tile.number){
+					console.log(currentSprite.number,tile.number,currentSprite.targetNumber)
 
-			currentSprite.position.copyFrom(tile.originalPosition);
-    		tile.position.copyFrom(currentSprite.originalPosition);
-    		currentSprite.originalPosition.copyFrom(currentSprite.position)
-    		tile.originalPosition.copyFrom(tile.position)
+					currentSprite.position.copyFrom(tile.originalPosition);
+		    		tile.position.copyFrom(currentSprite.originalPosition);
+		    		currentSprite.originalPosition.copyFrom(currentSprite.position)
+		    		tile.originalPosition.copyFrom(tile.position)
 
+		    		var n = currentSprite.number;
+		    		currentSprite.number = tile.number;
+		    		tile.number = n;
 
+	    			me.shouldMove = false;
+	    			currentSprite.input.draggable = false;
+	    			currentSprite.scale.setTo(1);
+	    			me.tiles.addChild(currentSprite)
+	    			me.fixSFX.play();
+	    			me.emitter.x = currentSprite.x+me.shapes.x;
+	    			me.emitter.y = currentSprite.y+me.shapes.y;
+	    			me.emitter.start(true, 700, null, 80);
 
-    		var n = currentSprite.number;
-    		currentSprite.number = tile.number;
-    		tile.number = n;
+	    			me.emitter2.x = currentSprite.x+me.shapes.x;
+	    			me.emitter2.y = currentSprite.y+me.shapes.y;
+	    			me.emitter2.start(true, 600, null, 20);
 
-    		if(currentSprite.number == currentSprite.targetNumber){
-    			currentSprite.input.draggable = false;
-    			currentSprite.scale.setTo(1);
-    			me.tiles.addChild(currentSprite)
-    			me.fixSFX.play();
-    			me.emitter.x = currentSprite.x+me.shapes.x;
-    			me.emitter.y = currentSprite.y+me.shapes.y;
-    			me.emitter.start(true, 700, null, 80);
+	    		}
 
-    			me.emitter2.x = currentSprite.x+me.shapes.x;
-    			me.emitter2.y = currentSprite.y+me.shapes.y;
-    			me.emitter2.start(true, 600, null, 20);
+	    		if(tile.number == tile.targetNumber){
+	    			tile.input.draggable = false;
+	    			tile.scale.setTo(1);
+	    			me.tiles.addChild(tile)
+	    			me.fixSFX.play();
 
-    		}
+	    			me.emitter3.x = tile.x+me.shapes.x;
+	    			me.emitter3.y = tile.y+me.shapes.y;
+	    			me.emitter3.start(true, 700, null, 80);
 
-    		if(tile.number == tile.targetNumber){
-    			tile.input.draggable = false;
-    			tile.scale.setTo(1);
-    			me.tiles.addChild(tile)
-    			me.fixSFX.play();
-
-    			me.emitter3.x = tile.x+me.shapes.x;
-    			me.emitter3.y = tile.y+me.shapes.y;
-    			me.emitter3.start(true, 700, null, 80);
-
-    			me.emitter4.x = tile.x+me.shapes.x;
-    			me.emitter4.y = tile.y+me.shapes.y;
-    			me.emitter4.start(true, 600, null, 20);
-    		}
+	    			me.emitter4.x = tile.x+me.shapes.x;
+	    			me.emitter4.y = tile.y+me.shapes.y;
+	    			me.emitter4.start(true, 600, null, 20);
+	    		}
+	    	}
 
   	})) {}
     else{
@@ -249,10 +250,10 @@ function stopDrag(currentSprite){
 
 	});
 
-	if(this.shapes.children.length <= 0){
-		this.game.time.events.add(1000,callCTA);
+	if(me.shapes.children.length <= 0){
+		me.game.time.events.add(1000,callCTA);
 	}
-	
+	me.shouldMove = true;
 }
 
 function initTiles() {
@@ -275,13 +276,14 @@ function addTile(x, y,frame,number,target) {
     this.game.physics.arcade.enable(tile);
     tile.anchor.setTo(0.5, 0.5);
     tile.originalPosition = tile.position.clone();
-    var bounds = new Phaser.Rectangle(50, 50, 20, 20);
 
     if(number == 2 || number == 4 || number == 7 || number == 9 || number == 10 || number == 12){
 	    tile.number = number;
 	   	tile.targetNumber = target;
-	    tile.inputEnabled = true;
-	   	tile.input.hitArea  = bounds;
+	    tile.hitArea  = new Phaser.Circle(0,0,240);
+		tile.inputEnabled = true;
+
+
 	    tile.input.enableDrag(true);
 	    tile.coll = true;
 	    tile.scale.setTo(0.98);
