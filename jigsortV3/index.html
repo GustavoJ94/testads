@@ -197,8 +197,7 @@ function stopDrag(currentSprite){
     if (this.game.physics.arcade.overlap(currentSprite, tile, function() {
 
 			if(me.shouldMove){
-	    		if(currentSprite.targetNumber == tile.number){
-					console.log(currentSprite.number,tile.number,currentSprite.targetNumber)
+	    		
 
 					currentSprite.position.copyFrom(tile.originalPosition);
 		    		tile.position.copyFrom(currentSprite.originalPosition);
@@ -209,35 +208,39 @@ function stopDrag(currentSprite){
 		    		currentSprite.number = tile.number;
 		    		tile.number = n;
 
-	    			me.shouldMove = false;
-	    			currentSprite.input.draggable = false;
-	    			currentSprite.scale.setTo(1);
-	    			me.tiles.addChild(currentSprite)
-	    			me.fixSFX.play();
-	    			me.emitter.x = currentSprite.x+me.shapes.x;
-	    			me.emitter.y = currentSprite.y+me.shapes.y;
-	    			me.emitter.start(true, 700, null, 80);
+		    		console.log(currentSprite.number,tile.number,currentSprite.targetNumber)
 
-	    			me.emitter2.x = currentSprite.x+me.shapes.x;
-	    			me.emitter2.y = currentSprite.y+me.shapes.y;
-	    			me.emitter2.start(true, 600, null, 20);
 
-	    		}
+		    		if(currentSprite.number == currentSprite.targetNumber){
+		    			currentSprite.input.draggable = false;
+		    			currentSprite.scale.setTo(1);
+		    			me.tiles.addChild(currentSprite)
+		    			me.fixSFX.play();
+		    			me.emitter.x = currentSprite.x+me.shapes.x;
+		    			me.emitter.y = currentSprite.y+me.shapes.y;
+		    			me.emitter.start(true, 700, null, 80);
 
-	    		if(tile.number == tile.targetNumber){
-	    			tile.input.draggable = false;
-	    			tile.scale.setTo(1);
-	    			me.tiles.addChild(tile)
-	    			me.fixSFX.play();
+		    			me.emitter2.x = currentSprite.x+me.shapes.x;
+		    			me.emitter2.y = currentSprite.y+me.shapes.y;
+		    			me.emitter2.start(true, 600, null, 20);
+	    			}
 
-	    			me.emitter3.x = tile.x+me.shapes.x;
-	    			me.emitter3.y = tile.y+me.shapes.y;
-	    			me.emitter3.start(true, 700, null, 80);
+		    		if(tile.number == tile.targetNumber){
+		    			tile.input.draggable = false;
+		    			tile.scale.setTo(1);
+		    			me.tiles.addChild(tile)
+		    			me.fixSFX.play();
 
-	    			me.emitter4.x = tile.x+me.shapes.x;
-	    			me.emitter4.y = tile.y+me.shapes.y;
-	    			me.emitter4.start(true, 600, null, 20);
-	    		}
+		    			me.emitter3.x = tile.x+me.shapes.x;
+		    			me.emitter3.y = tile.y+me.shapes.y;
+		    			me.emitter3.start(true, 700, null, 80);
+
+		    			me.emitter4.x = tile.x+me.shapes.x;
+		    			me.emitter4.y = tile.y+me.shapes.y;
+		    			me.emitter4.start(true, 600, null, 20);
+		    		}
+
+		    	me.shouldMove = false;
 	    	}
 
   	})) {}
