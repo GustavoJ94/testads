@@ -295,14 +295,13 @@ function addTile(x, y,frame,number,target) {
  
 	    tile.number = number;
 	   	tile.targetNumber = target;
-	    tile.hitArea  = new Phaser.Circle(0,0,240);
 		tile.inputEnabled = true;
 
 
 	    tile.input.enableDrag(true);
 	    tile.coll = true;
 	    tile.scale.setTo(0.96);
-	    tile.body.setSize(tile.width*0.3, (-(tile.width*0.3) + 0.5 * tile.width  / tile.scale.x),(-(tile.width*0.3) + 0.5 * tile.height / tile.scale.y))
+        tile.body.setSize(132,132,14,14)
 	    tile.events.onInputDown.add(tileDown, this);
 	    tile.events.onDragStop.add(function(currentSprite){
 	      this.stopDrag(currentSprite);
