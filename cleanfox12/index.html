@@ -247,8 +247,8 @@ function setBase(){
 	this.fox22.scale.set(0.4);
 	this.pictureback.addChild(this.fox22);
 
-    this.picturebackTween = game.add.tween(this.pictureback.scale).to({ x: 1, y: 1}, 550, Phaser.Easing.Sinusoidal.In).to({ x: 0.9, y: 0.9}, 350, Phaser.Easing.Sinusoidal.Out)
-    this.picturebackTween2 = game.add.tween(this.pictureback).to({y: this.game.height*0.6}, 550, Phaser.Easing.Sinusoidal.In).to({y: this.game.height*0.56}, 350, Phaser.Easing.Sinusoidal.Out)
+    this.picturebackTween = game.add.tween(this.pictureback.scale).to({ x: 1, y: 1}, 650, Phaser.Easing.Sinusoidal.In).to({ x: 0.9, y: 0.9}, 350, Phaser.Easing.Sinusoidal.Out)
+    this.picturebackTween2 = game.add.tween(this.pictureback).to({y: this.game.height*0.6}, 650, Phaser.Easing.Sinusoidal.In).to({y: this.game.height*0.56}, 350, Phaser.Easing.Sinusoidal.Out)
 
     this.picture = game.add.sprite(this.game.width*-1.2, this.game.height*0.6,'atlas','card.png');
     this.picture.anchor.set(0.5);
@@ -280,13 +280,13 @@ function setBase(){
     this.pointText.fontSize = 40;
     this.pointText.anchor.set(0.5);
     this.pointText.alpha = 0;
-    this.pointTween = game.add.tween(this.pointText).to({ alpha: 1}, 500, Phaser.Easing.Sinusoidal.Out).to({ alpha: 0}, 50, Phaser.Easing.Sinusoidal.In)
+    this.pointTween = game.add.tween(this.pointText).to({ alpha: 1}, 600, Phaser.Easing.Sinusoidal.Out).to({ alpha: 0}, 50, Phaser.Easing.Sinusoidal.In)
 
     this.pointText2 = game.add.text(this.game.width*0.5, this.game.height*0.33, this.erase[this.imageCounter]+' KEPT', this.textWhiteBtn2);
     this.pointText2.fontSize = 40;
     this.pointText2.anchor.set(0.5);
     this.pointText2.alpha = 0;
-    this.pointTween2 = game.add.tween(this.pointText2).to({ alpha: 1}, 500, Phaser.Easing.Sinusoidal.Out).to({ alpha: 0}, 50, Phaser.Easing.Sinusoidal.In)
+    this.pointTween2 = game.add.tween(this.pointText2).to({ alpha: 1}, 600, Phaser.Easing.Sinusoidal.Out).to({ alpha: 0}, 50, Phaser.Easing.Sinusoidal.In)
 
     this.foxSweep = game.add.sprite(this.game.width*0.5, this.game.height*0.75,'atlas','sweep.png');
     this.foxSweep.anchor.set(0.5);
@@ -345,7 +345,7 @@ function movePic(btn, pointer, type){
 		
 		pointsTween.start();
 
-        var t = game.add.tween(this.picture).to({ x:this.game.width*-1.5, angle:90}, 600, Phaser.Easing.Sinusoidal.Out,true);
+        var t = game.add.tween(this.picture).to({ x:this.game.width*-1.5, angle:90}, 700, Phaser.Easing.Sinusoidal.Out,true);
         game.add.tween(this.btn1.scale).to({ x: 1, y: 1}, 300, Phaser.Easing.Sinusoidal.In).to({ x: 0.9, y: 0.9}, 300, Phaser.Easing.Sinusoidal.Out,true)
          this.tweenSweep.start()
          this.pointTween.start()
@@ -355,7 +355,7 @@ function movePic(btn, pointer, type){
     else if(type == 'heart'){
     	this.picture.alpha = 0.6;
     	this.picture.tint = 0x44FFA5;
-        var t = game.add.tween(this.picture).to({ x:this.game.width*2, angle:-90}, 600, Phaser.Easing.Sinusoidal.Out,true);
+        var t = game.add.tween(this.picture).to({ x:this.game.width*2, angle:-90}, 700, Phaser.Easing.Sinusoidal.Out,true);
         game.add.tween(this.btn2.scale).to({ x: 1, y: 1}, 300, Phaser.Easing.Sinusoidal.In).to({ x: 0.9, y: 0.9}, 300, Phaser.Easing.Sinusoidal.Out,true)
         this.pointTween2.start()
         this.picturebackTween.start();
