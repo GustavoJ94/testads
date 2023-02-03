@@ -49,16 +49,10 @@ function onClickDownload(){
 function preload() {
 	this.stage.disableVisibilityChange = false;
 	
-   if (this.game.device.desktop) {
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVertically = true
-    } else {
-        this.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
-        this.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
-        this.scale.pageAlignHorizontally = true;
-        this.scale.pageAlignVertically = true
-    }
+
 
 	this.bgColor = "#A0E8FF"; //Background Color
     this.textWhite = { font: "bold 30px Arial", fill: "#ffffff",stroke: '#ffffff',strokeThickness:6, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
