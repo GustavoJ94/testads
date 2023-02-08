@@ -82,8 +82,10 @@ function callCTA(){
     this.title.alpha = 0;
     this.btn1.alpha = 0;
     this.btn2.alpha = 0;
-    this.btn1.inputEnabled = true;
-    this.btn2.inputEnabled = true;
+    this.btn1.inputEnabled = false;
+    this.btn2.inputEnabled = false;
+    this.btn1.destroy();
+    this.btn2.destroy();
 
 	this.titleCTATween.start()
     this.game.input.onDown.add(onClickDownload,this);
@@ -91,6 +93,7 @@ function callCTA(){
 
 function create() {
     this.imageCounter = 1;
+    this.shouldPress = true;
 
 	setBase();
 	setCTA();
@@ -130,14 +133,14 @@ function setBase(){
     this.btn1 = game.add.sprite(this.game.width*0.35, this.game.height*0.9,'atlas','btn1.png');
     this.btn1.anchor.set(0.5);
     this.btn1.scale.set(0.5);
-    this.btn1Tween = game.add.tween(this.btn1).to({ x:[this.game.width*0.34,this.game.width*0.35]}, 200, Phaser.Easing.Circular.InOut).repeat(-1);
+    this.btn1Tween = game.add.tween(this.btn1).to({ x:[this.game.width*0.34,this.game.width*0.351]}, 200, Phaser.Easing.Circular.InOut).repeat(-1).delay(150);
     this.btn1.inputEnabled = true;
     this.btn1.events.onInputDown.add(movePic, this,0,'not');
 
     this.btn2 = game.add.sprite(this.game.width*0.65, this.game.height*0.9,'atlas','btn2.png');
     this.btn2.anchor.set(0.5);
     this.btn2.scale.set(0.5);
-    this.btn2Tween = game.add.tween(this.btn2).to({ x:[this.game.width*0.64,this.game.width*0.65]}, 200, Phaser.Easing.Circular.InOut).repeat(-1);
+    this.btn2Tween = game.add.tween(this.btn2).to({ x:[this.game.width*0.64,this.game.width*0.652]}, 180, Phaser.Easing.Circular.InOut).repeat(-1).delay(75);
     this.btn2.inputEnabled = true;
     this.btn2.events.onInputDown.add(movePic, this, 0, 'heart');
 
@@ -149,6 +152,7 @@ function setBase(){
 
 
     this.game.time.events.loop(5000, noInteraction);
+    noInteraction()
 
     this.swipe = new Hammer(this.game.canvas);
     this.swipe.on("swipeleft", function(){movePic(0,0,'not')});
@@ -157,6 +161,10 @@ function setBase(){
 
 function movePic(btn, pointer, type){
     interaction();
+
+    if(!this.shouldPress) return;
+
+    this.shouldPress = false;
 
     if(type == 'not'){
         this.btn1.alpha = 0;
@@ -185,11 +193,14 @@ function newPic(){
     this.imageCounter++;
 
     if(this.imageCounter >= 4){
+        this.btn1.alpha = 0;
+        this.btn2.alpha = 0;
         this.game.time.events.add(100, callCTA);
     }
     else{
         this.picture.loadTexture('img'+this.imageCounter);
-        game.add.tween(this.picture).to({ x:this.game.width*0.5, angle:0,alpha:1}, 500, Phaser.Easing.Sinusoidal.Out,true);
+        var g = game.add.tween(this.picture).to({ x:this.game.width*0.5, angle:0,alpha:1}, 500, Phaser.Easing.Sinusoidal.Out,true);
+        g.onComplete.add(function(){this.shouldPress = true;}, this);
     }
 }
 
