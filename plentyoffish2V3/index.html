@@ -147,8 +147,8 @@ function setBase(){
     this.warning = game.add.sprite(this.game.width*0.5, this.game.height*0.55,'atlas','card.png');
     this.warning.anchor.set(0.5);
     this.warning.scale.set(0);
-    this.warningTween = game.add.tween(this.warning.scale).to({ x: 1.2, y: 1.2}, 500, Phaser.Easing.Sinusoidal.Out).to({ x: 1.1, y: 1.1}, 200, Phaser.Easing.Sinusoidal.Out);
-    this.warningTween2 = game.add.tween(this.warning.scale).to({ x: 1.2, y: 1.2}, 200, Phaser.Easing.Bounce.Out).to({ x: 0, y: 0}, 100, Phaser.Easing.Sinusoidal.Out);
+    this.warningTween = game.add.tween(this.warning.scale).to({ x: 1.2, y: 1.2}, 500, Phaser.Easing.Sinusoidal.Out).to({ x: 1.1, y: 1.1}, 400, Phaser.Easing.Sinusoidal.Out);
+    this.warningTween2 = game.add.tween(this.warning.scale).to({ x: 1.2, y: 1.2}, 300, Phaser.Easing.Bounce.Out).to({ x: 0, y: 0}, 100, Phaser.Easing.Sinusoidal.Out);
 
 
     this.game.time.events.loop(5000, noInteraction);
@@ -171,7 +171,7 @@ function movePic(btn, pointer, type){
         this.btn2.alpha = 0;
         this.cardActive = true;
         this.warningTween.start()
-        var t = game.add.tween(this.picture).to({ x:this.game.width*-1.5, angle:15,alpha:0}, 700, Phaser.Easing.Sinusoidal.InOut,true);
+        var t = game.add.tween(this.picture).to({ x:this.game.width*-1.5, angle:15,alpha:0}, 1000, Phaser.Easing.Sinusoidal.InOut,true);
     }
     else if(type == 'heart')
         var t = game.add.tween(this.picture).to({ x:this.game.width*2, angle:-15,alpha:0}, 700, Phaser.Easing.Sinusoidal.InOut,true);
@@ -195,7 +195,7 @@ function newPic(){
     if(this.imageCounter >= 4){
         this.btn1.alpha = 0;
         this.btn2.alpha = 0;
-        this.game.time.events.add(100, callCTA);
+        this.game.time.events.add(400, callCTA);
     }
     else{
         this.picture.loadTexture('img'+this.imageCounter);
