@@ -180,11 +180,7 @@ function setBase(){
     this.videoBoy = game.add.video('boy');
   
     this.videoBoy.addToWorld(540,250,0.5,0.5,0.75,1.5);
-
-    this.videoGirl = game.add.video('girl1');
-  
-    this.videoImage = this.videoGirl.addToWorld(180,250,0.5,0.5,0.75,1.5);
-	this.videoGirl.play(true);
+    this.videoBoy.unlock();
 
     this.videoGirl1 = game.add.video('swipe1');
     this.videoImage1 = this.videoGirl1.addToWorld(180,250,0.5,0.5,0.75,1.5);
@@ -201,6 +197,11 @@ function setBase(){
     this.videoGirl4 = game.add.video('swipe4');
     this.videoImage4 = this.videoGirl4.addToWorld(180,250,0.5,0.5,0.75,1.5);
 	this.videoImage4.alpha = 0;
+
+	this.videoGirl = game.add.video('girl1');
+  
+    this.videoImage = this.videoGirl.addToWorld(180,250,0.5,0.5,0.75,1.5);
+	this.videoGirl.play(true);
 
     this.frame1 = game.add.sprite(this.game.width*0.25, this.game.height*0.2,'atlas','Rectangle Frame .png');
     this.frame1.anchor.set(0.5);
@@ -395,27 +396,33 @@ function playVideo(number){
 	if(number == 1){
 		this.videoImage1.alpha = true;
 		this.videoGirl1.play();
-		this.videoGirl1.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage1.alpha = false; this.videoGirl.play(true)})
+		this.videoGirl1.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage1.alpha = false; this.videoGirl.play(true);
+			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
+		})
 	}
 	else if(number == 2){
 		this.videoImage2.alpha = true;
 		this.videoGirl2.play();
-		this.videoGirl2.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage2.alpha = false; this.videoGirl.play(true)})
+		this.videoGirl2.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage2.alpha = false; this.videoGirl.play(true)});
+			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
 	}
 	else if(number == 3){
 		this.videoImage3.alpha = true;
 		this.videoGirl3.play();
-		this.videoGirl3.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage3.alpha = false; this.videoGirl.play(true)})
+		this.videoGirl3.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage3.alpha = false; this.videoGirl.play(true)});
+			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
 	}
 	else if(number == 4){
 		this.videoImage4.alpha = true;
 		this.videoGirl4.play();
-		this.videoGirl4.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage4.alpha = false; this.videoGirl.play(true)})
+		this.videoGirl4.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage4.alpha = false; this.videoGirl.play(true)});
+			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
 	}
 	else if(number == 5){
 		this.videoImage1.alpha = true;
 		this.videoGirl1.play();
 		this.videoGirl1.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage1.alpha = false; this.videoGirl.play(true)})
+			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
 	}
 }
  
@@ -787,7 +794,7 @@ function showSuggestion(){
 
                     handTween2.onComplete.add(function(){
                         hand.y = hand.inity; 
-                        game.time.events.add(2000,function(){hand.alpha = 1;handTween.start()});                               
+                        game.time.events.add(2500,function(){hand.alpha = 1;handTween.start()});                               
                     })
 
 
