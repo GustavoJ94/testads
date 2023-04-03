@@ -167,7 +167,7 @@ function setBase(){
     this.showSuggestion();
  	canPick = true;
     this.game.input.onDown.add(this.orbSelect,this);
-   // this.game.input.onUp.add(this.orbDeselect,this);
+    this.game.input.onUp.add(this.orbDeselect,this);
 
     this.sprite1 = game.add.sprite(this.game.width*0.25, this.game.height*0.195,'sprite1');
     this.sprite1.scale.set(0.5,0.5);
@@ -315,7 +315,7 @@ function orbSelect(e){
           var pickedOrb = gemAt(row, col)
           if(pickedOrb != -1){
                if(selectedOrb == null){
-                    pickedOrb.orbSprite.scale.setTo(1.2);
+                    //pickedOrb.orbSprite.scale.setTo(1.2);
                     pickedOrb.orbSprite.bringToTop();
                     selectedOrb = pickedOrb;
                     //game.input.addMoveCallback(orbMove);
@@ -343,7 +343,8 @@ function orbSelect(e){
 }
  
 function orbDeselect(e){
-     game.input.deleteMoveCallback(orbMove);     
+    selectedOrb = null;
+    pickedOrb = null;     
 }
  
 function update(){
