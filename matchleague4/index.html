@@ -397,32 +397,32 @@ function playVideo(number){
 		this.videoImage1.alpha = true;
 		this.videoGirl1.play();
 		this.videoGirl1.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage1.alpha = false; this.videoGirl.play(true);
-			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
+			this.game.time.events.add(200,function(){ this.videoGirl.play(true)})
 		})
 	}
 	else if(number == 2){
 		this.videoImage2.alpha = true;
 		this.videoGirl2.play();
 		this.videoGirl2.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage2.alpha = false; this.videoGirl.play(true)});
-			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
+			this.game.time.events.add(200,function(){ this.videoGirl.play(true)})
 	}
 	else if(number == 3){
 		this.videoImage3.alpha = true;
 		this.videoGirl3.play();
 		this.videoGirl3.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage3.alpha = false; this.videoGirl.play(true)});
-			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
+			this.game.time.events.add(200,function(){ this.videoGirl.play(true)})
 	}
 	else if(number == 4){
 		this.videoImage4.alpha = true;
 		this.videoGirl4.play();
 		this.videoGirl4.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage4.alpha = false; this.videoGirl.play(true)});
-			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
+			this.game.time.events.add(200,function(){ this.videoGirl.play(true)})
 	}
 	else if(number == 5){
 		this.videoImage1.alpha = true;
 		this.videoGirl1.play();
 		this.videoGirl1.onComplete.add(function(){this.videoImage.alpha = true;	this.videoImage1.alpha = false; this.videoGirl.play(true)})
-			this.game.time.events.add(200,function(){if(!this.videoGirl.playing) this.videoGirl.play(true)})
+			this.game.time.events.add(200,function(){ this.videoGirl.play(true)})
 	}
 }
  
@@ -826,7 +826,7 @@ function showSuggestion(){
 
                     handTween2.onComplete.add(function(){
                         hand.x = hand.initx; 
-                        game.time.events.add(2000,function(){hand.alpha = 1;handTween.start()});                               
+                        game.time.events.add(2500,function(){hand.alpha = 1;handTween.start()});                               
                     })
 
                     matchFound = true;
