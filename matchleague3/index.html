@@ -167,7 +167,7 @@ function setBase(){
     this.showSuggestion();
  	canPick = true;
     this.game.input.onDown.add(this.orbSelect,this);
-    this.game.input.onUp.add(this.orbSelect,this);
+   // this.game.input.onUp.add(this.orbDeselect,this);
 
     this.sprite1 = game.add.sprite(this.game.width*0.25, this.game.height*0.195,'sprite1');
     this.sprite1.scale.set(0.5,0.5);
@@ -318,8 +318,7 @@ function orbSelect(e){
                     pickedOrb.orbSprite.scale.setTo(1.2);
                     pickedOrb.orbSprite.bringToTop();
                     selectedOrb = pickedOrb;
-                    game.input.addMoveCallback(orbMove);
-                    this.orbDeselect()
+                    //game.input.addMoveCallback(orbMove);
                }
                else{
                     if(areTheSame(pickedOrb, selectedOrb)){
@@ -335,8 +334,7 @@ function orbSelect(e){
                               selectedOrb.orbSprite.scale.setTo(1);
                               pickedOrb.orbSprite.scale.setTo(1.2); 
                               selectedOrb = pickedOrb;  
-                              game.input.addMoveCallback(orbMove);  
-                              this.orbDeselect()    
+                              //game.input.addMoveCallback(orbMove);  
                          }
                     }
                }     
@@ -348,8 +346,8 @@ function orbDeselect(e){
      game.input.deleteMoveCallback(orbMove);     
 }
  
-function orbMove(event, pX, pY){
-     if(event.id == 0){
+function update(){
+     if(selectedOrb && !pickedOrb){
      	  var pos = this.game.input.getLocalPosition(orbGroup, this.game.input);
           var hoverX = pos.x;
           var hoverY = pos.y;
@@ -383,7 +381,9 @@ function orbMove(event, pX, pY){
                if(pickedOrb != -1){
                     selectedOrb.orbSprite.scale.setTo(1);
                     swapOrbs(selectedOrb, pickedOrb, true);
-                    game.input.deleteMoveCallback(orbMove);
+                    selectedOrb = null;
+                    pickedOrb = null;
+                   // game.input.deleteMoveCallback(orbMove);
                }    
           }
      }
@@ -419,10 +419,6 @@ function playVideo(number){
 }
  
 function swapOrbs(orb1, orb2, swapBack){
-	 this.swipeCount++;
-	 if(this.swipeCount >= 5) this.game.time.events.add(2000,this.callCTA);
-	 this.playVideo(this.swipeCount);
-
      canPick = false;   
      var fromColor = orb1.orbColor;
      var fromSprite = orb1.orbSprite;
@@ -447,6 +443,9 @@ function swapOrbs(orb1, orb2, swapBack){
           else{ 
                if(matchInBoard()){
                     handleMatches();
+                   	this.swipeCount++;
+					if(this.swipeCount >= 5) this.game.time.events.add(2000,this.callCTA);
+					this.playVideo(this.swipeCount);
                }
                else{        
                     canPick = true;
@@ -631,7 +630,7 @@ function destroyOrbs(){
     game.add.tween(this.points3).to({ alpha:1}, 500, Phaser.Easing.Sinusoidal.InOut).start(true);
 
     var pointsTween = this.add.tween(this);
-	pointsTween.to({ points: points+p}, 700, Phaser.Easing.Linear.None, true, 200);
+	pointsTween.to({ points: points+p}, 1200, Phaser.Easing.Linear.None, true, 200);
 	
 	pointsTween.onUpdateCallback(function(){
 		this.points1.setText(Math.floor(this.points));
@@ -770,7 +769,7 @@ function showSuggestion(){
                     hand.x = gameArray[i + 1][j].orbSprite.x - 20;
                     hand.y = gameArray[i + 1][j].orbSprite.y + 565;
  					hand.initx = gameArray[i + 1][j].orbSprite.x - 20;
-                    hand.inity = gameArray[i + 1][j].orbSprite.y + 555;
+                    hand.inity = gameArray[i + 1][j].orbSprite.y + 565;
 
                     handTween = game.add.tween(hand).to({
                          y: hand.y + 150
