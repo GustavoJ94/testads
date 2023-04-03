@@ -167,7 +167,7 @@ function setBase(){
     this.showSuggestion();
  	canPick = true;
     this.game.input.onDown.add(this.orbSelect,this);
-    this.game.input.onUp.add(this.orbDeselect,this);
+    this.game.input.onUp.add(this.orbSelect,this);
 
     this.sprite1 = game.add.sprite(this.game.width*0.25, this.game.height*0.195,'sprite1');
     this.sprite1.scale.set(0.5,0.5);
@@ -319,6 +319,7 @@ function orbSelect(e){
                     pickedOrb.orbSprite.bringToTop();
                     selectedOrb = pickedOrb;
                     game.input.addMoveCallback(orbMove);
+                    this.orbDeselect()
                }
                else{
                     if(areTheSame(pickedOrb, selectedOrb)){
@@ -334,7 +335,8 @@ function orbSelect(e){
                               selectedOrb.orbSprite.scale.setTo(1);
                               pickedOrb.orbSprite.scale.setTo(1.2); 
                               selectedOrb = pickedOrb;  
-                              game.input.addMoveCallback(orbMove);      
+                              game.input.addMoveCallback(orbMove);  
+                              this.orbDeselect()    
                          }
                     }
                }     
@@ -785,7 +787,7 @@ function showSuggestion(){
 
                     handTween2.onComplete.add(function(){
                         hand.y = hand.inity; 
-                        game.time.events.add(500,function(){hand.alpha = 1;handTween.start()});                               
+                        game.time.events.add(2000,function(){hand.alpha = 1;handTween.start()});                               
                     })
 
 
@@ -817,7 +819,7 @@ function showSuggestion(){
 
                     handTween2.onComplete.add(function(){
                         hand.x = hand.initx; 
-                        game.time.events.add(500,function(){hand.alpha = 1;handTween.start()});                               
+                        game.time.events.add(2000,function(){hand.alpha = 1;handTween.start()});                               
                     })
 
                     matchFound = true;
