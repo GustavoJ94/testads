@@ -38,7 +38,7 @@ var game = new Phaser.Game({
 });
 
 function onClickDownload(){
-	alert('your url here') 
+	alert('url here')
 }
 
 function _base64ToArrayBuffer(base64) {
@@ -293,6 +293,7 @@ function setBoard(){
 }
 
 function nextMove(tile, pointer) {
+	if(!this.shouldMove)return;
     this.step++;
     this.emitter.start(true, 1000, null, 5);
 
@@ -302,6 +303,7 @@ function nextMove(tile, pointer) {
 	}
 
     if(this.step == 1){
+    	this.shouldMove = false;
         this.notificationTween.start()
 
         this.cards1.forEach(function(card){
@@ -315,13 +317,16 @@ function nextMove(tile, pointer) {
             this.circle.scale.set(0.3);
             this.circle.revive()
             this.circle.position.x = this.game.width*0.49;
+            this.shouldMove = true;
         })
     }
     else if(this.step == 2){
+    	this.shouldMove = false;
 
             this.cards2.forEach(function(card){
             this.move2 = this.game.add.tween(card).to({y:card.y+(this.game.height*0.12)}, 400, Phaser.Easing.Sinusoidal.Out).to({x:this.game.width*0.865,y:card.y+(this.game.height*0.09)}, 400, Phaser.Easing.Sinusoidal.InOut).start();
         })
+
 
         this.game.time.events.add(1200, function(){
             this.hand.position.x = this.game.width*0.81;
@@ -335,10 +340,13 @@ function nextMove(tile, pointer) {
             this.cards3.addMultiple([this.qHearts,this.trebolJ,this.diamond10,this.trebol9,this.hearts8,this.picas7,this.hearts6]);
             this.circle.bringToTop()
             this.hand.bringToTop() 
+            this.shouldMove = true;
         })
          
     }
     else if(this.step == 3){
+    	this.shouldMove = false;
+
         this.notification.frameName = 'SkillzPaymentNotif15.png';
         this.notificationTween2.start()
 
