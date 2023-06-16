@@ -258,7 +258,7 @@ function resize(width, height) {
     	this.galaxyStore.y = this.game.height*0.77;
 
     	this.rating.loadTexture('atlas','rating_p.png')
-    	this.scaleSprite(this.rating, width, height, 0, 0.6);
+    	//this.scaleSprite(this.rating, width, height, 0, 0.6);
 		this.rating.x = this.game.width*0.5;
     	this.rating.y = this.game.height*0.86;
 
@@ -396,7 +396,7 @@ function resize(width, height) {
     	this.disclaimer.y = this.game.height*0.98;
 
     	this.rating.loadTexture('atlas','rating_l.png')
-    	this.scaleSprite(this.rating, width, height, 0, 0.45);
+    	//this.scaleSprite(this.rating, width, height, 0, 0.45);
 		this.rating.x = this.game.width*0.5;
     	this.rating.y = this.game.height*0.91;
 
@@ -852,6 +852,8 @@ function startCTA2(){
 		this.scaleSpriteTween(this.ctaMoney, this.game.width,this.game.height,0,0.4)
 		this.scaleSpriteTween(this.ctaPaypal, this.game.width,this.game.height,0,0.5)
 		this.scaleSpriteTween(this.ctaYourWinnings, this.game.width,this.game.height, 0, 0.45);
+		this.popup(this.rating, this.game.width, this.game.height, 0, 0.6)
+
 		if(this.isGameOver){
 	    	this.ctaMoney.loadTexture('atlas2','$0.png')
 	    	this.ctaButton.loadTexture('atlas','download.png')
@@ -869,6 +871,7 @@ function startCTA2(){
 		this.scaleSpriteTween(this.ctaMoney, this.game.width,this.game.height,0,0.16)
 		this.scaleSpriteTween(this.ctaPaypal, this.game.width,this.game.height,0,0.2)
 		this.scaleSpriteTween(this.ctaYourWinnings, this.game.width,this.game.height, 0, 0.2);
+		this.popup(this.rating, this.game.width, this.game.height, 0, 0.45)
 		this.logo.x = this.game.width*0.5;
 		this.logo.y = this.game.height*0.11;
 		if(this.isGameOver){
