@@ -415,9 +415,9 @@ function resize(width, height) {
 		this.hand.x = this.game.width*0.82;
     	this.hand.y = this.game.height*1.05;
 
-    	this.scaleSprite(this.piece1Copy, width/4, height/4, 0, 0.64);
-		this.piece1Copy.x = this.board.x - (this.board.width*0.326)
-    	this.piece1Copy.y = this.board.y - (this.board.height*0.281)
+    	this.scaleSprite(this.piece1Copy, width/4, height/4, 0, 0.63);
+		this.piece1Copy.x = this.board.x + (this.board.width*0.239)
+    	this.piece1Copy.y = this.board.y + (this.board.height*0.193)
     	this.scaleSprite(this.piece2Copy, width/4, height/4, 0, 0.64);
 		this.piece2Copy.x = this.board.x + (this.board.width*0.331)
     	this.piece2Copy.y = this.board.y + (this.board.height*0.378)
@@ -436,11 +436,11 @@ function resize(width, height) {
     	this.scaleSprite(this.piece7Copy, width/3, height/3, 0, 0.66);
 		this.piece7Copy.x = this.board.x - (this.board.width*0.234)
     	this.piece7Copy.y = this.board.y - (this.board.height*0.329)
-    	this.scaleSprite(this.piece8Copy, width/3, height/3, 0, 0.475);
-		this.piece8Copy.x = this.board.x + (this.board.width*0.0485)
+    	this.scaleSprite(this.piece8Copy, width/3, height/3, 0, 0.46);
+		this.piece8Copy.x = this.board.x + (this.board.width*0.0484)
     	this.piece8Copy.y = this.board.y - (this.board.height*0.286)
-    	this.scaleSprite(this.piece9Copy, width/3, height/3, 0, 0.44);
-		this.piece9Copy.x = this.board.x + (this.board.width*0.331)
+    	this.scaleSprite(this.piece9Copy, width/3, height/3, 0, 0.23);
+		this.piece9Copy.x = this.board.x + (this.board.width*0.329)
     	this.piece9Copy.y = this.board.y + (this.board.height*0.048)
     	this.scaleSprite(this.piece10Copy, width/3, height/3, 0, 0.65);
 		this.piece10Copy.x = this.board.x - (this.board.width*0.375)
@@ -818,6 +818,7 @@ function startGame(){
     this.piece4 = game.add.sprite(0,0,'atlas','piece4.png');
     this.piece4.anchor.set(0.5)
     this.piece4.alpha = 0;
+	this.piece4.used = false;
 
     this.piece4.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece4Copy);
@@ -830,6 +831,7 @@ function startGame(){
     this.piece5 = game.add.sprite(0,0,'atlas','piece5.png');
     this.piece5.anchor.set(0.5)
     this.piece5.alpha = 0;
+	this.piece5.used = false;
 
     this.piece5.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece5Copy);
@@ -842,6 +844,7 @@ function startGame(){
     this.piece6 = game.add.sprite(0,0,'atlas','piece6.png');
     this.piece6.anchor.set(0.5)
     this.piece6.alpha = 0;
+	this.piece6.used = false;
 
     this.piece6.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece6Copy);
@@ -854,6 +857,7 @@ function startGame(){
     this.piece7 = game.add.sprite(0,0,'atlas','piece7.png');
     this.piece7.anchor.set(0.5)
     this.piece7.alpha = 0;
+   	this.piece7.used = false;
 
     this.piece7.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece7Copy);
@@ -866,6 +870,7 @@ function startGame(){
     this.piece8 = game.add.sprite(0,0,'atlas','piece8.png');
     this.piece8.anchor.set(0.5)
     this.piece8.alpha = 0;
+   	this.piece8.used = false;
 
     this.piece8.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece8Copy);
@@ -878,6 +883,7 @@ function startGame(){
     this.piece9 = game.add.sprite(0,0,'atlas','piece9.png');
     this.piece9.anchor.set(0.5)
     this.piece9.alpha = 0;
+   	this.piece9.used = false;
 
     this.piece9.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece9Copy);
@@ -890,6 +896,7 @@ function startGame(){
     this.piece10 = game.add.sprite(0,0,'atlas','piece10.png');
     this.piece10.anchor.set(0.5)
     this.piece10.alpha = 0;
+    this.piece10.used = false;
 
     this.piece10.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece10Copy);
@@ -902,6 +909,7 @@ function startGame(){
     this.piece11 = game.add.sprite(0,0,'atlas','piece11.png');
     this.piece11.anchor.set(0.5)
     this.piece11.alpha = 0;
+    this.piece11.used = false;
 
     this.piece11.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece11Copy);
@@ -914,6 +922,7 @@ function startGame(){
     this.piece12 = game.add.sprite(0,0,'atlas','piece12.png');
     this.piece12.anchor.set(0.5)
     this.piece12.alpha = 0;
+    this.piece12.used = false;
 
     this.piece12.events.onDragStop.add(function(currentSprite){
       this.stopDrag(currentSprite, this.piece12Copy);
@@ -1354,17 +1363,20 @@ function startDrag(endSprite){
 }
 
 function putPiece(lastRemovedPiece){
-	var newPiece = this.piecesGroup.getFirstAlive();
-	this.piecesGroup.sendToBack(newPiece)
-	newPiece.bringToTop()
-	newPiece.alpha = 1;
-	newPiece.originalPosition = lastRemovedPiece.originalPosition;
-	this.game.physics.arcade.enable(newPiece);
-    newPiece.inputEnabled = true;
-    newPiece.input.enableDrag();
-	newPiece.position.copyFrom(lastRemovedPiece.originalPosition)
-	newPiece.scale.copyFrom(lastRemovedPiece.scale)
-	//this.scaleSprite(newPiece, this.game.width/3, this.game.height/3, 0, 0.35);
+	var newPiece = this.piecesGroup.getFirst('used',false);
+	if(newPiece != null){
+		this.piecesGroup.sendToBack(newPiece)
+		newPiece.used = true;
+		newPiece.bringToTop()
+		newPiece.alpha = 1;
+		newPiece.originalPosition = lastRemovedPiece.originalPosition;
+		this.game.physics.arcade.enable(newPiece);
+	    newPiece.inputEnabled = true;
+	    newPiece.input.enableDrag();
+		newPiece.position.copyFrom(lastRemovedPiece.originalPosition)
+		newPiece.scale.copyFrom(lastRemovedPiece.scale)
+		//this.scaleSprite(newPiece, this.game.width/3, this.game.height/3, 0, 0.35);
+	}
 }
 		</script>
 	</body>
