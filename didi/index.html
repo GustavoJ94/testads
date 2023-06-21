@@ -244,7 +244,7 @@ function resize(width, height) {
 		this.msgGame.y =this.game.height*0.15;
 
 		this.scaleSprite(this.passenger, width, height, 0, 0.15);
-		this.passenger.x = this.game.width*0.78;
+		this.passenger.x = this.game.width*0.76;
 		this.passenger.y =this.game.height*0.5;
 		this.passenger.angle = 0;
 		this.passengerIcon.x = 0;
@@ -298,7 +298,10 @@ function resize(width, height) {
    			this.logo.y = this.game.height*0.14;
    			this.carCTA.x = this.game.width*0.5;
     	}
- 		
+    }
+    if(this.game.device.desktop){
+        this.scaleSprite(this.playerCar, width, height, 0, 0.25);
+        this.scaleSprite(this.passenger, width, height, 0, 0.25);
     }
   }
 
