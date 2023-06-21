@@ -388,6 +388,7 @@ function create() {
 
 function setIntro(){
 	this.phase = 1;
+    this.ctaIsFinished = false;
 	this.bgmusic = game.add.audio('bgmusic',0.1,true);
 	this.bgmusic.play();
 
@@ -467,11 +468,11 @@ function startGame(){
 
 	this.game.input.onDown.add(moveCar,this);
 	this.game.input.onUp.add(stopCar,this);
+    this.game.time.events.add(15000, startCTA);
 }
 
 function setGame(){
 	this.isPicked = false;
-	this.ctaIsFinished = false;
 	this.game.physics.startSystem(Phaser.Physics.ARCADE);
 	this.msgGame = game.add.sprite(0,0,'atlas','gametext.png');
     this.msgGame.anchor.set(0.5)
@@ -545,8 +546,6 @@ function setGame(){
     this.goalWork.anchor.set(0.5)
     this.goalWork.alpha = 0;
     this.game.physics.enable(this.goalWork, Phaser.Physics.ARCADE);
-
-    this.game.time.events.add(15000, startCTA);
 }
 
 function moveCar(){
@@ -584,11 +583,11 @@ function checkGoal(){
 }
 
 function startCTA(){
-	if(this.ctaIsFinished) return
-	this.ctaIsFinished = true;
+    if(this.ctaIsFinished) return
+    this.ctaIsFinished = true;
+    this.msgGame.alpha = 0;
 	this.phase = 3;
 	this.logo.alpha = 1;
-	this.msgGame.alpha = 0;
 	this.logo.bringToTop()
 	this.logo.scale.set(0)
 	this.ctaBgTween.start();
