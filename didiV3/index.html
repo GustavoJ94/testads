@@ -58,9 +58,6 @@ function _base64ToArrayBuffer(base64) {
 function preload() {
     this.stage.disableVisibilityChange = false;   
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-    this.game.renderer.renderSession.roundPixels = true;
-    this.scale.pageAlignHorizontally = true;
-    this.scale.pageAlignVertically = true;
 
     this.bgColor = "#FFF0E7"; //Background Color
     this.textBlack = { font: "bold 52px Arial", fill: "#000",stroke: '#000',strokeThickness:1, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
