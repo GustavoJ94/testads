@@ -619,12 +619,13 @@ function setGame(){
             y:[this.portraitPathY[4],this.portraitPathY[5]]}, 700, Phaser.Easing.Linear.None).interpolation(function(v, k){
     return Phaser.Math.bezierInterpolation(v, k);
 });
-        this.moveCarTween3.onStart.add(function(){this.turnAngle(-90,-110)})
+        //this.moveCarTween3.onStart.add(function(){this.turnAngle(-90,-110)})
         this.moveCarTween3.onComplete.add(function(){this.moveCarCount = 3; this.pickPassanger()})
 
         this.moveCarTween4 = this.game.add.tween(this.playerCar).to({
             x:[this.portraitPathX[6],this.portraitPathX[7]],
-            y:[this.portraitPathY[6],this.portraitPathY[7]]}, 700, Phaser.Easing.Linear.None).interpolation(function(v, k){
+            y:[this.portraitPathY[6],this.portraitPathY[7]],
+            angle:[this.portraitPathAngle[6],this.portraitPathAngle[7]]}, 700, Phaser.Easing.Linear.None).interpolation(function(v, k){
     return Phaser.Math.bezierInterpolation(v, k);
 });
 
@@ -671,12 +672,13 @@ function setGame(){
 
         this.moveCarTween3 = this.game.add.tween(this.playerCar).to({
             x:[this.portraitPathX[2],this.portraitPathX[3]],
-            y:[this.portraitPathY[3],this.portraitPathY[4],this.portraitPathY[5],this.portraitPathY[6],this.portraitPathY[7]]
+            y:[this.portraitPathY[3],this.portraitPathY[4],this.portraitPathY[5],this.portraitPathY[6],this.portraitPathY[7]],
+            angle:[this.portraitPathAngle[2],this.portraitPathAngle[3],this.portraitPathAngle[4],this.portraitPathAngle[5]]
         }, 1000, Phaser.Easing.Linear.None).interpolation(function(v, k){
     return Phaser.Math.bezierInterpolation(v, k);
 });
 
-        this.moveCarTween3.onStart.add(function(){this.turnAngle2(-45, 0, -90)})
+        //this.moveCarTween3.onStart.add(function(){this.turnAngle2(-45, 0, -90)})
         this.moveCarTween3.onComplete.add(function(){this.moveCarCount = 3; this.pickPassanger()})
 
         this.moveCarTween4 = this.game.add.tween(this.playerCar).to({
