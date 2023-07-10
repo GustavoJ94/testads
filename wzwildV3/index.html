@@ -172,10 +172,10 @@ function setBase(){
     this.msgWin = game.add.sprite(this.game.width*0.5,this.game.height*0.5,'atlas','1w.png');
     this.msgWin.anchor.set(0.5);
     this.msgWin.scale.set(0);
-    this.msgWinTween = game.add.tween(this.msgWin.scale).to({ x: 1, y: 1}, 600, Phaser.Easing.Sinusoidal.Out); 
-    this.msgCoinsTween = game.add.tween(this.msgCoins.scale).to({ x: 1, y: 1}, 600, Phaser.Easing.Sinusoidal.Out);
-    this.msgCoinsTween2 = game.add.tween(this.msgCoins).to({ alpha:0}, 700, Phaser.Easing.Sinusoidal.Out);
-    this.msgWinTween2 = game.add.tween(this.msgWin).to({ alpha:0}, 700, Phaser.Easing.Sinusoidal.Out); 
+    this.msgWinTween = game.add.tween(this.msgWin.scale).to({ x: 1, y: 1}, 500, Phaser.Easing.Sinusoidal.Out); 
+    this.msgCoinsTween = game.add.tween(this.msgCoins.scale).to({ x: 1, y: 1}, 500, Phaser.Easing.Sinusoidal.Out);
+    this.msgCoinsTween2 = game.add.tween(this.msgCoins).to({ alpha:0}, 600, Phaser.Easing.Sinusoidal.Out);
+    this.msgWinTween2 = game.add.tween(this.msgWin).to({ alpha:0}, 600, Phaser.Easing.Sinusoidal.Out); 
 
     this.msgWinTween.onStart.add(function(){this.msgWin.alpha = 1;})
     this.msgCoinsTween.onStart.add(function(){this.msgCoins.alpha = 1; })
@@ -262,7 +262,7 @@ function setBar(i, pos) {
 function spinBars() {
     this.barGroup.forEach(function(bar) {
         if (bar.active == true) {
-            bar.tilePosition.y -= bar.spins * 60;
+            bar.tilePosition.y -= bar.spins * 40;
             //if the bar is at the end of a spin
             //which is when the y position
             //is less than the negative height of the bar
