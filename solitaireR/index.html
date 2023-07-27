@@ -1044,7 +1044,7 @@ function setCTA(){
     this.suits = game.add.sprite(this.game.width*0.5, this.game.height*0.65,'atlas','suits.png');
     this.suits.anchor.set(0.5);
     this.suits.scale.set(0);
-    this.suitsCTATween = game.add.tween(this.suits.scale).to({ alpha:1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: 0.8, y: 0.8}, 250, Phaser.Easing.Sinusoidal.Out);
+    this.suitsCTATween = game.add.tween(this.suits).to({ alpha:1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: 0.8, y: 0.8}, 250, Phaser.Easing.Sinusoidal.Out);
 
     this.playBg = game.add.sprite(this.game.world.centerX, this.game.height*0.78,'atlas','playnow.png');
     this.playBg.anchor.set(0.5);
@@ -1113,13 +1113,13 @@ function callCTA2(){
 	}
 	else{
 		this.popup(this.hex, this.game.width, this.game.height,0,0.6)
-	    this.popup(this.suits, this.game.width, this.game.height,0,0.15)
+	    this.popup(this.suits, this.game.width, this.game.height,0,0.12)
 	    this.popup(this.titleCTA, this.game.width, this.game.height,0,0.35)
-	    this.popup(this.galaxystore, this.game.width, this.game.height,0,0.2)
-	    this.popup(this.appstore, this.game.width, this.game.height,0,0.22)
+	    this.popup(this.galaxystore, this.game.width, this.game.height,0,0.18)
+	    this.popup(this.appstore, this.game.width, this.game.height,0,0.2)
 
-	    this.scaleSprite(this.playBg, this.game.width, this.game.height,0,0.25)
-	    this.pulse(this.playBg, this.game.width, this.game.height,0,0.28)
+	    this.scaleSprite(this.playBg, this.game.width, this.game.height,0,0.18)
+	    this.pulse(this.playBg, this.game.width, this.game.height,0,0.22)
 	}
 
     this.game.input.onDown.add(onClickDownload,this);
