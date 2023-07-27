@@ -58,7 +58,7 @@ function scaleSpriteTween (sprite, availableSpaceWidth, availableSpaceHeight, pa
 
 function popup (sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
     var scale = this.getSpriteScale(sprite._frame.width, sprite._frame.height, availableSpaceWidth, availableSpaceHeight, padding);
-    game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.1, y:(scale * scaleMultiplier)+0.1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, 250, Phaser.Easing.Sinusoidal.Out).start(); 
+    game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.1, y:(scale * scaleMultiplier)+0.1}, 300, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, 150, Phaser.Easing.Sinusoidal.Out).start(); 
 }
 
 function pulse(sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
@@ -551,21 +551,21 @@ function resize(width, height) {
 		    this.scaleSprite(this.cardCTA4, this.game.width, this.game.height,0,0.4)
 	}
 
-	this.ctaTextTween = this.game.add.tween(this.ctaText).to({y:this.game.height*0.4}, 600, Phaser.Easing.Sinusoidal.InOut)
-    this.ctaTextTween2 = this.game.add.tween(this.ctaText).to({y:this.game.height*-1.5}, 1500, Phaser.Easing.Sinusoidal.InOut)
+	this.ctaTextTween = this.game.add.tween(this.ctaText).to({y:this.game.height*0.4}, 300, Phaser.Easing.Sinusoidal.InOut)
+    this.ctaTextTween2 = this.game.add.tween(this.ctaText).to({y:this.game.height*-1.5}, 700, Phaser.Easing.Sinusoidal.InOut)
 
-    this.ctaText2Tween = this.game.add.tween(this.ctaText2).to({y:this.game.height*0.5}, 600, Phaser.Easing.Sinusoidal.InOut)
-    this.ctaText2Tween2 = this.game.add.tween(this.ctaText2).to({y:this.game.height*-1.5}, 1500, Phaser.Easing.Sinusoidal.InOut)
+    this.ctaText2Tween = this.game.add.tween(this.ctaText2).to({y:this.game.height*0.5}, 300, Phaser.Easing.Sinusoidal.InOut)
+    this.ctaText2Tween2 = this.game.add.tween(this.ctaText2).to({y:this.game.height*-1.5}, 700, Phaser.Easing.Sinusoidal.InOut)
 
     this.ctaTextTween.onComplete.add(function(){
-        this.game.time.events.add(1000,function(){
+        this.game.time.events.add(800,function(){
             this.ctaTextTween2.start();
             this.ctaText2Tween.start();
         }) 
     })
 
     this.ctaText2Tween.onComplete.add(function(){
-        this.game.time.events.add(1000,function(){
+        this.game.time.events.add(800,function(){
             this.ctaText2Tween2.start();
             this.ctaDisclaimerTween.start();
         })
@@ -575,10 +575,10 @@ function resize(width, height) {
         this.callCTA2();
     })
 
-    this.cardCTA1Tween = this.game.add.tween(this.cardCTA1).to({x:this.hex.x-(this.hex.width*0.15),y:this.game.height*0.39,angle:-25}, 200, Phaser.Easing.Quadratic.Out).to({y:this.game.height*0.37,angle:-25}, 200, Phaser.Easing.Quadratic.Out)
-    this.cardCTA2Tween = this.game.add.tween(this.cardCTA2).to({x:this.hex.x-(this.hex.width*0.05),y:this.game.height*0.35,angle:-8}, 200, Phaser.Easing.Quadratic.Out).to({y:this.game.height*0.34,angle:-8}, 200, Phaser.Easing.Quadratic.Out)
-    this.cardCTA3Tween = this.game.add.tween(this.cardCTA3).to({x:this.hex.x+(this.hex.width*0.05),y:this.game.height*0.35,angle:8}, 200, Phaser.Easing.Quadratic.Out).to({y:this.game.height*0.34,angle:8}, 200, Phaser.Easing.Quadratic.Out)
-    this.cardCTA4Tween = this.game.add.tween(this.cardCTA4).to({x:this.hex.x+(this.hex.width*0.15),y:this.game.height*0.39,angle:25}, 200, Phaser.Easing.Quadratic.Out).to({y:this.game.height*0.37,angle:25}, 200, Phaser.Easing.Quadratic.Out)
+    this.cardCTA1Tween = this.game.add.tween(this.cardCTA1).to({x:this.hex.x-(this.hex.width*0.15),y:this.game.height*0.39,angle:-25}, 100, Phaser.Easing.Quadratic.Out).to({y:this.game.height*0.37,angle:-25}, 100, Phaser.Easing.Quadratic.Out)
+    this.cardCTA2Tween = this.game.add.tween(this.cardCTA2).to({x:this.hex.x-(this.hex.width*0.05),y:this.game.height*0.35,angle:-8}, 100, Phaser.Easing.Quadratic.Out).to({y:this.game.height*0.34,angle:-8}, 100, Phaser.Easing.Quadratic.Out)
+    this.cardCTA3Tween = this.game.add.tween(this.cardCTA3).to({x:this.hex.x+(this.hex.width*0.05),y:this.game.height*0.35,angle:8}, 100, Phaser.Easing.Quadratic.Out).to({y:this.game.height*0.34,angle:8}, 100, Phaser.Easing.Quadratic.Out)
+    this.cardCTA4Tween = this.game.add.tween(this.cardCTA4).to({x:this.hex.x+(this.hex.width*0.15),y:this.game.height*0.39,angle:25}, 100, Phaser.Easing.Quadratic.Out).to({y:this.game.height*0.37,angle:25}, 100, Phaser.Easing.Quadratic.Out)
     this.cardCTA1Tween.chain(this.cardCTA2Tween);
     this.cardCTA2Tween.chain(this.cardCTA3Tween);
     this.cardCTA3Tween.chain(this.cardCTA4Tween);
@@ -870,13 +870,13 @@ function nextMove(tile, pointer) {
     	this.shouldMove = false;
 
             this.cards2.forEach(function(card){
-            this.move2 = this.game.add.tween(card).to({y:card.y+(this.game.height*0.12)}, 400, Phaser.Easing.Sinusoidal.Out).to({x:this.picasQ.x,y:card.y+(this.picasQ.height*0.45)}, 400, Phaser.Easing.Sinusoidal.InOut).start();
+            this.move2 = this.game.add.tween(card).to({y:card.y+(this.game.height*0.12)}, 200, Phaser.Easing.Sinusoidal.Out).to({x:this.picasQ.x,y:card.y+(this.picasQ.height*0.45)}, 200, Phaser.Easing.Sinusoidal.InOut).start();
         })
 
 
         this.game.time.events.add(1200, function(){
-        	this.tweenCardFlip1 = this.game.add.tween(this.diamond6.scale).to({x:0}, 125, Phaser.Easing.Linear.None,true);
-        	this.tweenCardFlip2 = this.game.add.tween(this.diamond6.scale).to({x:this.diamond6.myscaleX}, 125, Phaser.Easing.Linear.None,false);
+        	this.tweenCardFlip1 = this.game.add.tween(this.diamond6.scale).to({x:0}, 100, Phaser.Easing.Linear.None,true);
+        	this.tweenCardFlip2 = this.game.add.tween(this.diamond6.scale).to({x:this.diamond6.myscaleX}, 100, Phaser.Easing.Linear.None,false);
         	this.tweenCardFlip1.chain(this.tweenCardFlip2);
 
             this.hand.position.x = this.game.width*0.65;
@@ -911,7 +911,7 @@ function nextMove(tile, pointer) {
         //this.notificationTween2.start()
 
          this.cards3.forEach(function(card){
-            this.move3 = this.game.add.tween(card).to({y:card.y+(this.game.height*0.12)}, 400, Phaser.Easing.Sinusoidal.Out).to({x:this.diamond6.x,y:card.y+(this.diamond6.height*0.22)}, 400, Phaser.Easing.Sinusoidal.InOut).start();
+            this.move3 = this.game.add.tween(card).to({y:card.y+(this.game.height*0.12)}, 200, Phaser.Easing.Sinusoidal.Out).to({x:this.diamond6.x,y:card.y+(this.diamond6.height*0.22)}, 200, Phaser.Easing.Sinusoidal.InOut).start();
         	this.hearts3.frameName = 'card-solo-h3.png';
         })
 
@@ -944,33 +944,33 @@ function callMoveCards(){
     var timer6 = 0;
 
     this.column1.forEach(function(card){
-        timer1 += 100;
-        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.373),y:this.board.y-(this.board.height*0.24)}, 300 + timer1, Phaser.Easing.Sinusoidal.Out,true)
+        timer1 += 50;
+        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.373),y:this.board.y-(this.board.height*0.24)}, 200 + timer1, Phaser.Easing.Sinusoidal.Out,true)
     })
 
     this.column2.forEach(function(card){
-        timer2 += 100;
-        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.25),y:this.board.y-(this.board.height*0.24)}, 300 + timer2, Phaser.Easing.Sinusoidal.Out,true)
+        timer2 += 50;
+        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.25),y:this.board.y-(this.board.height*0.24)}, 200 + timer2, Phaser.Easing.Sinusoidal.Out,true)
     })
 
     this.column3.forEach(function(card){
-        timer3 += 100;
-        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.13),y:this.board.y-(this.board.height*0.24)}, 300 + timer3, Phaser.Easing.Sinusoidal.Out,true)
+        timer3 += 50;
+        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.13),y:this.board.y-(this.board.height*0.24)}, 200 + timer3, Phaser.Easing.Sinusoidal.Out,true)
     })
 
     this.column4.forEach(function(card){
-        timer4 += 100;
-        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.01),y:this.board.y-(this.board.height*0.24)}, 300 + timer4, Phaser.Easing.Sinusoidal.Out,true)
+        timer4 += 50;
+        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.01),y:this.board.y-(this.board.height*0.24)}, 200 + timer4, Phaser.Easing.Sinusoidal.Out,true)
     })
 
     this.column5.forEach(function(card){
-        timer5 += 100;
-        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.01),y:this.board.y-(this.board.height*0.24)}, 300 + timer5, Phaser.Easing.Sinusoidal.Out,true)
+        timer5 += 50;
+        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.01),y:this.board.y-(this.board.height*0.24)}, 200 + timer5, Phaser.Easing.Sinusoidal.Out,true)
     })
 
     this.column6.forEach(function(card){
-        timer6 += 100;
-        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.01),y:this.board.y-(this.board.height*0.24)}, 300 + timer6, Phaser.Easing.Sinusoidal.Out,true)
+        timer6 += 50;
+        this.game.add.tween(card).to({x:this.board.x-(this.board.width*0.01),y:this.board.y-(this.board.height*0.24)}, 200 + timer6, Phaser.Easing.Sinusoidal.Out,true)
     })
 	
     this.tempText = game.add.sprite(this.game.width*0.5,this.game.height*1.5, 'atlas', 'gamecomplete.png');
@@ -981,7 +981,7 @@ function callMoveCards(){
     else
     	this.scaleSprite (this.tempText, this.game.width, this.game.height, 0, 0.6)
 
-    this.textTween = this.game.add.tween(this.tempText).to({y:this.game.height*0.5}, 600, Phaser.Easing.Sinusoidal.InOut,true)
+    this.textTween = this.game.add.tween(this.tempText).to({y:this.game.height*0.5}, 300, Phaser.Easing.Sinusoidal.InOut,true)
 
     this.textTween.onComplete.add(function(){
         this.game.time.events.add(700, function(){
