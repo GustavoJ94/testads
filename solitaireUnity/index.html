@@ -1049,7 +1049,7 @@ function setCTA(){
     this.suits = game.add.sprite(this.game.width*0.5, this.game.height*0.65,'atlas','suits.png');
     this.suits.anchor.set(0.5);
     this.suits.scale.set(0);
-    this.suitsCTATween = game.add.tween(this.suits.scale).to({ alpha:1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: 0.8, y: 0.8}, 250, Phaser.Easing.Sinusoidal.Out);
+    this.suitsCTATween = game.add.tween(this.suits).to({ alpha:1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: 0.8, y: 0.8}, 250, Phaser.Easing.Sinusoidal.Out);
 
     this.playBg = game.add.sprite(this.game.world.centerX, this.game.height*0.78,'atlas','playnow.png');
     this.playBg.anchor.set(0.5);
