@@ -164,7 +164,9 @@ function resize(width, height) {
     this.titleCTA.y = this.game.height*0.52
     this.playBg.y = this.game.height*0.78
 
-    if(!isLandscape){///PORTRAIT/// 
+    if(!isLandscape){///PORTRAIT///
+     	this.scaleSprite (this.play, width, height, 0, 0.3)
+        this.scaleSprite (this.title, width, height, 0, 0.5) 
     	this.title.x =  this.game.width*0.35;
     	this.play.x = this.game.width*0.8;
 
@@ -348,6 +350,8 @@ function resize(width, height) {
 
     }
     else{
+    	this.scaleSprite (this.title, width, height, 0, 0.3)
+        this.scaleSprite (this.play, width, height, 0, 0.15)
     	this.scaleSprite (this.board, width, height, 0, 0.6)
     	this.board.y = this.title.y+(this.board.height*0.65);
     	this.board.x = this.game.width*0.499;
