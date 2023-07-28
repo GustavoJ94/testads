@@ -11,7 +11,7 @@
 
 	<style type="text/css">
 
-		
+			
 		* {
 			margin: 0;
 			padding: 0;
@@ -32,7 +32,6 @@
 
 		<script type="text/javascript">
 	
-
 var url = 'https://apps.apple.com/ca/app/solitaire-cube-win-real-cash/id1114214294';
 
 var game = new Phaser.Game({
@@ -45,7 +44,7 @@ var game = new Phaser.Game({
 });
 
 function onClickDownload(){
-	mraid.open(url);  
+	mraid.open(url);
 }
 
 function _base64ToArrayBuffer(base64) {
@@ -168,13 +167,12 @@ function resize(width, height) {
     this.playBg.y = this.game.height*0.78
 
     if(!isLandscape){///PORTRAIT/// 
-    	this.scaleSprite (this.play, width, height, 0, 0.3)
-    	this.scaleSprite (this.title, width, height, 0, 0.5)
     	this.title.x =  this.game.width*0.35;
     	this.play.x = this.game.width*0.8;
 
     	this.scaleSprite (this.board, width, height, 0, 1)
-
+        this.scaleSprite (this.play, width, height, 0, 0.3)
+        this.scaleSprite (this.title, width, height, 0, 0.5)
     	this.board.y = this.title.y+(this.board.height*0.75);
     	this.board.x = this.game.width*0.499;
 
@@ -304,24 +302,23 @@ function resize(width, height) {
     	this.heartsK.y = this.board.y+(this.board.height*0.24)
     	this.picasQ.y = this.board.y+(this.board.height*0.34)
     	this.diamondJ.y = this.board.y+(this.board.height*0.27)
-    	this.picas10.y = this.board.y+(this.board.height*0.24)
-		this.hearts9.y = this.board.y+(this.board.height*0.34)
-    	this.picas8.y = this.board.y+(this.board.height*0.44)
-    	this.diamond7.y = this.board.y+(this.board.height*0.54)
-		this.picas6.y = this.board.y+(this.board.height*0.64)
-    	this.hearts5.y = this.board.y+(this.board.height*0.74)
+    	this.picas10.y = this.board.y+(this.board.height*0.37)
+		this.hearts9.y = this.board.y+(this.board.height*0.47)
+    	this.picas8.y = this.board.y+(this.board.height*0.57)
+    	this.diamond7.y = this.board.y+(this.board.height*0.67)
+		this.picas6.y = this.board.y+(this.board.height*0.77)
+    	this.hearts5.y = this.board.y+(this.board.height*0.87)
 
     	this.heartsK.x = this.board.x-(this.board.width*0.0)
     	this.picasQ.x = this.board.x-(this.board.width*0.0)
     	
     	this.diamondJ.x = this.board.x+(this.board.width*0.12)
-    	
-    	this.picas10.x = this.board.x+(this.board.width*0.365)
-		this.hearts9.x = this.board.x+(this.board.width*0.365)
-    	this.picas8.x = this.board.x+(this.board.width*0.365)
-    	this.diamond7.x = this.board.x+(this.board.width*0.365)
-		this.picas6.x = this.board.x+(this.board.width*0.365)
-    	this.hearts5.x = this.board.x+(this.board.width*0.365)
+    	this.picas10.x = this.board.x+(this.board.width*0.12)
+		this.hearts9.x = this.board.x+(this.board.width*0.12)
+    	this.picas8.x = this.board.x+(this.board.width*0.12)
+    	this.diamond7.x = this.board.x+(this.board.width*0.12)
+		this.picas6.x = this.board.x+(this.board.width*0.12)
+    	this.hearts5.x = this.board.x+(this.board.width*0.12)
 
     	//
     	this.trebol5.y = this.board.y+(this.board.height*0.27)
@@ -355,12 +352,12 @@ function resize(width, height) {
 
     }
     else{
+        this.scaleSprite (this.title, width, height, 0, 0.3)
+        this.scaleSprite (this.play, width, height, 0, 0.15)
     	this.scaleSprite (this.board, width, height, 0, 0.6)
     	this.board.y = this.title.y+(this.board.height*0.65);
     	this.board.x = this.game.width*0.499;
 
-    	this.scaleSprite (this.title, width, height, 0, 0.3)
-    	this.scaleSprite (this.play, width, height, 0, 0.15)
     	this.title.x = this.game.width*0.4
     	this.play.x = this.game.width*0.65
 
@@ -502,12 +499,12 @@ function resize(width, height) {
     	
     	this.diamondJ.x = this.board.x+(this.board.width*0.12)
     	
-    	this.picas10.x = this.board.x+(this.board.width*0.365)
-		this.hearts9.x = this.board.x+(this.board.width*0.365)
-    	this.picas8.x = this.board.x+(this.board.width*0.365)
-    	this.diamond7.x = this.board.x+(this.board.width*0.365)
-		this.picas6.x = this.board.x+(this.board.width*0.365)
-    	this.hearts5.x = this.board.x+(this.board.width*0.365)
+    	this.picas10.x = this.board.x+(this.board.width*0.12)
+		this.hearts9.x = this.board.x+(this.board.width*0.12)
+    	this.picas8.x = this.board.x+(this.board.width*0.12)
+    	this.diamond7.x = this.board.x+(this.board.width*0.12)
+		this.picas6.x = this.board.x+(this.board.width*0.12)
+    	this.hearts5.x = this.board.x+(this.board.width*0.12)
 
     	//
     	this.trebol5.y = this.board.y+(this.board.height*0.27)
@@ -541,11 +538,13 @@ function resize(width, height) {
     if(this.scale.isPortrait){
 	    this.hand.position.x = this.picas10.x-this.picas10.width;
 	    this.hand.position.y = this.picas10.y;
+	    this.circle.position.x = this.picas10.x-this.picas10.width*0.3;
+	    this.circle.position.y = this.hand.y-this.hand.height*0.5;
 	}
 	else{
-		this.hand.position.x = this.picas10.x-this.picas10.width;
+		this.hand.position.x = this.picas10.x-this.picas10.width*0.9;
 	    this.hand.position.y = this.picas10.y;
-	    this.circle.position.x = this.picas10.x-this.picas10.width*0.5;
+	    this.circle.position.x = this.picas10.x-this.picas10.width*0.3;
 	    this.circle.position.y = this.hand.y-this.hand.height*0.5;
 	}
 
@@ -595,14 +594,14 @@ function resize(width, height) {
     this.cardCTA3Tween.chain(this.cardCTA4Tween);
 
     if(this.isCTA){
-        this.cardCTA1.x = this.hex.x-(this.hex.width*0.15);
-        this.cardCTA1.y = this.game.height*0.37;
-        this.cardCTA2.x = this.hex.x-(this.hex.width*0.05)
-        this.cardCTA2.y = this.game.height*0.34;
-        this.cardCTA3.x = this.hex.x+(this.hex.width*0.05)
-        this.cardCTA3.y = this.game.height*0.34;
-        this.cardCTA4.x = this.hex.x+(this.hex.width*0.15)
-        this.cardCTA4.y = this.game.height*0.37;
+    	this.cardCTA1.x = this.hex.x-(this.hex.width*0.15);
+    	this.cardCTA1.y = this.game.height*0.37;
+		this.cardCTA2.x = this.hex.x-(this.hex.width*0.05)
+    	this.cardCTA2.y = this.game.height*0.34;
+    	this.cardCTA3.x = this.hex.x+(this.hex.width*0.05)
+    	this.cardCTA3.y = this.game.height*0.34;
+    	this.cardCTA4.x = this.hex.x+(this.hex.width*0.15)
+    	this.cardCTA4.y = this.game.height*0.37;
     }
 }
 
@@ -627,7 +626,7 @@ function setBase(){
 
     this.play = game.add.sprite(this.game.width*0.8, this.game.height*0.08,'atlas','playnow.png');
     this.play.anchor.set(0.5);
-    //this.play.scale.set(0.3);
+    this.play.scale.set(0.3);
     this.play.inputEnabled = true;
     this.play.events.onInputDown.add(onClickDownload, this);
 
@@ -818,7 +817,7 @@ function setBoard(){
     this.hearts5 = game.add.sprite(this.game.width*0.865, this.game.height*0.46,'atlas','card-solo-h5.png');
     this.hearts5.anchor.set(0.5);
     this.hearts5.scale.set(0.45);
-    this.cards1.addMultiple([this.picas10,this.hearts9,this.picas8,this.diamond7, this.picas6,this.hearts5]);
+    this.cards1.addMultiple([this.diamondJ,this.picas10,this.hearts9,this.picas8,this.diamond7, this.picas6,this.hearts5]);
 
     this.circle = game.add.sprite(this.game.width*0.83, this.game.height*0.28,'circle');
     this.circle.anchor.set(0.5);
@@ -874,11 +873,11 @@ function nextMove(tile, pointer) {
         //this.notificationTween.start()
 
         this.cards1.forEach(function(card){
-            this.move1 = this.game.add.tween(card).to({y:card.y+(this.game.height*0.06)}, 400, Phaser.Easing.Sinusoidal.Out).to({x:this.diamondJ.x,y:card.y+(this.diamondJ.height*0.29)}, 400, Phaser.Easing.Sinusoidal.InOut).start();
+            this.move1 = this.game.add.tween(card).to({y:card.y+(this.game.height*0.06)}, 400, Phaser.Easing.Sinusoidal.Out).to({x:this.picasQ.x,y:card.y+(this.picasQ.height*0.49)}, 400, Phaser.Easing.Sinusoidal.InOut).start();
         })
 
         this.game.time.events.add(1200, function(){
-            this.hand.position.x = this.game.width*0.53;
+            this.hand.position.x = this.trebol5.x-this.trebol5.width;
             this.hand.alpha = 1;
             this.circle.alpha = 0.8;
             this.circle.scale.set(0.3);
@@ -887,31 +886,11 @@ function nextMove(tile, pointer) {
             this.shouldMove = true;
             this.cards2.addMultiple([this.diamondJ,this.picas10,this.hearts9,this.picas8,this.diamond7, this.picas6,this.hearts5]);
         })
-    }
-    else if(this.step == 2){
-    	this.shouldMove = false;
 
-            this.cards2.forEach(function(card){
-            this.move2 = this.game.add.tween(card).to({y:card.y+(this.game.height*0.12)}, 200, Phaser.Easing.Sinusoidal.Out).to({x:this.picasQ.x,y:card.y+(this.picasQ.height*0.45)}, 200, Phaser.Easing.Sinusoidal.InOut).start();
-        })
-
-
-        this.game.time.events.add(1200, function(){
+         this.game.time.events.add(600, function(){
         	this.tweenCardFlip1 = this.game.add.tween(this.diamond6.scale).to({x:0}, 100, Phaser.Easing.Linear.None,true);
         	this.tweenCardFlip2 = this.game.add.tween(this.diamond6.scale).to({x:this.diamond6.myscaleX}, 100, Phaser.Easing.Linear.None,false);
         	this.tweenCardFlip1.chain(this.tweenCardFlip2);
-
-            this.hand.position.x = this.game.width*0.65;
-            this.hand.alpha = 1;
-            this.circle.alpha = 0.8;
-            this.circle.scale.set(0.3);
-            this.circle.revive()
-            this.circle.position.x = this.hand.x+this.hand.width*0.5;
-
-            if(!this.scale.isPortrait){
-            	this.hand.position.x = this.game.width*0.6;
-            	this.circle.position.x = this.hand.x+this.hand.width*0.5;
-            }
 
             this.tweenCardFlip1.onComplete.add(function(){
         		this.diamond6.frameName = 'card-solo-d6.png';
@@ -923,9 +902,8 @@ function nextMove(tile, pointer) {
         	})
 
         })
-         
     }
-    else if(this.step == 3){
+    else if(this.step == 2){
     	this.shouldMove = false;
     	this.emitter.start(true, 2000, null, 10);
 
@@ -940,6 +918,7 @@ function nextMove(tile, pointer) {
         this.game.time.events.add(1200, function(){
             this.callMoveCards();
         })
+      
     }
 }
 
@@ -1111,6 +1090,7 @@ function callCTA(){
 }
 
 function callCTA2(){
+	this.isCTA = true;
     this.skillz.alpha = 1;
     //this.playBg.scale.set(1)
 
@@ -1122,28 +1102,29 @@ function callCTA2(){
     this.appstoreTween.start();
     this.galaxystoreTween.start();*/
     this.suitsCTATween.start()
+
    var isLandscape = this.game.height / this.game.width  < 1.3 ? true: false;
    
    if(this.scale.isPortrait){
-	    this.popup(this.hex, this.game.width, this.game.height,0,0.8)
-	    this.popup(this.suits, this.game.width, this.game.height,0,0.3)
-	    this.popup(this.titleCTA, this.game.width, this.game.height,0,0.55)
-	    this.popup(this.galaxystore, this.game.width, this.game.height,0,0.32)
-	    this.popup(this.appstore, this.game.width, this.game.height,0,0.27)
+        this.popup(this.hex, this.game.width, this.game.height,0,0.8)
+        this.popup(this.suits, this.game.width, this.game.height,0,0.3)
+        this.popup(this.titleCTA, this.game.width, this.game.height,0,0.55)
+        this.popup(this.galaxystore, this.game.width, this.game.height,0,0.32)
+        this.popup(this.appstore, this.game.width, this.game.height,0,0.27)
 
-	    this.scaleSprite(this.playBg, this.game.width, this.game.height,0,0.6)
-	    this.pulse(this.playBg, this.game.width, this.game.height,0,0.65)
-	}
-	else{
-		this.popup(this.hex, this.game.width, this.game.height,0,0.6)
-	    this.popup(this.suits, this.game.width, this.game.height,0,0.12)
-	    this.popup(this.titleCTA, this.game.width, this.game.height,0,0.35)
-	    this.popup(this.galaxystore, this.game.width, this.game.height,0,0.18)
-	    this.popup(this.appstore, this.game.width, this.game.height,0,0.2)
+        this.scaleSprite(this.playBg, this.game.width, this.game.height,0,0.6)
+        this.pulse(this.playBg, this.game.width, this.game.height,0,0.65)
+    }
+    else{
+        this.popup(this.hex, this.game.width, this.game.height,0,0.6)
+        this.popup(this.suits, this.game.width, this.game.height,0,0.12)
+        this.popup(this.titleCTA, this.game.width, this.game.height,0,0.35)
+        this.popup(this.galaxystore, this.game.width, this.game.height,0,0.18)
+        this.popup(this.appstore, this.game.width, this.game.height,0,0.2)
 
-	    this.scaleSprite(this.playBg, this.game.width, this.game.height,0,0.18)
-	    this.pulse(this.playBg, this.game.width, this.game.height,0,0.22)
-	}
+        this.scaleSprite(this.playBg, this.game.width, this.game.height,0,0.18)
+        this.pulse(this.playBg, this.game.width, this.game.height,0,0.22)
+    }
 
     this.game.input.onDown.add(onClickDownload,this);
 }
