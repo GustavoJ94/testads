@@ -310,27 +310,53 @@ function resize(width, height) {
 			}
     	}
 
- 		if(this.game.device.iPad){
+    	if(this.game.device.iPad){
     		this.scaleSprite(this.logo, width, height, 0, 0.4);
     		this.logo.y = this.game.height*0.15;
+	    	this.scaleSprite(this.piece1, width, height, 0, 0.18);
+	    	this.scaleSprite(this.piece2, width, height, 0, 0.18);
+	    	this.scaleSprite(this.piece3, width, height, 0, 0.18);
 
-    		this.scaleSprite(this.piece1Copy, width/3, height/3, 0, 0.72);
-			this.piece1Copy.x = this.board.x + (this.board.width*0.237)
-	    	this.piece1Copy.y = this.board.y + (this.board.height*0.193)
-	    	this.scaleSprite(this.piece2Copy, width/3, height/3, 0, 0.72);
-			this.piece2Copy.x = this.board.x + (this.board.width*0.331)
-	    	this.piece2Copy.y = this.board.y + (this.board.height*0.379)
-			this.scaleSprite(this.piece3Copy, width/3, height/3, 0, 0.73);
-			this.piece3Copy.x = this.board.x - (this.board.width*0.14)
-	    	this.piece3Copy.y = this.board.y - (this.board.height*0.095)
+    		this.scaleSprite(this.piece1Copy, width/3, height/3, 0, 0.64);
+			this.piece1Copy.x = this.board.x - (this.board.width*0.145)
+    		this.piece1Copy.y = this.board.y + (this.board.height*0.094)
+	    	this.scaleSprite(this.piece2Copy, width/3, height/3, 0, 0.425);
+			this.piece2Copy.x = this.board.x + (this.board.width*0.002)
+	    	this.piece2Copy.y = this.board.y + (this.board.height*0.093)
+			this.scaleSprite(this.piece3Copy, width/3, height/3, 0, 0.64);
+			this.piece3Copy.x = this.board.x + (this.board.width*0.05)
+	    	this.piece3Copy.y = this.board.y + (this.board.height*0.045)
+	    	this.ctaButton.y = this.game.height*0.72;
+	    	this.ctaPaypal.y = this.game.height*0.59;
+	    	this.ctaYourWinnings.y = this.game.height*0.5;
+    		this.rating.y = this.game.height*0.9;
+    		this.galaxyStore.y = this.game.height*0.82;
+    		this.appStore.y = this.game.height*0.82;
+
+	    	if (this.isPhase == 3){
+	    		this.scaleSprite(this.logo, width, height, 0, 0.25);
+	    		this.logo.y = this.game.height*0.15;
+	    		this.ctaPaypal.y = this.game.height*0.57;
+	    		this.scaleSprite(this.ctaMoney, this.game.width,this.game.height,0,0.35)
+				this.scaleSprite(this.ctaPaypal, this.game.width,this.game.height,0,0.45)
+	    	}
+
+	    	if(this.game.width >= 1366){
+	    		this.scaleSprite(this.piece1, width, height, 0, 0.25);
+		    	this.scaleSprite(this.piece2, width, height, 0, 0.25);
+		    	this.scaleSprite(this.piece3, width, height, 0, 0.25);
+	    	}
 
     	}
+
+
     	this.handTween = this.game.add.tween(this.hand).to({x:this.game.width*0.4,y:this.board.y+(this.hand.height*0.7)}, 1000, Phaser.Easing.Linear.InOut).repeat(-1).yoyo(true)
 
     }
     else{///LANDSCAPE///
     	this.scaleSprite(this.tetherIntro, width, height, 0, 0.4);
  		this.bg.width = this.game.width;
+ 		this.bg.height = this.game.height;
  		this.scaleSprite(this.darkBoard, width, height, 0, 0.7);
     	this.darkBoard.y = this.game.height*0.5;
  		this.scaleSprite(this.logo, width, height, 0, 0.32);
@@ -480,6 +506,43 @@ function resize(width, height) {
 
 	    	this.uiPoints.x = this.game.width*0.5;
 	    	this.uiTime.x = this.game.width*0.26;
+
+    	}
+
+    	 if(this.game.device.iPad){
+    		this.scaleSprite(this.logo, width, height, 0, 0.4);
+    		this.logo.y = this.game.height*0.15;
+	    	this.scaleSprite(this.piece1, width, height, 0, 0.18);
+	    	this.scaleSprite(this.piece2, width, height, 0, 0.18);
+	    	this.scaleSprite(this.piece3, width, height, 0, 0.18);
+
+    		this.scaleSprite(this.piece1Copy, width/3, height/3, 0, 0.64);
+			this.piece1Copy.x = this.board.x - (this.board.width*0.145)
+    		this.piece1Copy.y = this.board.y + (this.board.height*0.094)
+	    	this.scaleSprite(this.piece2Copy, width/3, height/3, 0, 0.425);
+			this.piece2Copy.x = this.board.x + (this.board.width*0.002)
+	    	this.piece2Copy.y = this.board.y + (this.board.height*0.093)
+			this.scaleSprite(this.piece3Copy, width/3, height/3, 0, 0.64);
+			this.piece3Copy.x = this.board.x + (this.board.width*0.05)
+	    	this.piece3Copy.y = this.board.y + (this.board.height*0.045)
+	    	this.scaleSprite(this.appStore, width, height, 0, 0.3);
+    		this.scaleSprite(this.galaxyStore, width, height, 0, 0.3);
+
+	    	this.ctaButton.y = this.game.height*0.62;
+    		this.rating.y = this.game.height*0.85;
+    		this.galaxyStore.y = this.game.height*0.74;
+    		this.appStore.y = this.game.height*0.74;
+    		this.ctaYourWinnings.y = this.game.height*0.4;
+    		this.ctaMoney.y = this.game.height*0.46;
+
+	    	if (this.isPhase == 3){
+	    		this.scaleSprite(this.logo, width, height, 0, 0.25);
+	    		this.logo.y = this.game.height*0.1;
+	    		this.rating.y = this.game.height*0.88;
+	    		this.galaxyStore.y = this.game.height*0.78;
+	    		this.appStore.y = this.game.height*0.78;
+	    		this.ctaButton.y = this.game.height*0.62;
+	    	}
 
     	}
 
@@ -1040,8 +1103,13 @@ function startCTA2(){
 
 
 	if(this.scale.isPortrait){
+		if(this.game.device.iPad){
+	    	this.scaleSpriteTween(this.logo, this.game.width,this.game.height,0,0.25)
+	    	this.logo.y = this.game.height*0.1;
+	    }else{
+	    	this.scaleSpriteTween(this.logo, this.game.width,this.game.height,0,0.4)
+	    }
 		this.scaleSpriteTween(this.ctaMsg, this.game.width,this.game.height,0,0.9)
-		this.scaleSpriteTween(this.logo, this.game.width,this.game.height,0,0.4)
 		this.scaleSpriteTween(this.ctaMoney, this.game.width,this.game.height,0,0.35)
 		this.scaleSpriteTween(this.ctaPaypal, this.game.width,this.game.height,0,0.6)
 		this.scaleSpriteTween(this.ctaYourWinnings, this.game.width,this.game.height, 0, 0.45);
@@ -1059,14 +1127,23 @@ function startCTA2(){
 	    this.pulse(this.ctaButton, this.game.width, this.game.height, 0, 0.6)
 	}
 	else{
+
+		if(this.game.device.iPad){
+	    	this.scaleSpriteTween(this.logo, this.game.width,this.game.height,0,0.25)
+	    	this.logo.y = this.game.height*0.15;
+	    	this.scaleSpriteTween(this.ctaYourWinnings, this.game.width,this.game.height/3, 0, 0.2);
+	    	this.scaleSpriteTween(this.ctaMoney, this.game.width,this.game.height,0,0.2)
+	    	this.scaleSpriteTween(this.ctaPaypal, this.game.width,this.game.height/3,0,0.3)
+	    }else{
+			this.scaleSpriteTween(this.logo, this.game.width,this.game.height,0,0.25)
+			this.logo.y = this.game.height*0.11;
+			this.scaleSpriteTween(this.ctaYourWinnings, this.game.width,this.game.height/3, 0, 0.15);
+			this.scaleSpriteTween(this.ctaMoney, this.game.width,this.game.height,0,0.16)
+			this.scaleSpriteTween(this.ctaPaypal, this.game.width,this.game.height/3,0,0.25)
+	    }
 		this.scaleSpriteTween(this.ctaMsg, this.game.width,this.game.height,0,0.6)
-		this.scaleSpriteTween(this.logo, this.game.width,this.game.height,0,0.25)
-		this.scaleSpriteTween(this.ctaMoney, this.game.width,this.game.height,0,0.16)
-		this.scaleSpriteTween(this.ctaPaypal, this.game.width,this.game.height/3,0,0.25)
-		this.scaleSpriteTween(this.ctaYourWinnings, this.game.width,this.game.height/3, 0, 0.15);
 		this.popup(this.rating, this.game.width, this.game.height, 0, 0.45)
 		this.logo.x = this.game.width*0.5;
-		this.logo.y = this.game.height*0.11;
 		if(this.isGameOver){
 	    	this.ctaMoney.loadTexture('atlas2','$0.png')
 	    	this.ctaButton.loadTexture('atlas','download.png')
@@ -1077,6 +1154,7 @@ function startCTA2(){
 	    	this.ctaMoney.y = this.game.height*0.45;
 	    	this.ctaYourWinnings.alpha = 0;
 	    }
+
 	   	this.pulse(this.ctaButton, this.game.width, this.game.height, 0, 0.3)
 	}
 
@@ -1267,7 +1345,10 @@ function stopDrag(currentSprite, endSprite){
 
 function startDrag (endSprite){
 	this.dragSFX.play();
-	this.scaleSpriteTween(endSprite, this.game.width, this.game.height, 0, 0.22)
+	if(this.game.device.iPad)
+		this.scaleSpriteTween(endSprite, this.game.width, this.game.height, 0, 0.3)
+	else
+		this.scaleSpriteTween(endSprite, this.game.width, this.game.height, 0, 0.22)
 }
 
 function putPiece(lastRemovedPiece){
@@ -1328,6 +1409,20 @@ function initGrid(){
 				if(this.game.device.iPad){
 					tile.x =(j*(tile.width+3))+(this.game.width*0.177);
 					tile.y =(i*(tile.height+3))+(this.game.height*0.205);
+					if(!this.scale.isPortrait){
+						if(this.game.width >=1366){
+							tile.x =(j*(tile.width+3))+(this.game.width*0.14);
+							tile.y =(i*(tile.height+3))+(this.game.height*0.28);
+						}
+						else if(this.game.width >=1180){
+							tile.x =(j*(tile.width+3))+(this.game.width*0.155);
+							tile.y =(i*(tile.height+3))+(this.game.height*0.275);
+						}
+						else if(this.game.width >=1024){
+							tile.x =(j*(tile.width+3))+(this.game.width*0.137);
+							tile.y =(i*(tile.height+3))+(this.game.height*0.275);
+						}
+					}
 				}
 
 				if(this.numberPiece == 2 && this.tileGrid[i][j] == 16)
