@@ -1007,7 +1007,18 @@ function startCTA(){
 	}
 
 	game.world.bringToTop(this.moneyRain)
-	game.world.bringToTop(this.disclaimer)
+	this.yWin.bringToTop()
+	this.ctaMsg.bringToTop()
+	this.logo.bringToTop()
+	this.ctaMoney.bringToTop()
+	this.ctaYourWinnings.bringToTop()
+	this.ctaPaypal.bringToTop()
+	this.ctaButton.bringToTop()
+	this.galaxyStore.bringToTop()
+	this.appStore.bringToTop()
+	this.rating.bringToTop()
+	this.disclaimer.bringToTop()
+
 	this.game.time.events.add(1600, function(){
     	this.ctaBgTween.start()
 		this.moneyRain.revive();
