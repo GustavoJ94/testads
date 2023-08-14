@@ -43,7 +43,7 @@ var game = new Phaser.Game({
 });
 
 function onClickDownload(){
-	alert('your store here')
+	FbPlayableAd.onCTAClick();
 }
 
 function _base64ToArrayBuffer(base64) {
@@ -59,6 +59,8 @@ function _base64ToArrayBuffer(base64) {
 function preload() {
 	this.stage.disableVisibilityChange = false;
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+	this.scale.pageAlignHorizontally = true;
+    this.scale.pageAlignVertically = true;
 
 	this.bgColor = "#161537"; //Background Color
     this.textWhite = { font: "bold 52px Arial", fill: "#fff",stroke: '#fff',strokeThickness:2, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -480,7 +482,7 @@ function createButtons(){
     this.btn3Glow.alpha = 0
     this.glowBtnGroup.addMultiple([this.btn1Glow,this.btn2Glow,this.btn3Glow])
 
-    this.game.time.events.add(2000, function(){
+    this.game.time.events.add(3000, function(){
     	selectButton(this.btn3)
     	this.hand.alpha = 1
     })
