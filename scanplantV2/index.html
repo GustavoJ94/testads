@@ -155,20 +155,20 @@ function resize(width, height) {
 
 	   if(!isLandscape){
 	      this.plant.loadTexture('atlas','plant_p.png')
-	      this.scaleSprite(this.plant, width, height, 0 ,0.8)
+	      this.scaleSprite(this.plant, width, height/3, 0 ,1.9)
 	      this.plant.x = width*0.5
 	      this.plant.y = this.game.height - this.plant.height*0.5
 
-	      this.text.loadTexture('atlas','text_p.png')
-	   	  this.scaleSprite(this.text, width, height, 0 ,0.8)
-	      this.text.x = width*0.5
-	      this.text.y = this.plant.y - (this.plant.height*0.6)
-
-	      this.scaleSprite(this.logo, width, height, 0 ,0.35)
+	      this.scaleSprite(this.logo, width, height/3, 0 ,0.35)
 	      this.logo.x = width*0.5
-	      this.logo.y = this.text.y - (this.text.height*0.5) - (this.logo.height*0.5)
+	      this.logo.y = this.logo.height
 
-	   	  this.scaleSprite(this.circle, width, height, 0 ,0.9)
+	      this.text.loadTexture('atlas','text_p.png')
+	   	  this.scaleSprite(this.text, width/3, height, 0 ,1.8)
+	      this.text.x = width*0.5
+	      this.text.y = this.logo.y + (this.logo.height*0.5) + (this.text.height*0.8)
+
+	   	  this.scaleSprite(this.circle, width, height/3, 0 ,1.6)
 	      this.circle.x = width*0.5
 	      this.circle.y = this.plant.y
 
@@ -176,19 +176,19 @@ function resize(width, height) {
 	      this.popup.x = width*0.5
 	      this.popup.y = this.plant.y + (this.popup.height*0.3)
 
-	      this.scaleSprite(this.button, width, height, 0 ,0.7)
+	      this.scaleSprite(this.button, width, height/3, 0 ,0.7)
 	      this.button.x = width*0.5
 	      this.button.y = this.popup.y + (this.popup.height*0.5) + (this.button.height*0.55)
 
-	      this.scaleSprite(this.scan, width, height, 0 ,0.4)
+	      this.scaleSprite(this.scan, width, height/3, 0 ,0.6)
 	      this.scan.x = width*0.5
 	      this.scan.y = this.plant.y + (this.scan.height)
 
-	      this.scaleSprite(this.hand, width, height, 0 ,0.5)
+	      this.scaleSprite(this.hand, width, height/3, 0 ,0.5)
 	      this.hand.x = width*0.65
-	      this.hand.y = this.game.height - (this.hand.height*0.38)
+	      this.hand.y = this.game.height - (this.hand.height*0.45)
 
-	      this.pulse(this.hand, this.game.width, this.game.height, 0 , 0.5)
+	      this.pulse(this.hand, this.game.width, this.game.height/3, 0 , 0.5)
 
 	      game.add.tween(this.scan).to({y:this.plant.y - (this.scan.height*0.6)}, 800, Phaser.Easing.Sinusoidal.InOut,true);
 	    }
