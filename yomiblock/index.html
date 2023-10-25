@@ -84,6 +84,7 @@ function popUpMsg(msg,time,finalEvent,eventTime){
 function callCTA(){
 	if(this.isCTA)return
 
+	this.timer.destroy()
 	this.isCTA = true
 	this.playnow.inputEnabled = false;
 	game.add.tween(this.fail).to({ alpha:0}, 200, Phaser.Easing.Sinusoidal.InOut).start(); 
@@ -97,6 +98,7 @@ function callCTA(){
 function callCTA2(){
 	if(this.isCTA)return
 
+	this.timer.destroy()
 	this.isCTA = true
 	this.playnow.bringToTop()
 	this.playnow.inputEnabled = true;
@@ -272,7 +274,10 @@ function setBase(){
     this.retry.anchor.set(0.5);
     this.retry.scale.set(0);
 
-    this.timer = game.time.events.loop(1000, this.tick, this);
+    //this.timer = game.time.events.loop(1000, this.tick, this);
+	this.timer = game.time.create(true);
+	this.timer.loop(Phaser.Timer.SECOND, this.tick, this);
+	this.timer.start();
 
     this.moneyRain = game.add.emitter(game.world.centerX, -32, 100);
     this.moneyRain.makeParticles('atlas', ['confeti1.png', 'confeti2.png', 'confeti3.png', 'confeti4.png','confeti5.png','confeti6.png','confeti7.png']);
@@ -293,8 +298,9 @@ function tick(){
 
  	var stepWidth = this.redbar.width  / 20;
     // moving the mask
-    var step = this.mask.x + stepWidth;
-    game.add.tween(this.mask).to({ x:step}, 400, Phaser.Easing.Elastic.Out).start(); 
+	var step = this.mask.x + stepWidth;
+	game.add.tween(this.mask).to({ x:step}, 400, Phaser.Easing.Elastic.Out).start(); 
+	
 
     //this.redbar.mask = this.mask;
     //check if the time is up
