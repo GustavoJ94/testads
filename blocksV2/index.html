@@ -312,44 +312,105 @@ function setBase(){
     }
 
     this.shapes[0].parent.events.onDragStop.add(function(){
-        this.shapes[0].endDrag(this.well.grid)
 	    if (this.well.tryAddShape(this.shapes[0])) {
 	      --this.existsShapes;
 	    }
+        else{
+            this.shapes[0].endDrag(this.well.grid)
+        }
 	    checkShapes()
     }, this);
 
     this.shapes[1].parent.events.onDragStop.add(function(){
-        this.shapes[1].endDrag(this.well.grid)
         if (this.well.tryAddShape(this.shapes[1])) {
 	      --this.existsShapes;
 	    }
+        else{
+            this.shapes[1].endDrag(this.well.grid)
+        }
 	    checkShapes()
     }, this);
 
     this.shapes[2].parent.events.onDragStop.add(function(){
-        this.shapes[2].endDrag(this.well.grid)
         if (this.well.tryAddShape(this.shapes[2])) {
 	      --this.existsShapes;
 	    }
+        else{
+            this.shapes[2].endDrag(this.well.grid)
+        }
 	    checkShapes()
     }, this);
 
     this.shapes[3].parent.events.onDragStop.add(function(){
-        this.shapes[3].endDrag(this.well.grid)
         if (this.well.tryAddShape(this.shapes[3])) {
 	      --this.existsShapes;
 	    }
+        else{
+            this.shapes[3].endDrag(this.well.grid)
+        }
 	    checkShapes()
     }, this);
 
     this.shapes[4].parent.events.onDragStop.add(function(){
-        this.shapes[4].endDrag(this.well.grid)
         if (this.well.tryAddShape(this.shapes[4])) {
 	      --this.existsShapes;
 	    }
+        else{
+            this.shapes[4].endDrag(this.well.grid)
+        }
 	    checkShapes()
     }, this);
+
+    this.shapes[0].parent.events.onInputDown.add(function(){
+        if(this.shapes[0].parent.used){
+            this.existsShapes++;
+            this.shapes[0].parent.used = false
+            this.shapes[0].parent.alpha = 1
+            this.shapes[0].parent.input.enableDrag();
+            this.well.removeUndo(this.shapes[0].savecells)
+        }
+    })
+
+    this.shapes[1].parent.events.onInputDown.add(function(){
+        if(this.shapes[1].parent.used){
+            this.existsShapes++;
+            this.shapes[1].parent.used = false
+            this.shapes[1].parent.alpha = 1
+            this.shapes[1].parent.input.enableDrag();
+            this.well.removeUndo(this.shapes[1].savecells)
+        }
+    })
+
+    this.shapes[2].parent.events.onInputDown.add(function(){
+        if(this.shapes[2].parent.used){
+            this.existsShapes++;
+            this.shapes[2].parent.used = false
+            this.shapes[2].parent.alpha = 1
+            this.shapes[2].parent.input.enableDrag();
+            this.well.removeUndo(this.shapes[2].savecells)
+        }
+    })
+
+    this.shapes[3].parent.events.onInputDown.add(function(){
+        if(this.shapes[3].parent.used){
+            this.existsShapes++;
+            this.shapes[3].parent.used = false
+            this.shapes[3].parent.alpha = 1
+            this.shapes[3].parent.input.enableDrag();
+            this.well.removeUndo(this.shapes[3].savecells)
+        }
+    })
+
+    this.shapes[4].parent.events.onInputDown.add(function(){
+        if(this.shapes[4].parent.used){
+            this.existsShapes++;
+            this.shapes[4].parent.used = false
+            this.shapes[4].parent.alpha = 1
+            this.shapes[4].parent.input.enableDrag();
+            this.well.removeUndo(this.shapes[4].savecells)
+        }
+    })
+
 
     this.existsShapes = 5;
 }
@@ -611,8 +672,10 @@ Shape.prototype = {
   onCompleteAddingToWell: function() {
     if (this.tweenDragScale && this.tweenDragScale.isRunning)
       this.tweenDragScale.stop(true);
-    this.parent.exists = false;
-    this.parent.destroy()
+    //this.parent.exists = false;
+    this.parent.used = true
+    this.parent.alpha = 0
+    this.parent.input.disableDrag();
     this.well.onCompliteAddingShape(this.frame);
   },
 
@@ -731,6 +794,7 @@ Well.prototype = {
     if (this.addingCells.length > 0)
       return false;
 
+    shape.savecells = []
     var n = shape.existsQuads;
     var wx = 0;
     var wy = 0;
@@ -746,6 +810,7 @@ Well.prototype = {
 	
 
       this.addingCells.push(this.cells[wy][wx]);
+      shape.savecells.push(this.cells[wy][wx])
     }
 
     //const toFindDuplicates =  this.addingCells.filter((item, index) => this.addingCells.indexOf(item) !== index)
@@ -770,6 +835,20 @@ Well.prototype = {
 	  }
     }
     this.addingCells.length = 0;
+    //this.checkLines();
+   // this.parentState.onCompleteAddingShapeToWell();
+  },
+    removeUndo: function(pieceList) {
+    //
+    console.log('g',pieceList.length)
+    var i = pieceList.length;
+    while (i--) {    
+
+     if(pieceList[i] != undefined || pieceList[i] != null){
+        pieceList[i].frameName = 'block0.png';
+      }
+    }
+    pieceList.length = 0;
     //this.checkLines();
    // this.parentState.onCompleteAddingShapeToWell();
   }
