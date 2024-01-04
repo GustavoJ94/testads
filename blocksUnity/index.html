@@ -42,6 +42,7 @@
 		<script type="text/javascript">
 	var url = "https://apps.apple.com/us/app/blocks-cash-win-real-money/id1672981400";
 
+
 var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
@@ -52,7 +53,7 @@ var game = new Phaser.Game({
 });
 
 function onClickDownload(){
-	mraid.open(url);   
+	mraid.open(url);    
 }
 
 function _base64ToArrayBuffer(base64) {
@@ -571,18 +572,12 @@ Shape.prototype = {
     if(game.width <= 320 && game.height <= 480)
     	var size = quadSize - 20;
     if(isLandscape){
-    	var size = quadSize - 20;
+    	var size = quadSize - 16;
     	if(game.device.iPad)
     		var size = quadSize - 2;
     }
-    if(game.device.desktop){
-    var size = quadSize - 20;
-	    if(isLandscape){
-	    var size = quadSize - 24;
-	    if(game.device.iPad)
-	    	var size = quadSize - 2;
-	  }
-  }
+    if(game.device.desktop)
+    	var size = quadSize + 25;
 
     var x = 0;
     var y = 0;
@@ -607,7 +602,7 @@ Shape.prototype = {
           if(isLandscape)
           	scaleSprite(q, game.width, game.height/3, 0 ,0.3)
           if(game.device.desktop)
-          	scaleSprite(q, game.width, game.height/3, 0 ,0.25)
+          	scaleSprite(q, game.width, game.height/3, 0 ,0.6)
 
           q.exists = true;
           if (maxX < x) maxX = x;
@@ -733,18 +728,12 @@ var Well = function(
   if(game.width <= 320 && game.height <= 480)
   	var size = quadSize - 20;
   if(isLandscape){
-    var size = quadSize - 20;
+    var size = quadSize - 16;
     if(game.device.iPad)
     	var size = quadSize - 2;
   }
-  if(game.device.desktop){
-    var size = quadSize - 20;
-	    if(isLandscape){
-	    var size = quadSize - 24;
-	    if(game.device.iPad)
-	    	var size = quadSize - 2;
-	  }
-  }
+  if(game.device.desktop)
+    var size = quadSize + 25;
 
   var x = 0;
   var y = top + quadSize * 0.5;
@@ -767,7 +756,7 @@ var Well = function(
   	  if(isLandscape)
         scaleSprite(q, game.width, game.height/3, 0 ,0.3)
       if(game.device.desktop)
-        scaleSprite(q, game.width, game.height/3, 0 ,0.25)
+        scaleSprite(q, game.width, game.height/3, 0 ,0.6)
 
       this.squareSize = size
       cj[i] = q;
@@ -872,6 +861,8 @@ Well.prototype = {
 
 //
 Well.prototype.constructor = Well;
+
+
 
 // Wait for the SDK to become ready: 
 if (mraid.getState() === 'loading') {
