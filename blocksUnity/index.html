@@ -722,7 +722,7 @@ var Well = function(
   var cells = new Array(rows);
   
   var isLandscape = game.height / game.width  < 1.3 ? true: false;
-  var size = quadSize - 14;
+  var size = quadSize + 8;
   if(game.width <= 320 && game.height <= 480)
   	var size = quadSize - 20;
   if(isLandscape){
