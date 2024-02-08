@@ -127,23 +127,23 @@ function getDevicePixelRatio() {
   }
 
 function scaleSpriteTween (sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
-    var scale = this.getSpriteScale(sprite._frame.width, sprite._frame.height, availableSpaceWidth, availableSpaceHeight, padding);
+    var scale = this.getSpriteScale(sprite.width, sprite.height, availableSpaceWidth, availableSpaceHeight, padding);
     var tween = game.add.tween(sprite.scale).to({x: scale * scaleMultiplier,y: scale * scaleMultiplier}, 500, Phaser.Easing.Quadratic.Out,true);
     return tween;
 }
 
 function popup (sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
-    var scale = this.getSpriteScale(sprite._frame.width, sprite._frame.height, availableSpaceWidth, availableSpaceHeight, padding);
+    var scale = this.getSpriteScale(sprite.width, sprite.height, availableSpaceWidth, availableSpaceHeight, padding);
     game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.1, y:(scale * scaleMultiplier)+0.1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, 250, Phaser.Easing.Sinusoidal.Out).start(); 
 }
 
 function click (sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
-    var scale = this.getSpriteScale(sprite._frame.width, sprite._frame.height, availableSpaceWidth, availableSpaceHeight, padding);
+    var scale = this.getSpriteScale(sprite.width, sprite.height, availableSpaceWidth, availableSpaceHeight, padding);
     game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)-0.1, y:(scale * scaleMultiplier)-0.1}, 250, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, 200, Phaser.Easing.Sinusoidal.Out).start(); 
 }
 
 function pulse(sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
-    var scale = this.getSpriteScale(sprite._frame.width, sprite._frame.height, availableSpaceWidth, availableSpaceHeight, padding);
+    var scale = this.getSpriteScale(sprite.width, sprite.height, availableSpaceWidth, availableSpaceHeight, padding);
     var t = game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.05, y: (scale * scaleMultiplier)+0.05}, 500, Phaser.Easing.Sinusoidal.InOut).yoyo(true).repeat(-1).start()
     return t;
 }
@@ -430,6 +430,7 @@ function create() {
 function setBase(){
     this.isIntroFinished = false;
     this.timeInSeconds = 30;
+    this.canTap = true;
 
     var isLandscape = this.game.height / this.game.width  < 1.3 ? true: false;
     this.bgRobot = game.add.sprite(0,0,'bg');
@@ -547,6 +548,9 @@ function setBase(){
     this.timer = game.time.create();
     this.timer.loop(Phaser.Timer.SECOND, this.tick, this);
 
+    this.timerDishes = game.time.create();
+    this.timerDishes.loop(Phaser.Timer.SECOND*3, this.autoRobotClick, this);
+
     this.cookText = game.add.sprite(0,0,'atlas','cook.png');
     this.cookText.anchor.set(0.5);
     this.cookText.scale.set(0);
@@ -564,8 +568,8 @@ function setBase(){
         console.log(this.boardPlayer.x)
 
     }
-    this.clientsPositionTarget = [this.game.width*0.35, this.game.width*0.67]
-    this.clientsPositionTarget2 = [this.game.width*0.35, this.game.width*0.67]
+    this.clientsPositionTarget = [0,1]
+    this.clientsPositionTarget2 = [0,1]
 
     this.startBattleIntro()
     
@@ -654,19 +658,25 @@ function startClock(){
     var cookTween = this.scaleSpriteTween(this.cookText, this.game.width, this.game.height/3, 0 ,0.7)
     cookTween.onComplete.add(function(){
         game.add.tween(this.cookText).to({ alpha: 0 },250,Phaser.Easing.Sinusoidal.In,true);
-        this.timer.start();
-        this.spawnTimer = game.time.create();
-        this.spawnTimer.loop(1000, this.SpawnRobotClients, this);
-        this.spawnTimer.start()
+        this.spawnTimerR = game.time.create();
+        this.spawnTimerR.add(600, this.SpawnRobotClients, this);
+        this.spawnTimerR.start()
+        this.spawnTimerR2 = game.time.create();
+        this.spawnTimerR2.add(1000, this.SpawnRobotClients, this);
+        this.spawnTimerR2.start()
         this.spawnTimer2 = game.time.create();
-        this.spawnTimer2.loop(1000, this.SpawnPlayerClients, this);
+        this.spawnTimer2.add(1000, this.SpawnPlayerClients, this);
         this.spawnTimer2.start()
+        this.spawnTimer3 = game.time.create();
+        this.spawnTimer3.add(1000, this.SpawnPlayerClients, this);
+        this.spawnTimer3.start()
         this.startGameRoutine1()
     })
 }
 
 function startGameRoutine1(){
     this.timer1 = this.game.time.events.add(4000, function(){
+        this.timer.start();
         this.onClickDishes(this.dishesRobot1)
         this.onClickDishes(this.dishesRobot2)
         this.startHeartStealerVFX()
@@ -677,14 +687,28 @@ function startGameRoutine1(){
 
 function startGameRoutine2(){
     this.timer1.timer.removeAll()
+    this.timerDishes.start()
     this.timer2 = this.game.time.events.add(3000, function(){
         showTipHand();
         this.dishesPlayer2.inputEnabled = true;
         this.dishesPlayer1.inputEnabled = true;
         this.handTutorial2 = true
     })
+
+
     //this.timer2.timer.onComplete.add(this.startGameRoutine2)
 
+}
+
+function autoRobotClick(){
+    var picks = [this.dishesRobot1,this.dishesRobot2]
+    if(this.lastRobotDishe)
+        if(this.lastRobotDishe.frameName == this.dishesRobot1.frameName)
+            picks = this.dishesRobot1
+        else
+            picks = this.dishesRobot2
+
+    this.onClickDishes(picks)
 }
 
 function showTipHand(){
@@ -722,13 +746,14 @@ function SpawnRobotClients(){
     var clientsPosition = [[this.game.width, (this.boardRobot.y)],[this.game.width, (this.boardRobot.y)]]
 
     var pos = this.rnd.pick(clientsPosition)
-    var clientsPos = this.clientsPositionTarget
+    var clientsPos =  [this.game.width*0.35, this.game.width*0.67]
+
     if(this.clientsRobotGroup.length < 2){
 
         if(this.clientsPositionTarget.length == 0)
-            this.clientsPositionTarget = [this.game.width*0.35, this.game.width*0.67]
+            this.clientsPositionTarget = [0,1]
 
-        if(this.clientsPositionTarget.length >= 0){
+        if(this.clientsPositionTarget.length > 0){
             var tpos = this.rnd.pick(this.clientsPositionTarget)
             var index = this.clientsPositionTarget.indexOf(tpos);
             this.clientsPositionTarget.splice(index, 1);
@@ -738,16 +763,18 @@ function SpawnRobotClients(){
         var client = this.game.add.spine(pos[0], pos[1], this.rnd.pick(clientsFrame));
         client.scale.set(0.3)
 
-        var bubble = this.game.add.sprite(tpos, pos[1], 'atlas', 'Bubble_Ordinary order.png');
-        var dishe = this.createRobotOrder()
-        bubble.addChild(dishe)
+        var bubble = this.game.add.sprite(clientsPos[tpos], pos[1], 'atlas', 'Bubble_Ordinary order.png');
+        this.lastRobotDishe = this.createRobotOrder()
+        bubble.addChild(this.lastRobotDishe)
 
-        if(tpos == this.game.width*0.35){
+         if(clientsPos[tpos] == this.game.width*0.35){
             bubble.x -= client.width
             bubble.children[0].x -= 10
             bubble.frameName = 'Bubble_Ordinary order2.png'
+            client.spot = 0
         }else{
             bubble.children[0].x += 10
+            client.spot = 1
         }
 
         bubble.x += client.width*0.55
@@ -760,10 +787,10 @@ function SpawnRobotClients(){
 
         const { animations } = client.animationStateData.skeletonData;
         client.animationState.setAnimation(0, animations[0].name, true);
-        var t = game.add.tween(client).to({ x: tpos },1000,Phaser.Easing.Linear.None,true);
+        var t = game.add.tween(client).to({ x: clientsPos[tpos] },1000,Phaser.Easing.Linear.None,true);
         
         t.onComplete.add(function(){
-            this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.4)
+            this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.2)
         })
 
         this.clientsRobotGroup.add(client)
@@ -775,13 +802,11 @@ function SpawnPlayerClients(){
     var clientsPosition = [[this.game.width, (this.boardPlayer.y)],[this.game.width, (this.boardPlayer.y)]]
 
     var pos = this.rnd.pick(clientsPosition)
-    var clientsPos = this.clientsPositionTarget2
+    var clientsPos =  [this.game.width*0.35, this.game.width*0.67]
 
-     if(this.clientsPositionTarget2.length == 0)
-            this.clientsPositionTarget2 = [this.game.width*0.35, this.game.width*0.67]
-
+    
     if(this.clientsPlayerGroup.length < 2){
-        if(this.clientsPositionTarget2.length >= 0){
+        if(this.clientsPositionTarget2.length > 0){
             var tpos = this.rnd.pick(this.clientsPositionTarget2)
             var index = this.clientsPositionTarget2.indexOf(tpos);
             this.clientsPositionTarget2.splice(index, 1);
@@ -790,18 +815,20 @@ function SpawnPlayerClients(){
         var client = this.game.add.spine(pos[0], pos[1], this.rnd.pick(clientsFrame));
         client.scale.set(0.3)
 
-        var bubble = this.game.add.sprite(tpos, pos[1], 'atlas', 'Bubble_Ordinary order.png');
+        var bubble = this.game.add.sprite(clientsPos[tpos], pos[1], 'atlas', 'Bubble_Ordinary order.png');
         var dishe = this.createPlayerOrder()
         bubble.addChild(dishe)
         client.valueType = bubble.children[0].valueType
         client.bubble = bubble
 
-        if(tpos == this.game.width*0.35){
+        if(clientsPos[tpos] == this.game.width*0.35){
             bubble.x -= client.width
             bubble.children[0].x -= 10
             bubble.frameName = 'Bubble_Ordinary order2.png'
+            client.spot = 0
         }else{
             bubble.children[0].x += 10
+            client.spot = 1
         }
 
         bubble.x += client.width*0.55
@@ -812,10 +839,10 @@ function SpawnPlayerClients(){
 
         const { animations } = client.animationStateData.skeletonData;
         client.animationState.setAnimation(0, animations[0].name, true);
-        var t = game.add.tween(client).to({ x: tpos },1000,Phaser.Easing.Linear.None,true);
+        var t = game.add.tween(client).to({ x: clientsPos[tpos] },1000,Phaser.Easing.Linear.None,true);
         
         t.onComplete.add(function(){
-            this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.4)
+            this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.2)
         })
         this.clientsPlayerGroup.add(client)
     }
@@ -906,9 +933,15 @@ function onClickDishes(dishe){
             client.width *= -1
             client.bubble.destroy()
             var t = game.add.tween(client).to({ x: this.game.width },1000,Phaser.Easing.Linear.None,true);
-                
+            if(client.spot == 0)
+                this.clientsPositionTarget = [0]
+            else
+                this.clientsPositionTarget = [1]
+
                 t.onComplete.add(function(){
                     this.clientsRobotGroup.remove(client,true)
+                    this.game.time.events.add(500,this.SpawnRobotClients)
+
             }) 
                    
         }
@@ -916,8 +949,11 @@ function onClickDishes(dishe){
 }
 
 function onClickPlayerDishes(dishe){
+    if(!this.canTap) return
     if(this.hand)this.hand.alpha = 0
     if(this.hand2)this.hand2.alpha = 0
+
+    this.canTap = false
     dishe.alpha = 0
     game.add.tween(dishe).to({ alpha: 1 },1000,Phaser.Easing.Linear.None,true);
     var count = 0;
@@ -927,20 +963,27 @@ function onClickPlayerDishes(dishe){
         this.handTutorial2 = false
     }
 
+
     this.clientsPlayerGroup.forEach(function(client){
         //console.log(client.valueType,dishe.valueType)
         if(client.valueType == dishe.valueType && count <1){
             count++
             client.width *= -1
             client.bubble.destroy()
-            var t = game.add.tween(client).to({ x: this.game.width },1000,Phaser.Easing.Linear.None,true);
-                
+            var t = game.add.tween(client).to({ x: this.game.width },500,Phaser.Easing.Linear.None,true);
+            if(client.spot == 0)
+                this.clientsPositionTarget2 = [0]
+            else
+                this.clientsPositionTarget2 = [1]
+
                 t.onComplete.add(function(){
                     this.clientsPlayerGroup.remove(client,true)
+                    this.game.time.events.add(500,this.SpawnPlayerClients)
             })  
                   
         }
     })
+    this.game.time.events.add(1000,function(){this.canTap = true})
 }
 
 function tick(){
