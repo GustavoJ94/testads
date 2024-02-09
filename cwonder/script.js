@@ -736,7 +736,7 @@ function onClickSkill(){
         this.timerInkCloud.removeAll()
         this.timerInkCloud.stop()
     }
-    this.runVFX('UI_heidong', 0.5)
+    this.runVFX('UI_heidong', 0.7)
     this.isLastPlayerDishes = true
     this.countLastDishes = 0
 }
@@ -901,6 +901,9 @@ function SpawnPlayerClients(){
         if(this.handTutorial2){
             this.showTipHand()
             this.handTutorial2 = false
+        }
+        else if(this.isTutoialDone){
+            showTipHand();
         }
     }
 }
@@ -1092,7 +1095,11 @@ function tick(){
 
     //this.redbar.mask = this.mask;
     //check if the time is up
-   if (this.timeInSeconds == 0) {
+   if(this.timeInSeconds == 5){
+        if(this.playerScore > this.robotScore)
+            this.runVFX('UI_heidong',0.7)
+   }
+   else if (this.timeInSeconds == 0) {
         this.callCTA()
     }
 }
