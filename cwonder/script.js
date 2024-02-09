@@ -134,7 +134,8 @@ function scaleSpriteTween (sprite, availableSpaceWidth, availableSpaceHeight, pa
 
 function popup (sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
     var scale = this.getSpriteScale(sprite.width, sprite.height, availableSpaceWidth, availableSpaceHeight, padding);
-    game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.1, y:(scale * scaleMultiplier)+0.1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, 250, Phaser.Easing.Sinusoidal.Out).start(); 
+    var tween = game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.1, y:(scale * scaleMultiplier)+0.1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, 250, Phaser.Easing.Sinusoidal.Out).start(); 
+    return tween
 }
 
 function click (sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
@@ -431,6 +432,7 @@ function setBase(){
     this.isIntroFinished = false;
     this.timeInSeconds = 30;
     this.canTap = true;
+    this.canTapR = true;
 
     var isLandscape = this.game.height / this.game.width  < 1.3 ? true: false;
     this.bgRobot = game.add.sprite(0,0,'bg');
@@ -549,7 +551,7 @@ function setBase(){
     this.timer.loop(Phaser.Timer.SECOND, this.tick, this);
 
     this.timerDishes = game.time.create();
-    this.timerDishes.loop(Phaser.Timer.SECOND*3, this.autoRobotClick, this);
+   // this.timerDishes.loop(Phaser.Timer.SECOND*3, this.autoRobotClick, this);
 
     this.cookText = game.add.sprite(0,0,'atlas','cook.png');
     this.cookText.anchor.set(0.5);
@@ -659,10 +661,10 @@ function startClock(){
     cookTween.onComplete.add(function(){
         game.add.tween(this.cookText).to({ alpha: 0 },250,Phaser.Easing.Sinusoidal.In,true);
         this.spawnTimerR = game.time.create();
-        this.spawnTimerR.add(600, this.SpawnRobotClients, this);
+        this.spawnTimerR.add(400, this.SpawnRobotClients, this);
         this.spawnTimerR.start()
         this.spawnTimerR2 = game.time.create();
-        this.spawnTimerR2.add(1000, this.SpawnRobotClients, this);
+        this.spawnTimerR2.add(550, this.SpawnRobotClients, this);
         this.spawnTimerR2.start()
         this.spawnTimer2 = game.time.create();
         this.spawnTimer2.add(1000, this.SpawnPlayerClients, this);
@@ -677,8 +679,6 @@ function startClock(){
 function startGameRoutine1(){
     this.timer1 = this.game.time.events.add(4000, function(){
         this.timer.start();
-        this.onClickDishes(this.dishesRobot1)
-        this.onClickDishes(this.dishesRobot2)
         this.startHeartStealerVFX()
     })
     this.timer1.timer.onComplete.add(this.startGameRoutine2)
@@ -687,7 +687,7 @@ function startGameRoutine1(){
 
 function startGameRoutine2(){
     this.timer1.timer.removeAll()
-    this.timerDishes.start()
+    //this.timerDishes.start()
     this.timer2 = this.game.time.events.add(3000, function(){
         showTipHand();
         this.dishesPlayer2.inputEnabled = true;
@@ -701,7 +701,7 @@ function startGameRoutine2(){
 }
 
 function autoRobotClick(){
-    var picks = [this.dishesRobot1,this.dishesRobot2]
+    var picks = this.dishesRobot1
     if(this.lastRobotDishe)
         if(this.lastRobotDishe.frameName == this.dishesRobot1.frameName)
             picks = this.dishesRobot1
@@ -790,7 +790,10 @@ function SpawnRobotClients(){
         var t = game.add.tween(client).to({ x: clientsPos[tpos] },1000,Phaser.Easing.Linear.None,true);
         
         t.onComplete.add(function(){
-            this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.2)
+            var tt= this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.2)
+            tt.onComplete.add(function(){
+                game.time.events.add(1000,autoRobotClick)
+            })
         })
 
         this.clientsRobotGroup.add(client)
@@ -922,6 +925,9 @@ function createPlayerOrder(){
 }
 
 function onClickDishes(dishe){
+    if(!this.canTapR) return
+    this.canTapR = false
+
     dishe.alpha = 0
     game.add.tween(dishe).to({ alpha: 1 },1000,Phaser.Easing.Linear.None,true);
     var count = 0;
@@ -946,6 +952,7 @@ function onClickDishes(dishe){
                    
         }
     })
+    this.game.time.events.add(200,function(){this.canTapR = true})
 }
 
 function onClickPlayerDishes(dishe){
