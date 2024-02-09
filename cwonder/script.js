@@ -83,9 +83,9 @@ this.game.plugins.add(SpinePlugin);
     };
 
     const blackHoleConfig = {
-        image: "animations/heidongtubiao.png",
-        json: "animations/heidongtubiao.json",
-        atlas: "animations/heidongtubiao.atlas"
+        image: "animations/UI_heidong.png",
+        json: "animations/UI_heidong.json",
+        atlas: "animations/UI_heidong.atlas"
     };
 
     const inkConfig = {
@@ -111,7 +111,7 @@ this.game.plugins.add(SpinePlugin);
    game.load.spine('Guke_Nvshangren',client2);
    game.load.spine('Guke_laonainai',client3);
    game.load.spine('xiaoemo',heartStealerConfig);
-   game.load.spine('heidongtubiao',blackHoleConfig);
+   game.load.spine('UI_heidong',blackHoleConfig);
    game.load.spine('UI_mozhi1',inkConfig);
    game.load.spine('longjuanfeng',tornadoConfig);
    game.load.spine('UI_mofang',diceConfig);
@@ -280,11 +280,11 @@ function resize(width, height) {
           this.hudRightCoin.y = height*0.5
 
           this.scaleSprite(this.hudPlayerPoints, width, height/3, 0 ,0.55)
-          this.hudPlayerPoints.x = this.hudLeftCoin.x + this.hudLeftCoin.width*0.8
+          this.hudPlayerPoints.x = this.hudLeftCoin.x + this.hudLeftCoin.width
           this.hudPlayerPoints.y = height*0.5
 
           this.scaleSprite(this.hudRobotPoints, width, height/3, 0 ,0.55)
-          this.hudRobotPoints.x = this.hudRightCoin.x - this.hudRightCoin.width*0.8
+          this.hudRobotPoints.x = this.hudRightCoin.x - this.hudRightCoin.width
           this.hudRobotPoints.y = height*0.5
 
           this.scaleSprite(this.hudArrowLeft, width, height/3, 0 ,0.2)
@@ -438,6 +438,8 @@ function setBase(){
     this.timeInSeconds = 30;
     this.canTap = true;
     this.canTapR = true;
+    this.robotScore = 0
+    this.playerScore = 0
 
     var isLandscape = this.game.height / this.game.width  < 1.3 ? true: false;
     this.bgRobot = game.add.sprite(0,0,'bg');
@@ -565,6 +567,8 @@ function setBase(){
     this.diceBtn = game.add.sprite(0,0,'atlas','Dice.png');
     this.diceBtn.anchor.set(0.5);
     this.diceBtn.alpha = 0
+    this.diceBtn.inputEnabled = false;
+    this.diceBtn.events.onInputDown.add(onClickSkill, this);
 
     this.btnDownload = game.add.sprite(0,0,'btnDownload');
     this.btnDownload.anchor.set(0.5);
@@ -688,7 +692,7 @@ function startClock(){
 function startGameRoutine1(){
     this.timer1 = this.game.time.events.add(4000, function(){
         this.timer.start();
-        this.startHeartStealerVFX()
+        this.runVFX('xiaoemo',0.2)
     })
     this.timer1.timer.onComplete.add(this.startGameRoutine2)
 
@@ -696,17 +700,53 @@ function startGameRoutine1(){
 
 function startGameRoutine2(){
     this.timer1.timer.removeAll()
-    //this.timerDishes.start()
+    this.isTutorialSkill = false
+    this.timerInkCloud = game.time.create(true);
+    this.timerInkCloud.add(Phaser.Timer.SECOND*10, function(){this.runVFX('UI_mozhi1',0.2)}, this);
+
     this.timer2 = this.game.time.events.add(3000, function(){
         showTipHand();
         this.dishesPlayer2.inputEnabled = true;
         this.dishesPlayer1.inputEnabled = true;
         this.handTutorial2 = true
+        this.timerInkCloud.start()
     })
+    //this.timer2.timer.onComplete.add(this.startGameRoutine3)
+    
+}
 
+function startGameRoutine3(){
+    if(this.isLastPlayerDishes)return
+    //this.timer2.timer.removeAll()
+    showSkillHand();
+    this.diceBtn.inputEnabled = true;
+}
 
-    //this.timer2.timer.onComplete.add(this.startGameRoutine2)
+function startGameRoutine4(){
+    //this.timer2.timer.removeAll()
+    this.isTutoialDone = true
+    this.diceBtn.inputEnabled = false;
+    this.runVFX('longjuanfeng',0.4)
+}
 
+function onClickSkill(){
+    this.isTutorialSkill = true
+    if(this.hand)this.hand.alpha = 0
+    if(this.timerInkCloud){
+        this.timerInkCloud.removeAll()
+        this.timerInkCloud.stop()
+    }
+    this.runVFX('UI_heidong', 0.5)
+    this.isLastPlayerDishes = true
+    this.countLastDishes = 0
+}
+
+function showSkillHand(){
+    this.hand = this.game.add.sprite(this.diceBtn.x + this.diceBtn.width*0.5,this.diceBtn.y + this.diceBtn.height*0.5, 'atlas', 'hand_1.png');
+    this.hand.anchor.set(0.5)
+    this.hand.scale.set(0)
+    this.scaleSprite(this.hand, this.game.width, this.game.height, 0 ,0.25)
+    this.pulse(this.hand, this.game.width, this.game.height, 0 ,0.25)
 }
 
 function autoRobotClick(){
@@ -721,24 +761,23 @@ function autoRobotClick(){
 }
 
 function showTipHand(){
-    this.hand = this.game.add.sprite(this.dishesPlayer2.x + this.dishesPlayer2.width*0.5,this.dishesPlayer2.y + this.dishesPlayer2.height*0.5, 'atlas', 'hand_1.png');
+    var picks = this.dishesPlayer1
+    if(this.lastPlayerDishe)
+        if(this.lastPlayerDishe.frameName == this.dishesPlayer1.frameName)
+            picks = this.dishesPlayer1
+        else
+            picks = this.dishesPlayer2
+
+    this.hand = this.game.add.sprite(picks.x + picks.width*0.5,picks.y + picks.height*0.5, 'atlas', 'hand_1.png');
     this.hand.anchor.set(0.5)
     this.hand.scale.set(0)
     this.scaleSprite(this.hand, this.game.width, this.game.height, 0 ,0.25)
     this.pulse(this.hand, this.game.width, this.game.height, 0 ,0.25)
 }
 
-function showTipHand2(){
-    this.hand2 = this.game.add.sprite(this.dishesPlayer1.x + this.dishesPlayer1.width*0.5,this.dishesPlayer1.y + this.dishesPlayer1.height*0.5, 'atlas', 'hand_1.png');
-    this.hand2.anchor.set(0.5)
-    this.hand2.scale.set(0)
-    this.scaleSprite(this.hand2, this.game.width, this.game.height, 0 ,0.25)
-    this.pulse(this.hand2, this.game.width, this.game.height, 0 ,0.25)
-}
-
-function startHeartStealerVFX(){
-    var vfx = this.game.add.spine(this.game.width*0.5,this.game.height*0.5, 'xiaoemo');
-    vfx.scale.set(0.2)
+function runVFX(anim,scale){
+    var vfx = this.game.add.spine(this.game.width*0.5,this.game.height*0.5, anim);
+    vfx.scale.set(scale)
 
      const { animations } = vfx.animationStateData.skeletonData;
      var anim = vfx.animationState.setAnimation(0, animations[0].name, false);
@@ -747,7 +786,8 @@ function startHeartStealerVFX(){
         vfx.destroy()
 
      });
-     
+
+     return vfx;
 }
 
 function SpawnRobotClients(){
@@ -828,8 +868,8 @@ function SpawnPlayerClients(){
         client.scale.set(0.3)
 
         var bubble = this.game.add.sprite(clientsPos[tpos], pos[1], 'atlas', 'Bubble_Ordinary order.png');
-        var dishe = this.createPlayerOrder()
-        bubble.addChild(dishe)
+        this.lastPlayerDishe = this.createPlayerOrder()
+        bubble.addChild(this.lastPlayerDishe)
         client.valueType = bubble.children[0].valueType
         client.bubble = bubble
 
@@ -857,6 +897,11 @@ function SpawnPlayerClients(){
             this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.2)
         })
         this.clientsPlayerGroup.add(client)
+
+        if(this.handTutorial2){
+            this.showTipHand()
+            this.handTutorial2 = false
+        }
     }
 }
 
@@ -961,24 +1006,36 @@ function onClickDishes(dishe){
                    
         }
     })
+    var score = this.rnd.between(2,30)
+    var me = this
+    var pointsTween = me.game.add.tween(me);
+    pointsTween.to({ robotScore: robotScore+score}, 200, Phaser.Easing.Linear.None, true, 200);
+        
+    pointsTween.onUpdateCallback(function(){
+        me.hudRobotPoints.setText(Math.floor(me.robotScore));
+    }, this);
+
+    pointsTween.onComplete.addOnce(function(){
+        me.hudRobotPoints.setText(Math.floor(me.robotScore));
+    }, this);
+
     this.game.time.events.add(200,function(){this.canTapR = true})
 }
 
 function onClickPlayerDishes(dishe){
     if(!this.canTap) return
     if(this.hand)this.hand.alpha = 0
-    if(this.hand2)this.hand2.alpha = 0
+
+    if(this.hand && !this.handTutorial2)startGameRoutine3()
+
+    if(this.isLastPlayerDishes)this.countLastDishes++
+
+    if(this.countLastDishes >=2 && !this.isTutoialDone)startGameRoutine4()
 
     this.canTap = false
     dishe.alpha = 0
     game.add.tween(dishe).to({ alpha: 1 },1000,Phaser.Easing.Linear.None,true);
     var count = 0;
-
-    if(this.handTutorial2){
-        this.showTipHand2()
-        this.handTutorial2 = false
-    }
-
 
     this.clientsPlayerGroup.forEach(function(client){
         //console.log(client.valueType,dishe.valueType)
@@ -999,6 +1056,20 @@ function onClickPlayerDishes(dishe){
                   
         }
     })
+
+    var score = this.rnd.between(2,30)
+    var me = this
+    var pointsTween = me.game.add.tween(me);
+    pointsTween.to({ playerScore: playerScore+score}, 200, Phaser.Easing.Linear.None, true, 200);
+        
+    pointsTween.onUpdateCallback(function(){
+        me.hudPlayerPoints.setText(Math.floor(me.playerScore));
+    }, this);
+
+    pointsTween.onComplete.addOnce(function(){
+        me.hudPlayerPoints.setText(Math.floor(me.playerScore));
+    }, this);
+
     this.game.time.events.add(1000,function(){this.canTap = true})
 }
 
