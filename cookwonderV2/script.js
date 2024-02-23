@@ -826,7 +826,7 @@ function startGameRoutine2(){
     this.timerInkCloud = game.time.create(true);
     this.timerInkCloud.add(Phaser.Timer.SECOND*10, function(){this.runVFXink()}, this);
 
-    this.timer2 = this.game.time.events.add(3000, function(){
+    this.timer2 = this.game.time.events.add(1000, function(){
         showTipHand();
         this.dishesPlayer2.inputEnabled = true;
         this.dishesPlayer1.inputEnabled = true;
