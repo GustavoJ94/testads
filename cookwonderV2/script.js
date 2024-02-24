@@ -1096,6 +1096,7 @@ function SpawnPlayerClients(){
         this.handTutorial2 = false
     }
     else if(this.isTutoialDone){
+        this.isTutoialDone = false
         showTipHand();
     }
 }
@@ -1282,6 +1283,7 @@ function removeClientToGroup(groupClients, dishe, client, isPlayer){
         var me = this
         var pointsTween = me.game.add.tween(me);
         pointsTween.to({ playerScore: playerScore+score}, 200, Phaser.Easing.Linear.None, true, 200);
+        this.scaleSprite(this.hudPlayerPoints, this.game.width, this.game.height/3, 0 ,0.55)
         this.scaleyoyo(this.hudPlayerPoints, this.game.width, this.game.height/3, 0 ,0.5)
 
         pointsTween.onUpdateCallback(function(){
@@ -1299,6 +1301,7 @@ function removeClientToGroup(groupClients, dishe, client, isPlayer){
         var me = this
         var pointsTween = me.game.add.tween(me);
         pointsTween.to({ robotScore: robotScore+score}, 200, Phaser.Easing.Linear.None, true, 200);
+        this.scaleSprite(this.hudRobotPoints, this.game.width, this.game.height/3, 0 ,0.55)
         this.scaleyoyo(this.hudRobotPoints, this.game.width, this.game.height/3, 0 ,0.5)
         pointsTween.onUpdateCallback(function(){
             me.hudRobotPoints.setText(Math.floor(me.robotScore));
@@ -1444,6 +1447,7 @@ function addZeros(num) {
 }
 
 function callCTA(){
+    game.time.events.removeAll()
     game.time.events.remove(this.timer);
     this.timer.removeAll()
     this.timer.stop()
