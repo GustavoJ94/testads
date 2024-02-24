@@ -550,6 +550,7 @@ function setBase(){
     this.bgRobot.y -= this.bgRobot.height*0.5
     
     this.clientsRobotGroup = this.game.add.group();
+    this.clientsRobotGroup2 = this.game.add.group();
 
 	this.boardRobot = game.add.sprite(0,0,'steakL');
     this.boardRobot.anchor.set(0.5);
@@ -560,6 +561,7 @@ function setBase(){
     this.bgPlayer.y = this.game.height + this.bgPlayer.height*0.5
 
     this.clientsPlayerGroup = this.game.add.group();
+    this.clientsPlayerGroup2 = this.game.add.group();
 
     this.boardPlayer = game.add.sprite(0,0,'burgerL');
     this.boardPlayer.anchor.set(0.5);
@@ -802,19 +804,20 @@ function startClock(){
         this.spawnTimerR2.add(550, this.SpawnRobotClients, this);
         this.spawnTimerR2.start()
         this.spawnTimer2 = game.time.create();
-        this.spawnTimer2.add(1000, this.SpawnPlayerClients, this);
+        this.spawnTimer2.add(800, this.SpawnPlayerClients, this);
         this.spawnTimer2.start()
         this.spawnTimer3 = game.time.create();
-        this.spawnTimer3.add(1000, this.SpawnPlayerClients, this);
+        this.spawnTimer3.add(800, this.SpawnPlayerClients, this);
         this.spawnTimer3.start()
         this.startGameRoutine1()
     })
 }
 
 function startGameRoutine1(){
-    this.timer1 = this.game.time.events.add(4000, function(){
+    this.timer1 = this.game.time.events.add(3500, function(){
         this.timer.start();
         this.runVFX('xiaoemo',0.2,null,this.heartestealerSFX)
+        this.decreaseHappinesEffect()
     })
     this.timer1.timer.onComplete.add(this.startGameRoutine2)
 
@@ -877,7 +880,7 @@ function stealScore(){
 
     var pointsTween = me.game.add.tween(me);
     pointsTween.to({ playerScore: playerScore+pointSteal}, 200, Phaser.Easing.Linear.None, true, 200);
-    this.scaleyoyo(this.hudRobotPoints, this.game.width, this.game.height/3, 0 ,0.5)
+    this.scaleyoyo(this.hudPlayerPoints, this.game.width, this.game.height/3, 0 ,0.5)
 
     pointsTween.onUpdateCallback(function(){
         me.hudPlayerPoints.setText(Math.floor(me.playerScore));
@@ -887,6 +890,29 @@ function stealScore(){
     pointsTween.onComplete.addOnce(function(){
         me.blackholeSFX.play()
         me.hudPlayerPoints.setText(Math.floor(me.playerScore));
+    }, this);
+
+}
+
+function stealScorePlayer(){
+    var pointSteal = this.playerScore/2
+    this.playerScore = this.playerScore/2
+    this.hudPlayerPoints.setText(Math.floor(this.playerScore));
+    var me = this
+    me.blackholeSFX.play()
+
+    var pointsTween = me.game.add.tween(me);
+    pointsTween.to({ robotScore: robotScore+pointSteal}, 200, Phaser.Easing.Linear.None, true, 200);
+    this.scaleyoyo(this.hudRobotPoints, this.game.width, this.game.height/3, 0 ,0.5)
+
+    pointsTween.onUpdateCallback(function(){
+        me.hudRobotPoints.setText(Math.floor(me.robotScore));
+    }, this);
+        me.updateRobotScoreBars()
+
+    pointsTween.onComplete.addOnce(function(){
+        me.blackholeSFX.play()
+        me.hudRobotPoints.setText(Math.floor(me.robotScore));
     }, this);
 
 }
@@ -968,190 +994,132 @@ function runVFXink(){
      return vfx;
 }
 
-function SpawnRobotClients(){
+function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPlayer){
     var clientsFrame = ['Guke_waimaixiaoge','Guke_Nvshangren','Guke_laonainai','Guke_jianzhugongren','Guke_nvyouke','Guke_huanyaxiaonvhai']
-    var clientsPosition = [[this.game.width, (this.boardRobot.y)],[this.game.width, (this.boardRobot.y)]]
+    var client = this.game.add.spine(initialPosition[0], initialPosition[1], this.rnd.pick(clientsFrame));
+    client.scale.set(0.3)
 
-    var pos = this.rnd.pick(clientsPosition)
-    var clientsPos =  [this.game.width*0.35, this.game.width*0.67]
-
-    if(this.clientsRobotGroup.length < 2){
-
-        if(this.clientsPositionTarget.length == 0)
-            this.clientsPositionTarget = [0,1]
-
-        if(this.clientsPositionTarget.length > 0){
-            var tpos = this.rnd.pick(this.clientsPositionTarget)
-            var index = this.clientsPositionTarget.indexOf(tpos);
-            this.clientsPositionTarget.splice(index, 1);
-             console.log(this.clientsPositionTarget.length)
-        }
-      
-        var client = this.game.add.spine(pos[0], pos[1], this.rnd.pick(clientsFrame));
-        client.scale.set(0.3)
-
-        var bubble = this.game.add.sprite(clientsPos[tpos], pos[1], 'atlas', 'Bubble_Ordinary order.png');
+    var bubble = this.game.add.sprite(targetPosition, initialPosition[1], 'atlas', 'Bubble_Ordinary order.png');
+    
+    if(isPlayer){
+        this.lastPlayerDishe = this.createPlayerOrder()
+        bubble.addChild(this.lastPlayerDishe)
+    }else{
         this.lastRobotDishe = this.createRobotOrder()
-        bubble.addChild(this.lastRobotDishe)
+        bubble.addChild(this.lastRobotDishe) 
+    }
 
-        var statusHeartBg = this.game.add.sprite(-80,0, 'atlas', 'status_bar.png');
-        statusHeartBg.anchor.set(0.5)
-        bubble.addChild(statusHeartBg)
+    var statusHeartBg = this.game.add.sprite(-80,0, 'atlas', 'status_bar.png');
+    statusHeartBg.anchor.set(0.5)
+    bubble.addChild(statusHeartBg)
 
-        var statusHearts = this.game.add.sprite(-94,-52, 'atlas', 'order_hearts.png');
-        statusHearts.cropEnabled = true
-        var cropRect = new Phaser.Rectangle(0, 0, statusHearts.width, statusHearts.height);
-        statusHearts.crop(cropRect);
+    var statusHearts = this.game.add.sprite(-94,-52, 'atlas', 'order_hearts.png');
+    statusHearts.cropEnabled = true
+    var cropRect = new Phaser.Rectangle(0, 0, statusHearts.width, statusHearts.height);
+    statusHearts.crop(cropRect);
 
-        var heartsTimer = game.time.create();
+    var heartsTimer = game.time.create();
+    if(isPlayer)
+        heartsTimer.loop(Phaser.Timer.SECOND, function(){this.setHappinessLevelPlayer(client)});
+    else
         heartsTimer.loop(Phaser.Timer.SECOND, function(){this.setHappinessLevelRobot(client)});
 
-        bubble.addChild(statusHearts);
+    bubble.addChild(statusHearts);
 
-        if(clientsPos[tpos] == this.game.width*0.35){
-            bubble.x -= client.width
-            bubble.children[0].x -= 10
-            bubble.frameName = 'Bubble_Ordinary order2.png'
-            client.spot = 0
-        }else{
-            bubble.children[0].x += 10
-            bubble.children[1].x += 150;
-            bubble.children[2].x += 150;
-            client.spot = 1
-        }
+    if(type == 'left'){
+        bubble.x -= client.width
+        bubble.children[0].x -= 10
+        bubble.frameName = 'Bubble_Ordinary order2.png'
+        client.spot = 0
+    }else{
+        bubble.children[0].x += 10
+        bubble.children[1].x += 150;
+        bubble.children[2].x += 150;
+        client.spot = 1
+    }
 
-        bubble.x += client.width*0.55
-        bubble.y -= bubble.height*0.5
-        client.heartsTimer = heartsTimer
-        client.valueType = bubble.children[0].valueType
-        client.bubble = bubble
-        client.happiness = 100
-        client.cropRect = cropRect
-        client.isOut = false
+    bubble.x += client.width*0.55
+    bubble.y -= bubble.height*0.5
+    bubble.anchor.set(0.5)
+    bubble.scale.set(0)
 
-        bubble.anchor.set(0.5)
-        bubble.scale.set(0)
+    client.heartsTimer = heartsTimer
+    client.valueType = bubble.children[0].valueType
+    client.bubble = bubble
+    client.happiness = 100
+    client.cropRect = cropRect
+    client.isOut = false
+    client.type = type
 
-        const { animations } = client.animationStateData.skeletonData;
-        client.animationState.setAnimation(0, animations[0].name, true);
-        var t = game.add.tween(client).to({ x: clientsPos[tpos] },1000,Phaser.Easing.Linear.None,true);
+    const { animations } = client.animationStateData.skeletonData;
+    client.animationState.setAnimation(0, animations[0].name, true);
+    var t = game.add.tween(client).to({ x: targetPosition },1000,Phaser.Easing.Linear.None,true);
+    t.onComplete.add(function(){
+        var tt = this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.2)
+        client.heartsTimer.start()
 
-        t.onComplete.add(function(){
-            var tt= this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.2)
-            client.heartsTimer.start()
+        if(!isPlayer){
             tt.onComplete.add(function(){
                 game.time.events.add(1000,autoRobotClick)
             })
-        })
+        }
+    })
 
-        this.clientsRobotGroup.add(client)
+    groupClients.add(client)
+}
+
+function SpawnRobotClients(){
+    var initialPosition = [[this.game.width, (this.boardRobot.y)],[this.game.width, (this.boardRobot.y)]]
+    var targetPosition =  [this.game.width*0.35, this.game.width*0.67]
+
+    if(this.clientsRobotGroup.length < 1){
+        this.addClientToGroup(initialPosition[0], targetPosition[0], this.clientsRobotGroup,'left',false)
+    }
+    else if(this.clientsRobotGroup2.length < 1){
+        this.addClientToGroup(initialPosition[1], targetPosition[1], this.clientsRobotGroup2,'right',false)
     }
 }
 
 function SpawnPlayerClients(){
-    var clientsFrame = ['Guke_waimaixiaoge','Guke_Nvshangren','Guke_laonainai','Guke_jianzhugongren','Guke_nvyouke','Guke_huanyaxiaonvhai']
-    var clientsPosition = [[this.game.width, (this.boardPlayer.y)],[this.game.width, (this.boardPlayer.y)]]
+    var initialPosition = [[this.game.width, (this.boardPlayer.y)],[this.game.width, (this.boardPlayer.y)]]
+    var targetPosition =  [this.game.width*0.35, this.game.width*0.67]
 
-    var pos = this.rnd.pick(clientsPosition)
-    var clientsPos =  [this.game.width*0.35, this.game.width*0.67]
+    if(this.clientsPlayerGroup.length < 1){
+        this.addClientToGroup(initialPosition[0], targetPosition[0], this.clientsPlayerGroup,'left',true)
+    }
+    else if(this.clientsPlayerGroup2.length < 1){
+        this.addClientToGroup(initialPosition[1], targetPosition[1], this.clientsPlayerGroup2,'right',true)
+    }
 
-    
-    if(this.clientsPlayerGroup.length < 2){
-        if(this.clientsPositionTarget2.length > 0){
-            var tpos = this.rnd.pick(this.clientsPositionTarget2)
-            var index = this.clientsPositionTarget2.indexOf(tpos);
-            this.clientsPositionTarget2.splice(index, 1);
-        }
-
-        var client = this.game.add.spine(pos[0], pos[1], this.rnd.pick(clientsFrame));
-        client.scale.set(0.3)
-
-        var bubble = this.game.add.sprite(clientsPos[tpos], pos[1], 'atlas', 'Bubble_Ordinary order.png');
-        this.lastPlayerDishe = this.createPlayerOrder()
-        bubble.addChild(this.lastPlayerDishe)
-
-        var statusHeartBg = this.game.add.sprite(-80,0, 'atlas', 'status_bar.png');
-        statusHeartBg.anchor.set(0.5)
-        bubble.addChild(statusHeartBg)
-
-        var statusHearts = this.game.add.sprite(-94,-52, 'atlas', 'order_hearts.png');
-        statusHearts.cropEnabled = true
-        var cropRect = new Phaser.Rectangle(0, 0, statusHearts.width, statusHearts.height);
-        statusHearts.crop(cropRect);
-        bubble.addChild(statusHearts)
-
-        var heartsTimer = game.time.create();
-        heartsTimer.loop(Phaser.Timer.SECOND, function(){this.setHappinessLevelPlayer(client)});
-
-        client.valueType = bubble.children[0].valueType
-        client.bubble = bubble
-        client.happiness = 100
-        client.cropRect = cropRect
-        client.heartsTimer = heartsTimer
-        client.angryAnim = false
-        client.isOut = false
-
-        if(clientsPos[tpos] == this.game.width*0.35){
-            bubble.x -= client.width
-            bubble.children[0].x -= 10
-            bubble.frameName = 'Bubble_Ordinary order2.png'
-            client.spot = 0
-        }else{
-            bubble.children[0].x += 10
-            bubble.children[1].x += 150;
-            bubble.children[2].x += 150;
-            client.spot = 1
-        }
-
-        bubble.x += client.width*0.55
-        bubble.y -= bubble.height*0.35
-      
-        bubble.anchor.set(0.5)
-        bubble.scale.set(0)
-
-        const { animations } = client.animationStateData.skeletonData;
-        client.animationState.setAnimation(0, animations[0].name, true);
-        var t = game.add.tween(client).to({ x: clientsPos[tpos] },1000,Phaser.Easing.Linear.None,true);
-        
-        t.onComplete.add(function(){
-            client.heartsTimer.start()
-            this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.2)
-        })
-        this.clientsPlayerGroup.add(client)
-
-        if(this.handTutorial2){
-            this.showTipHand()
-            this.handTutorial2 = false
-        }
-        else if(this.isTutoialDone){
-            showTipHand();
-        }
+    if(this.handTutorial2){
+        this.showTipHand()
+        this.handTutorial2 = false
+    }
+    else if(this.isTutoialDone){
+        showTipHand();
     }
 }
 
 function setHappinessLevelRobot(client,animation){
     if(client.happiness < 20 && client.isOut == false) {
         client.isOut = true
-        //this.canTapR = false
+        this.canTapR = false
         client.heartsTimer.removeAll()
         client.heartsTimer.stop()
-        /*client.scale.x *= -1
+        client.scale.x *= -1
 
         var t = game.add.tween(client).to({ x: this.game.width },800,Phaser.Easing.Linear.None,true);
         game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
             
-        if(client.spot == 0)
-            this.clientsPositionTarget = [0]
-        else
-            this.clientsPositionTarget = [1]
-
-            t.onComplete.add(function(){
+        t.onComplete.add(function(){
+            if(client.type == 'left')
                 this.clientsRobotGroup.remove(client,true)
-                this.game.time.events.add(500,this.SpawnRobotClients)
+            else
+                this.clientsRobotGroup2.remove(client,true)
+            this.game.time.events.add(500,this.SpawnRobotClients)
         }) 
 
-        this.game.time.events.add(800,function(){this.canTapR = true})
-        */
+        this.game.time.events.add(500,function(){this.canTapR = true})
     }
     else if(client.happiness <= 65 && client.angryAnim == false){
         client.angryAnim = true
@@ -1167,28 +1135,23 @@ function setHappinessLevelRobot(client,animation){
 function setHappinessLevelPlayer(client){
     if(client.happiness < 20 && client.isOut == false) {
         client.isOut = true
-        //this.canTap = false
+        this.canTap = false
         client.heartsTimer.removeAll()
         client.heartsTimer.stop()
-        /*client.scale.x *= -1
+        client.scale.x *= -1
 
         var t = game.add.tween(client).to({ x: this.game.width },800,Phaser.Easing.Linear.None,true);
         game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
             
-        if(client.spot == 0)
-            this.clientsPositionTarget2 = [0]
-        else
-            this.clientsPositionTarget2 = [1]
-
-        console.log(this.clientsPositionTarget2)
-
-            t.onComplete.add(function(){
-                this.clientsPlayerGroup.remove(client,true)
+        t.onComplete.add(function(){
+                if(client.type == 'left')
+                    this.clientsPlayerGroup.remove(client,true)
+                else
+                    this.clientsPlayerGroup2.remove(client,true)
                 this.game.time.events.add(500,this.SpawnPlayerClients)
         }) 
 
-        this.game.time.events.add(1000,function(){this.canTap = true})
-        */
+        this.game.time.events.add(500,function(){this.canTap = true})
     }
     else if(client.happiness <= 65 && client.angryAnim == false){
         client.angryAnim = true
@@ -1199,6 +1162,27 @@ function setHappinessLevelPlayer(client){
     client.cropRect.y += 5
     client.bubble.children[2].y += 5
     client.bubble.children[2].updateCrop()
+}
+
+function decreaseHappinesEffect(){
+    var client1 = this.clientsPlayerGroup.getFirst()
+    var client2 = this.clientsPlayerGroup2.getFirst()
+    console.log(client1)
+        console.log(client2)
+
+    if(client1){
+        client1.happiness-=25
+        client1.cropRect.y += 25
+        client1.bubble.children[2].y += 25
+        client1.bubble.children[2].updateCrop()
+    }
+
+    if(client2){
+        client2.happiness-=25
+        client2.cropRect.y += 25
+        client2.bubble.children[2].y += 25
+        client2.bubble.children[2].updateCrop()
+    }
 }
 
 function setDishes(){
@@ -1274,58 +1258,74 @@ function createPlayerOrder(){
     return dishe
 }
 
+function removeClientToGroup(groupClients, dishe, client, isPlayer){
+    dishe.alpha = 0
+    client.animationState.setAnimation(0, 'Happy', true);
+    game.add.tween(dishe).to({ alpha: 1 },1000,Phaser.Easing.Linear.None,true);
+    this.emitDisheTo(dishe.x,dishe.y,client.bubble.world.x,client.bubble.world.y,client.valueType)
+    client.width *= -1
+    
+    var t = game.add.tween(client).to({ x: this.game.width },800,Phaser.Easing.Linear.None,true);
+    game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
+    
+    t.onComplete.add(function(){
+        groupClients.remove(client,true)
+        if(isPlayer)
+            this.game.time.events.add(500,this.SpawnPlayerClients)
+        else
+            this.game.time.events.add(500,this.SpawnRobotClients)
+    }) 
+
+
+    if(isPlayer){
+        var score = this.rnd.between(2,30)
+        var me = this
+        var pointsTween = me.game.add.tween(me);
+        pointsTween.to({ playerScore: playerScore+score}, 200, Phaser.Easing.Linear.None, true, 200);
+        this.scaleyoyo(this.hudPlayerPoints, this.game.width, this.game.height/3, 0 ,0.5)
+
+        pointsTween.onUpdateCallback(function(){
+            me.hudPlayerPoints.setText(Math.floor(me.playerScore));
+        }, this);
+            me.updatePlayerScoreBars()
+
+        pointsTween.onComplete.addOnce(function(){
+            me.whoIsWinning()
+            me.hudPlayerPoints.setText(Math.floor(me.playerScore));
+        }, this); 
+        this.game.time.events.add(500,function(){this.canTap = true;})    
+    }else{
+        var score = this.rnd.between(2,30)
+        var me = this
+        var pointsTween = me.game.add.tween(me);
+        pointsTween.to({ robotScore: robotScore+score}, 200, Phaser.Easing.Linear.None, true, 200);
+        this.scaleyoyo(this.hudRobotPoints, this.game.width, this.game.height/3, 0 ,0.5)
+        pointsTween.onUpdateCallback(function(){
+            me.hudRobotPoints.setText(Math.floor(me.robotScore));
+        }, this);
+            me.updateRobotScoreBars()
+
+        pointsTween.onComplete.addOnce(function(){
+            me.whoIsWinning()
+            me.hudRobotPoints.setText(Math.floor(me.robotScore));
+        }, this);           
+        this.game.time.events.add(200,function(){this.canTapR = true;})
+    }
+}
+
 function onClickDishes(dishe){
     if(!this.canTapR) return
     this.canTapR = false
     
-   
-    var count = 0;
+    var client1 = this.clientsRobotGroup.iterate('valueType', dishe.valueType, Phaser.Group.RETURN_CHILD);
+    var client2 = this.clientsRobotGroup2.iterate('valueType', dishe.valueType, Phaser.Group.RETURN_CHILD);
 
-    this.clientsRobotGroup.forEach(function(client){
-        //console.log(client.valueType,dishe.valueType)
-        if(client.valueType == dishe.valueType && count <1){
-            dishe.alpha = 0
-            client.animationState.setAnimation(0, 'Happy', true);
-            game.add.tween(dishe).to({ alpha: 1 },1000,Phaser.Easing.Linear.None,true);
-            this.emitDisheTo(dishe.x,dishe.y,client.bubble.world.x,client.bubble.world.y,client.valueType)
-            count++
-            client.width *= -1
-            
-            var t = game.add.tween(client).to({ x: this.game.width },800,Phaser.Easing.Linear.None,true);
-            game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
-            
-            if(client.spot == 0)
-                this.clientsPositionTarget = [0]
-            else
-                this.clientsPositionTarget = [1]
-
-                t.onComplete.add(function(){
-                    this.clientsRobotGroup.remove(client,true)
-                    this.game.time.events.add(500,this.SpawnRobotClients)
-
-            }) 
-
-            var score = this.rnd.between(2,30)
-            var me = this
-            var pointsTween = me.game.add.tween(me);
-            pointsTween.to({ robotScore: robotScore+score}, 200, Phaser.Easing.Linear.None, true, 200);
-            this.scaleyoyo(this.hudRobotPoints, this.game.width, this.game.height/3, 0 ,0.5)
-
-            pointsTween.onUpdateCallback(function(){
-                me.hudRobotPoints.setText(Math.floor(me.robotScore));
-            }, this);
-                me.updateRobotScoreBars()
-
-            pointsTween.onComplete.addOnce(function(){
-                me.whoIsWinning()
-                me.hudRobotPoints.setText(Math.floor(me.robotScore));
-            }, this);
-                   
-        }
-    })
-    
-
-    this.game.time.events.add(200,function(){this.canTapR = true})
+    if(client1){
+        this.removeClientToGroup(this.clientsRobotGroup,dishe,client1,false)
+    }
+    else if(client2){
+        this.removeClientToGroup(this.clientsRobotGroup2,dishe,client2,false)
+    }
 }
 
 function onClickPlayerDishes(dishe){
@@ -1338,54 +1338,19 @@ function onClickPlayerDishes(dishe){
 
     if(this.countLastDishes >=2 && !this.isTutoialDone)startGameRoutine4()
 
-    this.disheSFX.play()
-    this.canTap = false
-    var count = 0;
+    var client1 = this.clientsPlayerGroup.iterate('valueType', dishe.valueType, Phaser.Group.RETURN_CHILD);
+    var client2 = this.clientsPlayerGroup2.iterate('valueType', dishe.valueType, Phaser.Group.RETURN_CHILD);
 
-    this.clientsPlayerGroup.forEach(function(client){
-        //console.log(client.valueType,dishe.valueType)
-        if(client.valueType == dishe.valueType && count <1){
-            dishe.alpha = 0
-            client.animationState.setAnimation(0, 'Happy', true);
-            game.add.tween(dishe).to({ alpha: 1 },1000,Phaser.Easing.Linear.None,true);
-            this.emitDisheTo(dishe.x,dishe.y,client.bubble.world.x,client.bubble.world.y,client.valueType)
-            this.goodSFX.play()
-            count++
-            client.width *= -1
-
-            var t = game.add.tween(client).to({ x: this.game.width },500,Phaser.Easing.Linear.None,true);
-            game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
-
-            if(client.spot == 0)
-                this.clientsPositionTarget2 = [0]
-            else
-                this.clientsPositionTarget2 = [1]
-
-                t.onComplete.add(function(){
-                    this.clientsPlayerGroup.remove(client,true)
-                    this.game.time.events.add(500,this.SpawnPlayerClients)
-            })  
-
-            var score = this.rnd.between(2,30)
-            var me = this
-            var pointsTween = me.game.add.tween(me);
-            pointsTween.to({ playerScore: playerScore+score}, 200, Phaser.Easing.Linear.None, true, 200);
-            this.scaleyoyo(this.hudPlayerPoints, this.game.width, this.game.height/3, 0 ,0.5)
-
-            pointsTween.onUpdateCallback(function(){
-                me.hudPlayerPoints.setText(Math.floor(me.playerScore));
-            }, this);
-                me.updatePlayerScoreBars()
-
-            pointsTween.onComplete.addOnce(function(){
-                me.whoIsWinning()
-                me.hudPlayerPoints.setText(Math.floor(me.playerScore));
-            }, this);
-                  
-        }
-    })
-
-    this.game.time.events.add(1000,function(){this.canTap = true})
+    if(client1){
+        this.disheSFX.play()
+        this.canTap = false
+        this.removeClientToGroup(this.clientsPlayerGroup,dishe,client1,true)
+    }
+    else if(client2){
+        this.disheSFX.play()
+        this.canTap = false
+        this.removeClientToGroup(this.clientsPlayerGroup2,dishe,client2,true)
+    }
 }
 
 function emitDisheTo(x, y, xDest, yDest, typeName){
@@ -1424,9 +1389,7 @@ function updatePlayerScoreBars(){
     var stepS = this.separator.x + (this.playerScore*0.4)
     //game.add.tween(this.separator).to({ x:stepS}, 200, Phaser.Easing.Sinusoidal.In).start();
     this.separator.x = stepS
-    
    // this.hudArrowLeft.x = this.separator.x - this.hudArrowLeft.width*0.65
-
 }
 
 function updateRobotScoreBars(){
@@ -1456,17 +1419,10 @@ function tick(){
     //make a string showing the time
     var timeString = minutes + ":" + this.addZeros(seconds);
     this.clockBg.children[0].text = timeString;
-
-    //var stepWidth = this.redbar.width  / 30;
-    // moving the mask
-   // var step = this.mask.x + stepWidth;
-   // game.add.tween(this.mask).to({ x:step}, 400, Phaser.Easing.Elastic.Out).start(); 
-    
-
-    //this.redbar.mask = this.mask;
     //check if the time is up
    if(this.timeInSeconds == 5){
         if(this.playerScore > this.robotScore)
+            this.stealScorePlayer()
             this.runVFX('UI_heidong',0.7)
    }
    else if (this.timeInSeconds == 0) {
