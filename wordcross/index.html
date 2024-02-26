@@ -34,8 +34,6 @@
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
-    resolution:1,
-    antialias:true,
 	state: this
 });
 
@@ -54,7 +52,6 @@ function _base64ToArrayBuffer(base64) {
 }
 
 function preload() {
-	this.stage.disableVisibilityChange = true;
 	
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
