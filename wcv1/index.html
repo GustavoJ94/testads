@@ -135,8 +135,8 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
     var ratio = 1;
     var currentDevicePixelRatio = getDevicePixelRatio();
     // Sprite needs to fit in either width or height
-    var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
-    var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
+    var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / 720;
+    var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / 1280;
     if(widthRatio > 1 || heightRatio > 1){
         ratio = 1 / Math.max(widthRatio, heightRatio);
     }
@@ -180,7 +180,7 @@ game.scale.refresh();
 	      this.introText.x = width*0.5
 	      this.introText.y = height*1.5 
 
-          this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
+          this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.3)
           this.tutorialText.x = width*0.5
           this.tutorialText.y = height*0.125
 
