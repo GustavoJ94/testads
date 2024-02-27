@@ -68,7 +68,7 @@ function _base64ToArrayBuffer(base64) {
 }
 
 function preload() {
-	
+	this.game.renderer.renderSession.roundPixels = true;
    this.stage.disableVisibilityChange = false;
 	
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -488,8 +488,11 @@ function startTutorial(){
         game.add.tween(this.tutorialText).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
         var cTween = game.add.tween(this.circle).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
 
-        if(!isLandscape)
-            this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1)
+        if(!isLandscape){
+            //this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1)
+            game.add.tween(this.circle.scale).to({x: 0.9,y:0.9}, 350, Phaser.Easing.Quadratic.Out,true);
+
+        }
         else
             this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1.8)
         
