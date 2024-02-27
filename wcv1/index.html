@@ -232,11 +232,11 @@ function resize(width, height) {
           this.logo.x = Math.floor(width*0.5)
           this.logo.y = Math.floor(height*0.2) 
 
-	   	  this.scaleSprite(this.introText, width, height/3, 0 ,0.5)
+	   	  this.scaleSprite(this.introText, width, height, 0 ,1)
 	      this.introText.x = Math.floor(width*0.5)
 	      this.introText.y = Math.floor(height*1.5)
 
-          this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
+          this.scaleSprite(this.tutorialText, width, height, 0 ,1)
           this.tutorialText.x = Math.floor(width*0.5)
           this.tutorialText.y = Math.floor(height*0.125)
 
@@ -379,11 +379,14 @@ function setBase(){
     this.introText = game.add.text(-this.game.width,0, "GO ON A JOURNEY\nOF WORDS AND WISDOM", this.textWhite);
     this.introText.anchor.set(0.5);
     this.introText.strokeThickness = 1
+    this.introText.fontSize = 20
 
     this.tutorialText = game.add.text(-this.game.width,0, "SWIPE TO SOLVE PUZZLES\nAND UNLOCK\nENCHANTING SCENERY", this.textWhite);
     this.tutorialText.anchor.set(0.5);
     this.tutorialText.setShadow(-1, 1, 'rgba(18,127,170,0.8)', 5);
     this.tutorialText.alpha = 0
+    this.tutorialText.fontSize = 16
+    this.tutorialText.strokeThickness = 1
 
     this.circleOne = game.add.sprite(-70,-130, 'circleWhite');
     this.circleOne.anchor.set(0.5);
