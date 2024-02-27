@@ -69,7 +69,6 @@ canvas:focus {
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
-	resolution:1,
     antialias:true,
 	state: this
 });
@@ -215,7 +214,7 @@ function resize(width, height) {
           this.bg.x = width*0.5
 	      this.bg.y = height*0.5
 
-          this.scaleSprite(this.logo, width, height/3, 0 ,0.7)
+          this.scaleSprite(this.logo, width, height, 0 ,0.5)
           this.logo.x = Math.floor(width*0.5)
           this.logo.y = Math.floor(height*0.2) 
 
@@ -223,7 +222,7 @@ function resize(width, height) {
 	      this.introText.x = Math.floor(width*0.5)
 	      this.introText.y = Math.floor(height*1.5)
 
-          this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
+          this.scaleSprite(this.tutorialText, width, height, 0 ,0.5)
           this.tutorialText.x = Math.floor(width*0.5)
           this.tutorialText.y = Math.floor(height*0.125)
 
@@ -235,7 +234,7 @@ function resize(width, height) {
           this.tutorialLine.y = this.circle.y
 
           this.board.forEach(function(tile){
-                this.scaleSprite(tile, width, height/3, 0 ,0.24)
+                this.scaleSprite(tile, width, height, 0 ,0.24)
           })
           this.board.x = Math.floor(width*0.5)
           this.board.y = Math.floor(height*0.38)
@@ -340,7 +339,7 @@ function resize(width, height) {
 
 function create() {
 	setBase();
-    this.resize(window.innerWidth/window.devicePixelRatio,window.innerHeight/window.devicePixelRatio);
+    this.resize(window.innerWidth,window.innerHeight);
 }
 
 function setBase(){
@@ -499,7 +498,7 @@ function setBase(){
 }
 
 function startIntro(){
-    this.popup(this.logo, this.game.width, this.game.height/3, 0 ,0.7)
+    this.popup(this.logo, this.game.width, this.game.height, 0 ,0.5)
     game.add.tween(this.logo).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
     var tween = game.add.tween(this.introText).to({y: this.game.height*0.45}, 300, Phaser.Easing.Quadratic.Out).start();
     tween.onComplete.add(function(){
@@ -517,9 +516,9 @@ function startTutorial(){
         var cTween = game.add.tween(this.circle).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
 
         if(!isLandscape)
-            this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1)
+            this.popup(this.circle, this.game.width, this.game.height, 0 ,0.5)
         else
-            this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1.8)
+            this.popup(this.circle, this.game.width, this.game.height, 0 ,1)
         
         game.add.tween(this.board).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
         game.add.tween(this.tutorialLine).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out).delay(800).start();
