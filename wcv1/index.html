@@ -210,19 +210,19 @@ function resize(width, height) {
 	      this.bg.y = height*0.5
 
           this.scaleSprite(this.logo, width, height/3, 0 ,0.7)
-          this.logo.x = width*0.5
-          this.logo.y = height*0.2 
+          this.logo.x = Math.floor(width*0.5)
+          this.logo.y = Math.floor(height*0.2) 
 
 	   	  this.scaleSprite(this.introText, width, height/3, 0 ,0.5)
-	      this.introText.x = width*0.5
-	      this.introText.y = height*1.5 
+	      this.introText.x = Math.floor(width*0.5)
+	      this.introText.y = Math.floor(height*1.5)
 
           this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
-          this.tutorialText.x = width*0.5
-          this.tutorialText.y = height*0.125
+          this.tutorialText.x = Math.floor(width*0.5)
+          this.tutorialText.y = Math.floor(height*0.125)
 
-          this.circle.x = width*0.5
-          this.circle.y = height*0.78
+          this.circle.x = Math.floor(width*0.5)
+          this.circle.y =Math.floor(height*0.78)
 
           this.scaleSprite(this.tutorialLine, width, height/3, 0 ,0.5)
           this.tutorialLine.x = this.circle.x
@@ -231,8 +231,8 @@ function resize(width, height) {
           this.board.forEach(function(tile){
                 this.scaleSprite(tile, width, height/3, 0 ,0.24)
           })
-          this.board.x = width*0.5
-          this.board.y = height*0.38
+          this.board.x = Math.floor(width*0.5)
+          this.board.y = Math.floor(height*0.38)
 
           this.fillLetters.x = width*0.37
           this.fillLetters.y = height*0.56
