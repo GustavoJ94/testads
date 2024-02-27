@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="robots" content="noindex" /> 
-<meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=1.0, minimum-scale=0.5, user-scalable=no, minimal-ui">
+		<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no' />
 		<meta content="yes" name="apple-mobile-web-app-capable"></meta>
 		<meta content="black" name="apple-mobile-web-app-status-bar-style"></meta>
 		<title>word cross</title>
@@ -30,6 +30,21 @@
 </script>
 
 		<script type="text/javascript">
+
+	 const PIXEL_RATIO = (function() {
+    var ctx = document.createElement("canvas").getContext("2d"),
+        dpr = window.devicePixelRatio || 1,
+
+        // The backing store size in relation to the canvas element
+        bsr = ctx.webkitBackingStorePixelRatio ||
+        ctx.mozBackingStorePixelRatio ||
+        ctx.msBackingStorePixelRatio ||
+        ctx.oBackingStorePixelRatio ||
+        ctx.backingStorePixelRatio || 1
+
+    return dpr / bsr
+})();
+
 	var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
@@ -133,7 +148,7 @@ function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding
 
 function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight, minPadding) {
     var ratio = 1;
-    var currentDevicePixelRatio = 1;
+    var currentDevicePixelRatio = PIXEL_RATIO;
     // Sprite needs to fit in either width or height
     var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
     var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
@@ -191,7 +206,7 @@ function resize(width, height) {
           this.tutorialLine.y = this.circle.y
 
           this.board.forEach(function(tile){
-                this.scaleSprite(tile, width, height, 0 ,0.48)
+                this.scaleSprite(tile, width, height/3, 0 ,0.28)
           })
           this.board.x = width*0.5
           this.board.y = height*0.38
