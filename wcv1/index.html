@@ -349,7 +349,7 @@ function cresize(width, height) {
 
 function create() {
 	setBase();
-    this.cresize(this.game.width,this.game.height);
+   //this.cresize(this.game.width,this.game.height);
 }
 
 function setBase(){
@@ -366,18 +366,20 @@ function setBase(){
     this.winSFX = game.add.audio('winSFX',1);
 
 	this.bg = game.add.sprite(0,0,'bg');
-    this.bg.anchor.set(0.5);
+    //this.bg.anchor.set(0.5);
 
-    this.logo = game.add.sprite(-this.game.width,0,'atlas','unnamed.png');
+    this.logo = game.add.sprite(this.game.width*0.5,this.game.height*0.25,'atlas','unnamed.png');
     this.logo.anchor.set(0.5);
     this.logo.alpha = 0
 
-    this.introText = game.add.text(-this.game.width,0, "GO ON A JOURNEY\nOF WORDS AND WISDOM", this.textWhite);
+    this.introText = game.add.text(this.game.width*0.5,this.game.height*0.5, "GO ON A JOURNEY\nOF WORDS AND WISDOM", this.textWhite);
     this.introText.anchor.set(0.5);
     this.introText.strokeThickness = 1
+    this.introText.scale.set(0.8);
 
-    this.tutorialText = game.add.text(-this.game.width,0, "SWIPE TO SOLVE PUZZLES\nAND UNLOCK\nENCHANTING SCENERY", this.textWhite);
+    this.tutorialText = game.add.text(this.game.width*0.5,this.game.height*0.15, "SWIPE TO SOLVE PUZZLES\nAND UNLOCK\nENCHANTING SCENERY", this.textWhite);
     this.tutorialText.anchor.set(0.5);
+    this.tutorialText.scale.set(0.8);
     this.tutorialText.setShadow(-1, 1, 'rgba(18,127,170,0.8)', 5);
     this.tutorialText.alpha = 0
 
@@ -414,7 +416,7 @@ function setBase(){
     this.graphics = this.game.add.graphics(0,0);
     this.graphics.lineStyle(40, 0xffffff,1);
 
-    this.circle = game.add.sprite(-this.game.width,0,'atlas','circle.png');
+    this.circle = game.add.sprite(this.game.width*0.5,this.game.height*0.78,'atlas','circle.png');
     this.circle.anchor.set(0.5);
     this.circle.scale.set(0)
     this.circle.addChild(this.graphics)
@@ -450,6 +452,8 @@ function setBase(){
     this.board.setAll('anchor.x', 0.5);
     this.board.setAll('anchor.y', 0.5);
     this.board.alpha = 0
+    this.board.x = this.game.width*0.5
+    this.board.y = this.game.height*0.4
 
     this.fillLetters = this.game.add.group();
     this.fillLetters.setAll('anchor.x', 0.5);
