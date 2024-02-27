@@ -56,7 +56,7 @@ function preload() {
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
-   game.stage.smoothed = false;
+ 
 
 	this.bgColor = "#468BA8"; //Background Color
     this.textWhite = { font: "bold 42px Arial", fill: "#fff",stroke: '#fff',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -133,7 +133,7 @@ function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding
 
 function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight, minPadding) {
     var ratio = 1;
-    var currentDevicePixelRatio = getDevicePixelRatio();
+    var currentDevicePixelRatio =  window.devicePixelRatio;
     // Sprite needs to fit in either width or height
     var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
     var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
