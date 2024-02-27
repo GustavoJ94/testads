@@ -56,7 +56,6 @@ function preload() {
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
-    game.scale.setShowAll();
 game.scale.refresh(); 
 
 	this.bgColor = "#468BA8"; //Background Color
@@ -164,7 +163,6 @@ function callCTA(){
 
 function resize(width, height) {
 	   var isLandscape = height / width  < 1.3 ? true: false;
-game.scale.setShowAll();
 game.scale.refresh(); 
 	   if(!isLandscape){
 	      this.bg.loadTexture('bg')
