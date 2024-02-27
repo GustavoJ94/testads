@@ -68,7 +68,13 @@ function _base64ToArrayBuffer(base64) {
 }
 
 function preload() {
-	this.game.renderer.renderSession.roundPixels = true;
+	
+   this.stage.disableVisibilityChange = false;
+	
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVertically = true
+    
 
 	this.bgColor = "#468BA8"; //Background Color
     this.textWhite = { font: "bold 62px Arial", fill: "#fff",stroke: '#fff',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -178,8 +184,8 @@ function cresize(width, height) {
 
 	   if(!isLandscape){
 	      this.bg.loadTexture('bg')
-	      this.bg.width = this.game.width
-          this.bg.height = this.game.height
+	      //this.bg.width = this.game.width
+          //this.bg.height = this.game.height
           this.bg.x = this.game.width*0.5
 	      this.bg.y = this.game.height*0.5
 
@@ -311,7 +317,7 @@ function cresize(width, height) {
 
 function create() {
 	setBase();
-   //this.cresize(this.game.width,this.game.height);
+    this.cresize(this.game.width,this.game.height);
 }
 
 function setBase(){
@@ -328,7 +334,7 @@ function setBase(){
     this.winSFX = game.add.audio('winSFX',1);
 
 	this.bg = game.add.sprite(0,0,'bg');
-    //this.bg.anchor.set(0.5);
+    this.bg.anchor.set(0.5);
 
     this.logo = game.add.sprite(this.game.width*0.5,this.game.height*0.25,'atlas','unnamed.png');
     this.logo.anchor.set(0.5);
