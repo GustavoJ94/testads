@@ -168,6 +168,7 @@ function resize(width, height) {
 
 		this.game.canvas.style.width = Math.floor(width) + 'px';
         this.game.canvas.style.height = Math.floor(height) + 'px';
+        this.scale.refresh()
 
 	   if(!isLandscape){
 	      this.bg.loadTexture('bg')
