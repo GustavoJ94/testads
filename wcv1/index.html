@@ -66,8 +66,8 @@ canvas:focus {
 
 		<script type="text/javascript">
 	var game = new Phaser.Game({
-	width: window.innerWidth * window.devicePixelRatio,
-	height: window.innerHeight * window.devicePixelRatio, 
+	width: window.innerWidth,
+	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
 	resolution:1,
     antialias:true,
@@ -334,7 +334,7 @@ function resize(width, height) {
 
 function create() {
 	setBase();
-    this.resize(window.innerWidth*window.devicePixelRatio,window.innerHeight*window.devicePixelRatio);
+    this.resize(window.innerWidth,window.innerHeight);
 }
 
 function setBase(){
