@@ -30,9 +30,25 @@
 </script>
 
 		<script type="text/javascript">
+
+const PIXEL_RATIO = (function() {
+    var ctx = document.createElement("canvas").getContext("2d"),
+        dpr = window.devicePixelRatio || 1,
+
+        // The backing store size in relation to the canvas element
+        bsr = ctx.webkitBackingStorePixelRatio ||
+        ctx.mozBackingStorePixelRatio ||
+        ctx.msBackingStorePixelRatio ||
+        ctx.oBackingStorePixelRatio ||
+        ctx.backingStorePixelRatio || 1
+
+    return dpr / bsr
+})();
+
 	var game = new Phaser.Game({
-	width: window.innerWidth,
-	height: window.innerHeight, 
+	width: 720,
+	height: 1280, 
+	resolution:1,
 	renderer: Phaser.CANVAS,
 	state: this
 });
@@ -52,15 +68,16 @@ function _base64ToArrayBuffer(base64) {
 }
 
 function preload() {
+	this.game.renderer.renderSession.roundPixels = true;
+   this.stage.disableVisibilityChange = false;
 	
-    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-    this.scale.pageAlignHorizontally = true;
-    this.scale.pageAlignVertically = true
-    game.scale.setShowAll();
-game.scale.refresh(); 
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        this.scale.pageAlignHorizontally = true;
+        this.scale.pageAlignVertically = true
+
 
 	this.bgColor = "#468BA8"; //Background Color
-    this.textWhite = { font: "bold 42px Arial", fill: "#fff",stroke: '#fff',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
+    this.textWhite = { font: "bold 62px Arial", fill: "#fff",stroke: '#fff',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
     this.textRed = { font: "bold 54px Arial", fill: "#5F002A",stroke: '#5F002A',strokeThickness:2, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
     this.textWhite2 = { font: "bold 62px Arial", fill: "#fff",stroke: '#fff',strokeThickness:0, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
 
@@ -134,7 +151,7 @@ function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding
 
 function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight, minPadding) {
     var ratio = 1;
-    var currentDevicePixelRatio = getDevicePixelRatio();
+    var currentDevicePixelRatio = PIXEL_RATIO;
     // Sprite needs to fit in either width or height
     var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
     var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
@@ -162,39 +179,40 @@ function callCTA(){
     this.game.input.onDown.add(onClickDownload,this);
 }
 
-function resize(width, height) {
+function cresize(width, height) {
 	   var isLandscape = height / width  < 1.3 ? true: false;
-game.scale.setShowAll();
-game.scale.refresh(); 
+
 	   if(!isLandscape){
 	      this.bg.loadTexture('bg')
-	      this.bg.width = width
-          this.bg.height = height
-          this.bg.x = width*0.5
-	      this.bg.y = height*0.5
+	      //this.bg.width = this.game.width
+          //this.bg.height = this.game.height
+          this.bg.x = this.game.width*0.5
+	      this.bg.y = this.game.height*0.5
 
           this.scaleSprite(this.logo, width, height/3, 0 ,0.7)
-          this.logo.x = width*0.5
-          this.logo.y = height*0.2 
+          this.logo.x = Math.floor(this.game.width*0.5)
+          this.logo.y = Math.floor(this.game.height*0.2) 
 
-	   	  this.scaleSprite(this.introText, width, height, 0 ,0.35)
-	   	  //this.introText.scale.set(window.devicePixelRatio)
-	      this.introText.x = width*0.5
-	      this.introText.y = height*1.5 
+	   	  //this.scaleSprite(this.introText, width, height/3, 0 ,0.5)
+	   	  this.introText.scale.set(0.6)
 
-          this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
-          this.tutorialText.x = width*0.5
-          this.tutorialText.y = height*0.125
+	      this.introText.x = Math.floor(this.game.width*0.5)
+	      this.introText.y = Math.floor(this.game.height*1.5)
 
-          this.circle.x = width*0.5
-          this.circle.y = height*0.78
+          //this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
+          this.tutorialText.scale.set(0.6)
+          this.tutorialText.x = Math.floor(this.game.width*0.5)
+          this.tutorialText.y = Math.floor(this.game.height*0.125)
+
+          this.circle.x = this.game.width*0.5
+          this.circle.y = this.game.height*0.78
 
           this.scaleSprite(this.tutorialLine, width, height/3, 0 ,0.5)
           this.tutorialLine.x = this.circle.x
           this.tutorialLine.y = this.circle.y
 
           this.board.forEach(function(tile){
-                this.scaleSprite(tile, width, height/3, 0 ,0.24)
+                //this.scaleSprite(tile, width, height/3, 0 ,0.24)
           })
           this.board.x = width*0.5
           this.board.y = height*0.38
@@ -299,7 +317,7 @@ game.scale.refresh();
 
 function create() {
 	setBase();
-    this.resize(window.innerWidth,window.innerHeight);
+    this.cresize(this.game.width,this.game.height);
 }
 
 function setBase(){
@@ -318,16 +336,18 @@ function setBase(){
 	this.bg = game.add.sprite(0,0,'bg');
     this.bg.anchor.set(0.5);
 
-    this.logo = game.add.sprite(-this.game.width,0,'atlas','unnamed.png');
+    this.logo = game.add.sprite(this.game.width*0.5,this.game.height*0.25,'atlas','unnamed.png');
     this.logo.anchor.set(0.5);
     this.logo.alpha = 0
 
-    this.introText = game.add.text(-this.game.width,0, "GO ON A JOURNEY\nOF WORDS AND WISDOM", this.textWhite);
+    this.introText = game.add.text(this.game.width*0.5,this.game.height*0.5, "GO ON A JOURNEY\nOF WORDS AND WISDOM", this.textWhite);
     this.introText.anchor.set(0.5);
     this.introText.strokeThickness = 1
+    this.introText.scale.set(0.8);
 
-    this.tutorialText = game.add.text(-this.game.width,0, "SWIPE TO SOLVE PUZZLES\nAND UNLOCK\nENCHANTING SCENERY", this.textWhite);
+    this.tutorialText = game.add.text(this.game.width*0.5,this.game.height*0.15, "SWIPE TO SOLVE PUZZLES\nAND UNLOCK\nENCHANTING SCENERY", this.textWhite);
     this.tutorialText.anchor.set(0.5);
+    this.tutorialText.scale.set(0.8);
     this.tutorialText.setShadow(-1, 1, 'rgba(18,127,170,0.8)', 5);
     this.tutorialText.alpha = 0
 
@@ -364,7 +384,7 @@ function setBase(){
     this.graphics = this.game.add.graphics(0,0);
     this.graphics.lineStyle(40, 0xffffff,1);
 
-    this.circle = game.add.sprite(-this.game.width,0,'atlas','circle.png');
+    this.circle = game.add.sprite(this.game.width*0.5,this.game.height*0.78,'atlas','circle.png');
     this.circle.anchor.set(0.5);
     this.circle.scale.set(0)
     this.circle.addChild(this.graphics)
@@ -387,28 +407,21 @@ function setBase(){
     this.tutorialLine.alpha = 0
 
     this.board = this.game.add.group();
-    if(this.game.height <=505){
+
         this.board.create(0,0, 'atlas','tile2.png');
-        this.board.create(0,-45,'atlas','tile.png');
-        this.board.create(0, 45,'atlas','tile.png');
-        this.board.create(-45, -45,'atlas','tile.png');
-        this.board.create(-90, -45,'atlas','tile.png');
-        this.board.create(45, 0,'atlas','tile2.png');
-        this.board.create(90, 0,'atlas','tile2.png');
-    }
-    else{
-        this.board.create(0,0, 'atlas','tile2.png');
-        this.board.create(0,-60,'atlas','tile.png');
-        this.board.create(0, 60,'atlas','tile.png');
-        this.board.create(-60, -60,'atlas','tile.png');
-        this.board.create(-120, -60,'atlas','tile.png');
-        this.board.create(60, 0,'atlas','tile2.png');
-        this.board.create(120, 0,'atlas','tile2.png');
-    }
+        this.board.create(0,-130,'atlas','tile.png');
+        this.board.create(0, 130,'atlas','tile.png');
+        this.board.create(-130, -130,'atlas','tile.png');
+        this.board.create(-260, -130,'atlas','tile.png');
+        this.board.create(130, 0,'atlas','tile2.png');
+        this.board.create(260, 0,'atlas','tile2.png');
+    
     
     this.board.setAll('anchor.x', 0.5);
     this.board.setAll('anchor.y', 0.5);
     this.board.alpha = 0
+    this.board.x = this.game.width*0.5
+    this.board.y = this.game.height*0.4
 
     this.fillLetters = this.game.add.group();
     this.fillLetters.setAll('anchor.x', 0.5);
@@ -475,8 +488,11 @@ function startTutorial(){
         game.add.tween(this.tutorialText).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
         var cTween = game.add.tween(this.circle).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
 
-        if(!isLandscape)
-            this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1)
+        if(!isLandscape){
+            //this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1)
+            game.add.tween(this.circle.scale).to({x: 0.9,y:0.9}, 350, Phaser.Easing.Quadratic.Out,true);
+
+        }
         else
             this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1.8)
         
@@ -770,6 +786,44 @@ function update() {
     }
     else if(this.game.input.activePointer.isDown && this.circle.children[3].input.checkPointerOver(this.game.input.activePointer)){
         this.onClickLetter(this.circle.children[3])
+    }
+}
+
+// Wait for the SDK to become ready: 
+if (mraid.getState() === 'loading') {
+    // If the SDK is still loading, add a listener for the 'ready' event:
+    mraid.addEventListener('ready', onSdkReady); 
+} else {
+    // Otherwise, if the SDK is ready, execute your function:
+    onSdkReady(); 
+}
+
+// Implement a function that shows the ad when it first renders:
+function onSdkReady() {
+    // The viewableChange event fires if the ad container's viewability status changes.
+    // Add a listener for the viewabilityChange event, to handle pausing and resuming: 
+    mraid.addEventListener('viewableChange', viewableChangeHandler);
+    // The isViewable method returns whether the ad container is viewable on the screen.
+    if (mraid.isViewable()) {
+        // If the ad container is visible, play the ad:
+        showMyAd(); 
+    }
+}
+
+// Implement a function for executing the ad:
+function showMyAd() { 
+    // Insert code for showing your playable ad.
+    var el = document.body;
+    el.style.display = 'block';
+}
+
+// Implement a function that handles pausing and resuming the ad based on visibility:
+function viewableChangeHandler(viewable) {
+    if(viewable) {
+        // If the ad is viewable, show the ad:
+        showMyAd(); 
+    } else {
+        // If not, pause the ad.
     }
 }
 		</script>
