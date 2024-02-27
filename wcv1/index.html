@@ -340,7 +340,7 @@ function resize(width, height) {
 
 function create() {
 	setBase();
-    this.resize(window.innerWidth,window.innerHeight);
+    this.resize(window.innerWidth/window.devicePixelRatio,window.innerHeight/window.devicePixelRatio);
 }
 
 function setBase(){
