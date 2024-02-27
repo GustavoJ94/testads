@@ -296,6 +296,8 @@ function resize(width, height) {
 
 function create() {
 	setBase();
+	    this.game.input.onDown.addOnce(function(){this.scale.startFullScreen()},this);
+
     this.resize(window.innerWidth,window.innerHeight);
 }
 
