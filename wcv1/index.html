@@ -164,6 +164,7 @@ function callCTA(){
 }
 
 function resize(width, height) {
+	this.game.scale.refresh();
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
