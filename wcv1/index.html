@@ -199,12 +199,12 @@ function callCTA(){
 }
 
 function resize(width, height) {
-	this.game.canvas.style.width = this.game.canvas.style.width || this.game.canvas.width + 'px';
-    this.game.canvas.style.height = this.game.canvas.style.height || this.game.canvas.height + 'px';
+	this.game.canvas.style.width = width + 'px';
+    this.game.canvas.style.height = height + 'px';
 
     // Resize canvas and scale future draws.
-    this.game.canvas.width = Math.ceil(this.game.canvas.width );
-    this.game.canvas.height = Math.ceil(this.game.canvas.height);
+    this.game.canvas.width = width;
+    this.game.canvas.height = height;
 
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
