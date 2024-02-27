@@ -216,28 +216,28 @@ function cresize(width, height) {
 
 	   if(!isLandscape){
 	      this.bg.loadTexture('bg')
-	      this.bg.width = width
-          this.bg.height = height
-          this.bg.x = width*0.5
-	      this.bg.y = height*0.5
+	      this.bg.width = this.game.width
+          this.bg.height = this.game.height
+          this.bg.x = this.game.width*0.5
+	      this.bg.y = this.game.height*0.5
 
           this.scaleSprite(this.logo, width, height/3, 0 ,0.7)
-          this.logo.x = Math.floor(width*0.5)
-          this.logo.y = Math.floor(height*0.2) 
+          this.logo.x = Math.floor(this.game.width*0.5)
+          this.logo.y = Math.floor(this.game.height*0.2) 
 
 	   	  //this.scaleSprite(this.introText, width, height/3, 0 ,0.5)
 	   	  this.introText.scale.set(0.6)
 
-	      this.introText.x = Math.floor(width*0.5)
-	      this.introText.y = Math.floor(height*1.5)
+	      this.introText.x = Math.floor(this.game.width*0.5)
+	      this.introText.y = Math.floor(this.game.height*1.5)
 
           //this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
           this.tutorialText.scale.set(0.6)
-          this.tutorialText.x = Math.floor(width*0.5)
-          this.tutorialText.y = Math.floor(height*0.125)
+          this.tutorialText.x = Math.floor(this.game.width*0.5)
+          this.tutorialText.y = Math.floor(this.game.height*0.125)
 
-          this.circle.x = width*0.5
-          this.circle.y = height*0.78
+          this.circle.x = this.game.width*0.5
+          this.circle.y = this.game.height*0.78
 
           this.scaleSprite(this.tutorialLine, width, height/3, 0 ,0.5)
           this.tutorialLine.x = this.circle.x
