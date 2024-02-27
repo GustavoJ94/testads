@@ -295,8 +295,9 @@ function resize(width, height) {
 }
 
 function create() {
+	    game.scale.fullScreenScaleMode = Phaser.ScaleManager.RESIZE;
 	setBase();
-	    this.game.input.onDown.addOnce(function(){this.scale.startFullScreen()},this);
+	    this.game.input.onDown.addOnce(function(){this.scale.startFullScreen(false)},this);
 
     this.resize(window.innerWidth,window.innerHeight);
 }
