@@ -35,7 +35,7 @@
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
-	autoDensity:true,
+	roundPixels:true,
 	state: this,
 });
 
@@ -54,6 +54,8 @@ function _base64ToArrayBuffer(base64) {
 }
 
 function preload() {
+	    this.game.renderer.autoDensity = true;
+
 	this.game.renderer.renderSession.roundPixels = true;
    this.stage.disableVisibilityChange = false;
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
@@ -179,13 +181,11 @@ function resize(width, height) {
           this.logo.x = width*0.5
           this.logo.y = height*0.2 
 
-          this.introText.scale.set(1)
+          this.scaleSprite(this.introText, width, height/3, 0 ,0.4)
 	      this.introText.x = width*0.5
 	      this.introText.y = height*1.5 
 
-          //this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
-                    this.tutorialText.scale.set(1)
-
+          this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
           this.tutorialText.x = width*0.5
           this.tutorialText.y = height*0.125
 
