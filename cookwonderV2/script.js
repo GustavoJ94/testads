@@ -3,7 +3,6 @@ var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
-    roundPixels:true,
 	state: this
 });
 
@@ -22,7 +21,6 @@ function _base64ToArrayBuffer(base64) {
 }
 
 function preload() {
-    this.game.renderer.renderSession.roundPixels = true;
     this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
