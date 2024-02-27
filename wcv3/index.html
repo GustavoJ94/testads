@@ -31,8 +31,8 @@
 
 <script type="text/javascript">
 	var game = new Phaser.Game({
-	width: window.innerWidth * window.devicePixelRatio,
-	height: window.innerHeight * window.devicePixelRatio, 
+	width: window.innerWidth,
+	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
 	state: this
 });
@@ -53,7 +53,7 @@ function _base64ToArrayBuffer(base64) {
 
 function preload() {
 	
-    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
 
