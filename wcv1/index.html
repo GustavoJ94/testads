@@ -177,7 +177,7 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
     if(widthRatio > 1 || heightRatio > 1){
         ratio = 1 / Math.max(widthRatio, heightRatio);
     }
-    return ratio * currentDevicePixelRatio;
+    return Math.round(ratio * currentDevicePixelRatio);
 }
 
 function callCTA(){
@@ -199,7 +199,13 @@ function callCTA(){
 }
 
 function resize(width, height) {
-	this.game.scale.refresh();
+	this.game.canvas.style.width = this.game.canvas.style.width || this.game.canvas.width + 'px';
+    this.game.canvas.style.height = this.game.canvas.style.height || this.game.canvas.height + 'px';
+
+    // Resize canvas and scale future draws.
+    this.game.canvas.width = Math.ceil(this.game.canvas.width );
+    this.game.canvas.height = Math.ceil(this.game.canvas.height);
+
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
