@@ -30,11 +30,13 @@
 </script>
 
 		<script type="text/javascript">
+
 	var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
-	state: this
+	autoDensity:true,
+	state: this,
 });
 
 function onClickDownload(){
@@ -52,12 +54,14 @@ function _base64ToArrayBuffer(base64) {
 }
 
 function preload() {
-	
+	this.game.renderer.renderSession.roundPixels = true;
+   this.stage.disableVisibilityChange = false;
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
 
-
+game.scale.setShowAll();    
+ 		game.scale.refresh()
 	this.bgColor = "#468BA8"; //Background Color
     this.textWhite = { font: "bold 42px Arial", fill: "#fff",stroke: '#fff',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
     this.textRed = { font: "bold 54px Arial", fill: "#5F002A",stroke: '#5F002A',strokeThickness:2, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -164,14 +168,6 @@ function callCTA(){
 function resize(width, height) {
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
-		if (this.game.device.pixelRatio > 1) {
-            var userRatio = this.game.device.pixelRatio * 1;
-            console.log(this.game.device.pixelRatio,userRatio)
-            this.game.scale.setGameSize(window.innerWidth * userRatio, window.innerHeight * userRatio);
-            //    manager.setUserScale(1 / userRatio, 1 / userRatio);
-            //}
-        }
-
 	   if(!isLandscape){
 	      this.bg.loadTexture('bg')
 	      this.bg.width = width
@@ -183,11 +179,13 @@ function resize(width, height) {
           this.logo.x = width*0.5
           this.logo.y = height*0.2 
 
-	   	  this.scaleSprite(this.introText, width, height/3, 0 ,0.5)
+          this.introText.scale.set(1)
 	      this.introText.x = width*0.5
 	      this.introText.y = height*1.5 
 
-          this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
+          //this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
+                    this.tutorialText.scale.set(1)
+
           this.tutorialText.x = width*0.5
           this.tutorialText.y = height*0.125
 
