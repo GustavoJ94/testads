@@ -83,8 +83,8 @@ const PIXEL_RATIO = (function() {
 			 let clientWidth = document.documentElement.clientWidth
  let clientHeight = document.documentElement.clientHeight
 	var game = new Phaser.Game({
-	width: clientWidth,
-	height: clientHeight, 
+	width: 720,
+	height: 1280, 
 	renderer: Phaser.CANVAS,
 	"callbacks.postBoot": function() {
          document.getElementsByTagName("canvas")[0].style.width = clientWidth + "px"
@@ -115,7 +115,7 @@ function preload() {
 	this.game.renderer.renderSession.roundPixels = true;
 
 	this.bgColor = "#468BA8"; //Background Color
-    this.textWhite = { font: "bold 72px Arial", fill: "#fff",stroke: '#fff',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
+    this.textWhite = { font: "bold 62px Arial", fill: "#fff",stroke: '#fff',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
     this.textRed = { font: "bold 54px Arial", fill: "#5F002A",stroke: '#5F002A',strokeThickness:2, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
     this.textWhite2 = { font: "bold 62px Arial", fill: "#fff",stroke: '#fff',strokeThickness:0, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
 
@@ -232,13 +232,13 @@ function resize(width, height) {
           this.logo.y = Math.floor(height*0.2) 
 
 	   	  //this.scaleSprite(this.introText, width, height/3, 0 ,0.5)
-	   	  this.introText.scale.set(0.35)
+	   	  this.introText.scale.set(0.6)
 
 	      this.introText.x = Math.floor(width*0.5)
 	      this.introText.y = Math.floor(height*1.5)
 
           //this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
-          this.tutorialText.scale.set(0.3)
+          this.tutorialText.scale.set(0.6)
           this.tutorialText.x = Math.floor(width*0.5)
           this.tutorialText.y = Math.floor(height*0.125)
 
@@ -250,7 +250,7 @@ function resize(width, height) {
           this.tutorialLine.y = this.circle.y
 
           this.board.forEach(function(tile){
-                this.scaleSprite(tile, width, height/3, 0 ,0.24)
+                //this.scaleSprite(tile, width, height/3, 0 ,0.24)
           })
           this.board.x = width*0.5
           this.board.y = height*0.38
@@ -355,7 +355,7 @@ function resize(width, height) {
 
 function create() {
 	setBase();
-    this.resize(clientWidth,clientHeight);
+    this.resize(720,1280);
 }
 
 function setBase(){
@@ -443,24 +443,15 @@ function setBase(){
     this.tutorialLine.alpha = 0
 
     this.board = this.game.add.group();
-    if(this.game.height <=505){
+
         this.board.create(0,0, 'atlas','tile2.png');
-        this.board.create(0,-45,'atlas','tile.png');
-        this.board.create(0, 45,'atlas','tile.png');
-        this.board.create(-45, -45,'atlas','tile.png');
-        this.board.create(-90, -45,'atlas','tile.png');
-        this.board.create(45, 0,'atlas','tile2.png');
-        this.board.create(90, 0,'atlas','tile2.png');
-    }
-    else{
-        this.board.create(0,0, 'atlas','tile2.png');
-        this.board.create(0,-60,'atlas','tile.png');
-        this.board.create(0, 60,'atlas','tile.png');
-        this.board.create(-60, -60,'atlas','tile.png');
-        this.board.create(-120, -60,'atlas','tile.png');
-        this.board.create(60, 0,'atlas','tile2.png');
-        this.board.create(120, 0,'atlas','tile2.png');
-    }
+        this.board.create(0,-130,'atlas','tile.png');
+        this.board.create(0, 130,'atlas','tile.png');
+        this.board.create(-130, -130,'atlas','tile.png');
+        this.board.create(-260, -130,'atlas','tile.png');
+        this.board.create(130, 0,'atlas','tile2.png');
+        this.board.create(260, 0,'atlas','tile2.png');
+    
     
     this.board.setAll('anchor.x', 0.5);
     this.board.setAll('anchor.y', 0.5);
