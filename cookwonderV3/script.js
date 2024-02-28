@@ -3,6 +3,7 @@ var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
+    parent:'div_game',
 	state: this
 });
 
