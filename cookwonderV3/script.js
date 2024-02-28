@@ -1,8 +1,9 @@
 
 var game = new Phaser.Game({
-	width: 720,
-	height: 1280, 
+	width: window.innerWidth,
+	height: window.innerHeight, 
 	renderer: Phaser.WEBGL,
+    resolution:1,
 	state: this
 });
 
@@ -240,8 +241,7 @@ function resize(width, height) {
 	   //console.log(width,height)
 	   var isLandscape = height / width  < 1.3 ? true: false;
        
-               this.scale.setGameSize(365,667)
-
+       this.scale.setGameSize(720,1280)  
 
 
 	   if(!isLandscape){
