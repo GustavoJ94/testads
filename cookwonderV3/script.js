@@ -240,7 +240,7 @@ function resize(width, height) {
 	   //console.log(width,height)
 	   var isLandscape = height / width  < 1.3 ? true: false;
        
-       this.scale.setGameSize(width,height)  
+       this.scale.setGameSize(720,1280)  
 
 
 	   if(!isLandscape){
