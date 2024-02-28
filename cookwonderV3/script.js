@@ -21,25 +21,12 @@ function _base64ToArrayBuffer(base64) {
     return bytes.buffer;
 }
 
-function gofull() {
-
-    if (game.scale.isFullScreen)
-    {
-        game.scale.stopFullScreen();
-    }
-    else
-    {
-        game.scale.startFullScreen(false);
-    }
-
-}
 
 function preload() {
     this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-    this.scale.fullScreenScaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
 
@@ -532,7 +519,6 @@ function resize(width, height) {
 
 function create() {
 	setBase();
-	game.input.onDown.addOnce(gofull, this);
     this.resize(window.innerWidth,window.innerHeight);
 }
 
