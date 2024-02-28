@@ -38,7 +38,7 @@ function preload() {
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
     this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
-    this.scale.fullScreenScaleMode = Phaser.ScaleManager.NO_SCALE;
+    this.scale.fullScreenScaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
 
