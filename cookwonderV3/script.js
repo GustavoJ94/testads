@@ -26,7 +26,7 @@ function preload() {
     this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
-    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+    this.scale.scaleMode = Phaser.ScaleManager.NONE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
 
@@ -240,6 +240,7 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
 	   var isLandscape = height / width  < 1.3 ? true: false;
+       this.scale.setGameSize(720,1280)  
 
 
 	   if(!isLandscape){
