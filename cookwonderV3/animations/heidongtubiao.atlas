@@ -1,0 +1,14 @@
+heidongtubiao.png
+size:256,256
+filter:Linear,Linear
+pma:true
+scale:0.13
+01
+bounds:2,2,170,170
+offsets:3,3,176,176
+02
+bounds:32,174,70,70
+lizi
+bounds:2,218,26,28
+offsets:4,3,33,33
+rotate:90
