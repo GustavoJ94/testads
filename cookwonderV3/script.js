@@ -2,7 +2,7 @@
 var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
-	renderer: Phaser.CANVAS,
+	renderer: Phaser.WEBGL,
     parent:'div_game',
 	state: this
 });
@@ -240,7 +240,8 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
 	   var isLandscape = height / width  < 1.3 ? true: false;
-       this.scale.setGameSize(720,1280)  
+       
+       this.scale.setGameSize(width,height)  
 
 
 	   if(!isLandscape){
