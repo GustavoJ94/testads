@@ -153,22 +153,23 @@ function resize(width, height) {
           this.bg.x = width*0.5
           this.bg.y = height*0.5
 
-          this.scaleSprite(this.logo, width, height/3, 0 ,0.7)
+          //this.scaleSprite(this.logo, width, height/3, 0 ,0.7)
           this.logo.x = width*0.5
           this.logo.y = height*0.2 
 
-          this.scaleSprite(this.introText, width, height, 0 ,1)
+          //this.scaleSprite(this.introText, width, height, 0 ,1)
           this.introText.x = width*0.5
           this.introText.y = height*1.5 
 
-          this.scaleSprite(this.tutorialText, width, height, 0 ,0.8)
+          //this.scaleSprite(this.tutorialText, width, height, 0 ,0.8)
+          this.tutorialText.scale.set(0.5)
           this.tutorialText.x = width*0.5
           this.tutorialText.y = height*0.125
 
           this.circle.x = width*0.5
           this.circle.y = height*0.78
 
-          this.scaleSprite(this.tutorialLine, width, height, 0 ,1)
+          //this.scaleSprite(this.tutorialLine, width, height, 0 ,1)
           this.tutorialLine.x = this.circle.x
           this.tutorialLine.y = this.circle.y
 
