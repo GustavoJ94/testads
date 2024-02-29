@@ -9,6 +9,8 @@ let config = {
     	 autoCenter: Phaser.Scale.CENTER_BOTH,
     	 width: window.innerWidth,
   		 height: window.innerHeight,
+     	 autoRound: true,
+     	 antialias: true,
     },
     // banner: false
     // disableContextMenu: true,
