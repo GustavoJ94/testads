@@ -40,11 +40,11 @@ export default class Game extends Phaser.Scene {
         this.logoPhaser.on('pointerup', function () {
             if (this.scale.isFullscreen) {
                 this.scale.stopFullscreen();
-                this.cameraUpdate()
+                //this.cameraUpdate()
             }
             else {
                 this.scale.startFullscreen();
-                this.cameraUpdate()
+                //this.cameraUpdate()
             }
         }, this);
 
