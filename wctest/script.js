@@ -2,8 +2,8 @@ var baseWidth = 720
 var baseHeigt = 1280
 
 var game = new Phaser.Game({
-	width: window.innerWidth * window.devicePixelRatio,
-	height: window.innerHeight * window.devicePixelRatio, 
+	width: window.innerWidth,
+	height: window.innerHeight, 
 	renderer: Phaser.CANVAS,
 	state: this
 });
