@@ -55,7 +55,7 @@ export default class Game extends Phaser.Scene {
 
         // logoPhaser -------------------------------------------------------------
         this.logoPhaser = this.add.sprite(window.innerWidth / 2, window.innerHeight*0.5, 'logoPhaser').setInteractive()
-        this.scaleSprite(this.logoPhaser,window.innerWidth,window.innerHeight,0.3)
+        this.scaleSprite(this.logoPhaser,window.innerWidth,window.innerHeight,0.5)
         this.logoPhaser.on('pointerup', function () {
             if (this.scale.isFullscreen) {
                 this.scale.stopFullscreen();
@@ -71,27 +71,27 @@ export default class Game extends Phaser.Scene {
 
         // logoLeftTop -------------------------------------------------------------
         this.logoLeftTop = this.add.sprite(0, 0, 'logo').setOrigin(0, 0)
-        this.scaleSprite(this.logoLeftTop,window.innerWidth,window.innerHeight,0.3)
+        this.scaleSprite(this.logoLeftTop,window.innerWidth,window.innerHeight,0.4)
 
         // logoRightTop -------------------------------------------------------------
         this.logoRightTop = this.add.sprite(window.innerWidth, 0, 'logo').setOrigin(1, 0)
-        this.scaleSprite(this.logoRightTop,window.innerWidth,window.innerHeight,0.3)
+        this.scaleSprite(this.logoRightTop,window.innerWidth,window.innerHeight,0.4)
 
 
         // logoLeftBottom -------------------------------------------------------------
         this.logoLeftBottom = this.add.sprite(0, window.innerHeight, 'logo').setOrigin(0, 1)
-        this.scaleSprite(this.logoLeftBottom,window.innerWidth,window.innerHeight,0.3)
+        this.scaleSprite(this.logoLeftBottom,window.innerWidth,window.innerHeight,0.4)
 
 
         // logoRightBottom -------------------------------------------------------------
         this.logoRightBottom = this.add.sprite(window.innerWidth, window.innerHeight, 'logo').setOrigin(1, 1)
-        this.scaleSprite(this.logoRightBottom,window.innerWidth,window.innerHeight,0.3)
+        this.scaleSprite(this.logoRightBottom,window.innerWidth,window.innerHeight,0.4)
 
 
         // text -------------------------------------------------------------
         var style = { font: ' 150px Arial', fill: "#ffeeff" };
         this.text = this.add.text(app.centerX, app.centerY - 50, 'Qugurun', style).setOrigin(0.5)
-        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.3)
+        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.4)
 
         this.text.setInteractive({ cursor: 'pointer' })
 
@@ -126,16 +126,16 @@ export default class Game extends Phaser.Scene {
         this.bg.setPosition(width / 2, height / 2);
         this.logoPhaser.setPosition(width / 2, height / 2);
 
-        this.scaleSprite(this.logoPhaser,window.innerWidth,window.innerHeight,0.3)
-        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.3)
+        this.scaleSprite(this.logoPhaser,window.innerWidth,window.innerHeight,0.5)
+        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.4)
 
         this.text.setPosition(width / 2, (height/2) - 50)
     //  var aspect = window.innerWidth > window.innerHeight ? window.innerWidth / window.innerHeight : window.innerHeight / window.innerWidth
         
-        this.scaleSprite(this.logoLeftTop,window.innerWidth,window.innerHeight,0.3)
-        this.scaleSprite(this.logoRightTop,window.innerWidth,window.innerHeight,0.3)
-        this.scaleSprite(this.logoLeftBottom,window.innerWidth,window.innerHeight,0.3)
-        this.scaleSprite(this.logoRightBottom,window.innerWidth,window.innerHeight,0.3)
+        this.scaleSprite(this.logoLeftTop,window.innerWidth,window.innerHeight,0.4)
+        this.scaleSprite(this.logoRightTop,window.innerWidth,window.innerHeight,0.4)
+        this.scaleSprite(this.logoLeftBottom,window.innerWidth,window.innerHeight,0.4)
+        this.scaleSprite(this.logoRightBottom,window.innerWidth,window.innerHeight,0.4)
 
         this.logoLeftTop.setPosition(0, 0)
         this.logoRightTop.setPosition(window.innerWidth, 0)
