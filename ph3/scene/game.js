@@ -102,11 +102,11 @@ export default class Game extends Phaser.Scene {
         this.logoPhaser.setPosition(width / 2, height / 2);
 
         this.text.setPosition(width / 2, (height/2) - 50)
-    // aspect = window.innerWidth > window.innerHeight ? window.innerWidth / window.innerHeight : window.innerHeight / window.innerWidth
-        this.logoLeftTop.setScale(this.logoLeftTop.scale*(width/height))
-        this.logoRightTop.setScale(this.logoRightTop.scale*(width/height))
-        this.logoLeftBottom.setScale(this.logoLeftBottom.scale*(width/height))
-        this.logoRightBottom.setScale(this.logoRightBottom.scale*(width/height))
+
+        this.logoLeftTop.setScale(0.25*window.devicePixelRatio)
+        this.logoRightTop.setScale(0.25*window.devicePixelRatio)
+        this.logoLeftBottom.setScale(0.25*window.devicePixelRatio)
+        this.logoRightBottom.setScale(0.25*window.devicePixelRatio)
 
         this.logoLeftTop.setPosition(0, 0)
         this.logoRightTop.setPosition(window.innerWidth, 0)
