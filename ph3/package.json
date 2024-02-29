@@ -1,0 +1,10 @@
+{
+  "name": "test",
+  "version": "1",
+  "description": "responsive",
+  "main": "index.html",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
