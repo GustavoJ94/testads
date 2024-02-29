@@ -55,32 +55,28 @@ export default class Game extends Phaser.Scene {
      
 
         // logoRightTop -------------------------------------------------------------
-        let logoRightTop = this.add.sprite(window.innerWidth, 0, 'logo').setScale(scaleLogo*window.devicePixelRatio).setOrigin(1, 0)
+        this.logoRightTop = this.add.sprite(window.innerWidth, 0, 'logo').setScale(scaleLogo*window.devicePixelRatio).setOrigin(1, 0)
      
 
         // logoLeftBottom -------------------------------------------------------------
-        let logoLeftBottom = this.add.sprite(0, window.innerHeight, 'logo').setScale(scaleLogo*window.devicePixelRatio).setOrigin(0, 1)
+        this.logoLeftBottom = this.add.sprite(0, window.innerHeight, 'logo').setScale(scaleLogo*window.devicePixelRatio).setOrigin(0, 1)
       
 
         // logoRightBottom -------------------------------------------------------------
-        let logoRightBottom = this.add.sprite(window.innerWidth, window.innerHeight, 'logo').setScale(scaleLogo*window.devicePixelRatio).setOrigin(1, 1)
+        this.logoRightBottom = this.add.sprite(window.innerWidth, window.innerHeight, 'logo').setScale(scaleLogo*window.devicePixelRatio).setOrigin(1, 1)
       
 
         // text -------------------------------------------------------------
         var style = { font: ' 150px Arial', fill: "#ffeeff" };
-        let text = this.add.text(app.centerX, app.centerY - 100, 'Qugurun', style).setScale(scaleLogo).setOrigin(0.5)
+        this.text = this.add.text(app.centerX, app.centerY - 50, 'Qugurun', style).setScale(scaleLogo).setOrigin(0.5)
 
-        text.update = function () {
-            this.text = window.innerWidth + ' ' + window.innerHeight
-        }
+        this.text.setInteractive({ cursor: 'pointer' })
 
-        text.setInteractive({ cursor: 'pointer' })
-
-        text.on('pointerover', function (event) {
+        this.text.on('pointerover', function (event) {
             this.alpha = 0.5;
         });
 
-        text.on('pointerout', function (event) {
+        this.text.on('pointerout', function (event) {
             this.alpha = 1.0;
         });
 
@@ -102,7 +98,19 @@ export default class Game extends Phaser.Scene {
          this.bg.displayWidth = width
         this.bg.displayHeight = height
         this.bg.setPosition(width / 2, height / 2);
+        this.logoPhaser.setPosition(width / 2, height / 2);
+
+        this.text.setPosition(width / 2, (height/2) - 50)
+
         this.logoLeftTop.setScale(0.25*window.devicePixelRatio)
+        this.logoRightTop.setScale(0.25*window.devicePixelRatio)
+        this.logoLeftBottom.setScale(0.25*window.devicePixelRatio)
+        this.logoRightBottom.setScale(0.25*window.devicePixelRatio)
+
+        this.logoLeftTop.setPosition(0, 0).setOrigin(0, 0)
+        this.logoRightTop.setPosition(window.innerWidth, 0).setOrigin(1, 0)
+        this.logoLeftBottom.setPosition(0, window.innerHeight).setOrigin(0, 1)
+        this.logoRightBottom.setPosition(window.innerWidth, window.innerHeight).setOrigin(1, 1)
     }
 
 }
