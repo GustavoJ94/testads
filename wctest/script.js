@@ -108,13 +108,14 @@ function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding
 function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight, minPadding) {
     var ratio = 1;
     var currentDevicePixelRatio = getDevicePixelRatio();
+    if(currentDevicePixelRatio < 2) currentDevicePixelRatio = 2
     // Sprite needs to fit in either width or height
     var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
     var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
     if(widthRatio > 1 || heightRatio > 1){
         ratio = 1 / Math.max(widthRatio, heightRatio);
     }
-    return ratio * currentDevicePixelRatio;
+    return ratio;
 }
 
 function callCTA(){
@@ -150,11 +151,11 @@ function resize(width, height) {
           this.logo.x = width*0.5
           this.logo.y = height*0.2 
 
-          this.scaleSprite(this.introText, width, height/3, 0 ,0.5)
+          this.scaleSprite(this.introText, width, height, 0 ,1)
           this.introText.x = width*0.5
           this.introText.y = height*1.5 
 
-          this.scaleSprite(this.tutorialText, width, height/3, 0 ,0.4)
+          this.scaleSprite(this.tutorialText, width, height, 0 ,1)
           this.tutorialText.x = width*0.5
           this.tutorialText.y = height*0.125
 
