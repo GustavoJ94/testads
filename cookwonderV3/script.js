@@ -792,6 +792,14 @@ function showUI(){
         game.add.tween(this.hudRobotPoints).to({ alpha: 1 },250,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.clockBg).to({ alpha: 1 },250,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.diceBtn).to({ alpha: 1 },250,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.namePlayer).to({ alpha: 1 },250,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.nameRobot).to({ alpha: 1 },250,Phaser.Easing.Sinusoidal.In,true);
+        this.namePlayer.bringToTop()
+        this.nameRobot.bringToTop()
+        this.namePlayer.x = this.hudAvatarPlayer.x 
+        this.namePlayer.y = this.hudAvatarPlayer.y + (this.hudAvatarPlayer.height*0.5)
+        this.nameRobot.x = this.hudAvatarRobot.x
+        this.nameRobot.y = this.hudAvatarRobot.y + (this.hudAvatarRobot.height*0.5)
         this.uiT.timer.onComplete.add(this.startClock)
     })
 }
