@@ -167,7 +167,7 @@ function resize(width, height) {
           this.tutorialLine.y = this.circle.y
 
           this.board.forEach(function(tile){
-                this.scaleSprite(tile, width, height/3, 0 ,0.5)
+                this.scaleSprite(tile, width, height, 0 ,0.45)
           })
           this.board.x = width*0.5
           this.board.y = height*0.38
