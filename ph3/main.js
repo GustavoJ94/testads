@@ -1,10 +1,14 @@
 import Game from './scene/game.js'
 
 let config = {
+  	
     type: Phaser.CANVAS,
     scene: Game,
     scale: {
-        mode: Phaser.Scale.RESIZE,
+         mode: Phaser.Scale.RESIZE,
+    	 autoCenter: Phaser.Scale.CENTER_BOTH,
+    	 width: window.innerWidth,
+  		 height: window.innerHeight,
     },
     // banner: false
     // disableContextMenu: true,
