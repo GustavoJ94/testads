@@ -85,7 +85,6 @@ export default class Game extends Phaser.Scene {
 
        // this.scale.on('resize', this.resize, this)
        this.scale.on('resize', this.resize, this);
-     
     }
 
 
@@ -103,7 +102,7 @@ export default class Game extends Phaser.Scene {
         this.logoPhaser.setPosition(width / 2, height / 2);
 
         this.text.setPosition(width / 2, (height/2) - 50)
-    //  var aspect = window.innerWidth > window.innerHeight ? window.innerWidth / window.innerHeight : window.innerHeight / window.innerWidth
+    // aspect = window.innerWidth > window.innerHeight ? window.innerWidth / window.innerHeight : window.innerHeight / window.innerWidth
         this.logoLeftTop.setScale(this.logoLeftTop.scale*(width/height))
         this.logoRightTop.setScale(this.logoRightTop.scale*(width/height))
         this.logoLeftBottom.setScale(this.logoLeftBottom.scale*(width/height))
