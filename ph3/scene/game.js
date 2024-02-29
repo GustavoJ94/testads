@@ -91,7 +91,7 @@ export default class Game extends Phaser.Scene {
         // text -------------------------------------------------------------
         var style = { font: ' 150px Arial', fill: "#ffeeff" };
         this.text = this.add.text(app.centerX, app.centerY - 50, 'Qugurun', style).setOrigin(0.5)
-        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.4)
+        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.8)
 
         this.text.setInteractive({ cursor: 'pointer' })
 
