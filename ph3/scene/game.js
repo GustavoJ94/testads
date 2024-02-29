@@ -67,7 +67,7 @@ export default class Game extends Phaser.Scene {
 
         // text -------------------------------------------------------------
         var style = { font: ' 150px Arial', fill: "#ffeeff" };
-        this.text = this.add.text(app.centerX, app.centerY - 50, 'Qugurun', style).setScale(scaleLogo).setOrigin(0.5)
+        this.text = this.add.text(app.centerX, app.centerY - 80, 'Qugurun', style).setScale(scaleLogo*window.devicePixelRatio).setOrigin(0.5)
 
         this.text.setInteractive({ cursor: 'pointer' })
 
@@ -100,8 +100,9 @@ export default class Game extends Phaser.Scene {
         this.bg.displayHeight = height
         this.bg.setPosition(width / 2, height / 2);
         this.logoPhaser.setPosition(width / 2, height / 2);
-
-        this.text.setPosition(width / 2, (height/2) - 50)
+        
+        this.text.setScale(0.25*window.devicePixelRatio)
+        this.text.setPosition(width / 2, (height/2) - 80)
 
         this.logoLeftTop.setScale(0.25*window.devicePixelRatio)
         this.logoRightTop.setScale(0.25*window.devicePixelRatio)
