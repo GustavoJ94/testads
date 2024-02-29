@@ -115,7 +115,7 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
     if(widthRatio > 1 || heightRatio > 1){
         ratio = 1 / Math.max(widthRatio, heightRatio);
     }
-    return ratio;
+    return ratio * currentDevicePixelRatio;
 }
 
 function callCTA(){
@@ -155,7 +155,7 @@ function resize(width, height) {
           this.introText.x = width*0.5
           this.introText.y = height*1.5 
 
-          this.scaleSprite(this.tutorialText, width, height, 0 ,1)
+          this.scaleSprite(this.tutorialText, width, height, 0 ,0.4)
           this.tutorialText.x = width*0.5
           this.tutorialText.y = height*0.125
 
