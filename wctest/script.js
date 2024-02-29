@@ -5,7 +5,6 @@ var game = new Phaser.Game({
 	width: window.innerWidth * window.devicePixelRatio,
 	height: window.innerHeight * window.devicePixelRatio, 
 	renderer: Phaser.CANVAS,
-    resolution:1,
 	state: this
 });
 
