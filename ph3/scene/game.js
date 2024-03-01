@@ -9,6 +9,7 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
+        this.scale.autoRound = true
         this.load.image('bg', 'background.jpg')
         this.load.image('logo', 'logo.png')
         this.load.image('logoPhaser', 'phaser3-logo.png')
@@ -23,7 +24,7 @@ export default class Game extends Phaser.Scene {
     getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight) {
         var ratio = 1;
         var currentDevicePixelRatio = window.devicePixelRatio;
-        if(currentDevicePixelRatio < 2) currentDevicePixelRatio = 2
+        //if(currentDevicePixelRatio < 2) currentDevicePixelRatio = 2
         // Sprite needs to fit in either width or height
         var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 ) / availableSpaceWidth;
         var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 ) / availableSpaceHeight;
@@ -54,7 +55,7 @@ export default class Game extends Phaser.Scene {
         // logoCenter -------------------------------------------------------------
 
         // logoPhaser -------------------------------------------------------------
-        this.logoPhaser = this.add.sprite(window.innerWidth / 2, window.innerHeight*0.5, 'logoPhaser').setInteractive()
+        this.logoPhaser = this.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'logoPhaser').setInteractive()
         this.scaleSprite(this.logoPhaser,window.innerWidth,window.innerHeight,0.5)
         this.logoPhaser.on('pointerup', function () {
             if (this.scale.isFullscreen) {
@@ -68,10 +69,10 @@ export default class Game extends Phaser.Scene {
         }, this);
 
  
-
         // logoLeftTop -------------------------------------------------------------
-        this.logoLeftTop = this.add.sprite(0, 0, 'logo').setOrigin(0, 0)
+        this.logoLeftTop = this.add.sprite(0, 0, 'logo')
         this.scaleSprite(this.logoLeftTop,window.innerWidth,window.innerHeight,0.4)
+        this.logoLeftTop.setPosition(this.logoLeftTop.displayWidth*0.5,this.logoLeftTop.displayHeight*0.5)
 
         // logoRightTop -------------------------------------------------------------
         this.logoRightTop = this.add.sprite(window.innerWidth, 0, 'logo').setOrigin(1, 0)
@@ -91,7 +92,7 @@ export default class Game extends Phaser.Scene {
         // text -------------------------------------------------------------
         var style = { font: ' 150px Arial', fill: "#ffeeff" };
         this.text = this.add.text(app.centerX, app.centerY - 50, 'Qugurun', style).setOrigin(0.5)
-        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.8)
+        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.3)
 
         this.text.setInteractive({ cursor: 'pointer' })
 
@@ -107,8 +108,8 @@ export default class Game extends Phaser.Scene {
 
         // -------------------------------------------------------------
 
-       // this.scale.on('resize', this.resize, this)
-       this.scale.on('resize', this.resize, this);
+       this.scale.on('resize', this.resize, this)
+       //this.scale.on('resize', this.resize, this);
 
     }
 
@@ -116,10 +117,7 @@ export default class Game extends Phaser.Scene {
     resize (gameSize, baseSize, displaySize, resolution){
         const width = gameSize.width;
         const height = gameSize.height;
-        //this.cameras.resize(width, height);
-        const camera = this.cameras.main
-        //camera.setZoom(app.zoom)
-        //camera.centerOn(width/2, height/2)
+        //this.scale.setGameSize(width,height)
 
          this.bg.displayWidth = width
         this.bg.displayHeight = height
@@ -127,17 +125,17 @@ export default class Game extends Phaser.Scene {
         this.logoPhaser.setPosition(width / 2, height / 2);
 
         this.scaleSprite(this.logoPhaser,window.innerWidth,window.innerHeight,0.5)
-        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.4)
+        this.scaleSprite(this.text,window.innerWidth,window.innerHeight,0.3)
 
         this.text.setPosition(width / 2, (height/2) - 50)
     //  var aspect = window.innerWidth > window.innerHeight ? window.innerWidth / window.innerHeight : window.innerHeight / window.innerWidth
         
-        this.scaleSprite(this.logoLeftTop,window.innerWidth,window.innerHeight,0.4)
+        //this.scaleSprite(this.logoLeftTop,window.innerWidth,window.innerHeight,0.4)
         this.scaleSprite(this.logoRightTop,window.innerWidth,window.innerHeight,0.4)
         this.scaleSprite(this.logoLeftBottom,window.innerWidth,window.innerHeight,0.4)
         this.scaleSprite(this.logoRightBottom,window.innerWidth,window.innerHeight,0.4)
 
-        this.logoLeftTop.setPosition(0, 0)
+        //this.logoLeftTop.setPosition(this.logoLeftTop.displayWidth*0.5,this.logoLeftTop.displayHeight*0.5)
         this.logoRightTop.setPosition(window.innerWidth, 0)
         this.logoLeftBottom.setPosition(0, window.innerHeight)
         this.logoRightBottom.setPosition(window.innerWidth, window.innerHeight)
