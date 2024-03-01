@@ -107,8 +107,8 @@ function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding
 
 function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight, minPadding) {
     var ratio = 1;
-    var currentDevicePixelRatio = getDevicePixelRatio();
-    if(currentDevicePixelRatio < 2) currentDevicePixelRatio = 2
+    var currentDevicePixelRatio = window.devicePixelRatio;
+    //if(currentDevicePixelRatio < 2) currentDevicePixelRatio = 2
     // Sprite needs to fit in either width or height
     var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
     var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
@@ -138,9 +138,9 @@ function callCTA(){
 
 function resize(width, height) {
        var isLandscape = height / width  < 1.3 ? true: false;
-
+       //this.scale.setGameSize(width,height)
        if(!isLandscape){
-          this.scale.setGameSize(720,1280)  
+          //this.scale.setGameSize(720,1280)  
           this.bg.loadTexture('bg')
           this.bg.width = width*getDevicePixelRatio()
           this.bg.height = height*getDevicePixelRatio()
@@ -167,7 +167,7 @@ function resize(width, height) {
           this.tutorialLine.y = this.circle.y
 
           this.board.forEach(function(tile){
-                this.scaleSprite(tile, width, height, 0 ,0.45)
+                this.scaleSprite(tile, window.innerWidth, window.innerHeight, 0 ,0.45)
           })
           this.board.x = width*0.5
           this.board.y = height*0.38
