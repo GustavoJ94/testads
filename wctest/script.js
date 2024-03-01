@@ -5,7 +5,6 @@ var game = new Phaser.Game({
     width: window.innerWidth,
     height: window.innerHeight, 
     renderer: Phaser.CANVAS,
-    resolution:getDevicePixelRatio(),
     state: this
 });
 
@@ -147,27 +146,27 @@ function resize(width, height) {
           this.bg.x = width*0.5
           this.bg.y = height*0.5
 
-          this.scaleSprite(this.logo, width, height/3, 0 ,0.7)
+          this.scaleSprite(this.logo,  window.innerWidth, window.innerHeight, 0 ,0.5)
           this.logo.x = width*0.5
           this.logo.y = height*0.2 
 
-          this.scaleSprite(this.introText, width, height, 0 ,1)
+          this.scaleSprite(this.introText, window.innerWidth, window.innerHeight, 0 ,0.5)
           this.introText.x = width*0.5
           this.introText.y = height*1.5 
 
-          this.scaleSprite(this.tutorialText, width, height, 0 ,0.4)
+          this.scaleSprite(this.tutorialText,  window.innerWidth, window.innerHeight, 0 ,0.4)
           this.tutorialText.x = width*0.5
           this.tutorialText.y = height*0.125
 
           this.circle.x = width*0.5
           this.circle.y = height*0.78
 
-          this.scaleSprite(this.tutorialLine, width, height/3, 0 ,1)
+          this.scaleSprite(this.tutorialLine,  window.innerWidth, window.innerHeight, 0 ,0.5)
           this.tutorialLine.x = this.circle.x
           this.tutorialLine.y = this.circle.y
 
           this.board.forEach(function(tile){
-                this.scaleSprite(tile, width, height, 0 ,0.45)
+                this.scaleSprite(tile,  window.innerWidth, window.innerHeight, 0 ,0.24)
           })
           this.board.x = width*0.5
           this.board.y = height*0.38
@@ -225,7 +224,7 @@ function resize(width, height) {
           this.circle.x = width*0.25
           this.circle.y = height*0.6
 
-          this.scaleSprite(this.tutorialLine, width, height/3, 0 ,1)
+          this.scaleSprite(this.tutorialLine, window.innerWidth, window.innerHeight, 0 ,0.6)
           this.tutorialLine.x = this.circle.x
           this.tutorialLine.y = this.circle.y
 
@@ -432,7 +431,7 @@ function setBase(){
 }
 
 function startIntro(){
-    this.popup(this.logo, this.game.width, this.game.height/3, 0 ,0.7)
+    this.popup(this.logo, window.innerWidth, window.innerHeight, 0 ,0.5)
     game.add.tween(this.logo).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
     console.log(this.game.height*0.5)
     var tween = game.add.tween(this.introText).to({y: window.innerHeight*0.45}, 300, Phaser.Easing.Quadratic.Out).start();
@@ -451,7 +450,7 @@ function startTutorial(){
         var cTween = game.add.tween(this.circle).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
 
         if(!isLandscape)
-            this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1)
+            this.popup(this.circle,  window.innerWidth, window.innerHeight, 0 ,0.6)
         else
             this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1.8)
         
