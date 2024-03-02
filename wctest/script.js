@@ -1,7 +1,7 @@
 
 var game = new Phaser.Game({
-	width: window.innerWidth*window.devicePixelRatio,
-	height: window.innerHeight*window.devicePixelRatio, 
+	width: window.innerWidth,
+	height: window.innerHeight, 
 	renderer: Phaser.WEBGL,
     resolution:1,
 	state: this
@@ -26,7 +26,7 @@ this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
     this.game.renderer.renderSession.roundPixels = true;
 	game.load.crossOrigin = 'anonymous';
-    this.scale.scaleMode = Phaser.ScaleManager.NONE;
+    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
 
@@ -227,7 +227,7 @@ function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding
 
 function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight, minPadding) {
     var ratio = 1;
-    var currentDevicePixelRatio = window.devicePixelRatio;
+    var currentDevicePixelRatio = getDevicePixelRatio();
     // Sprite needs to fit in either width or height
     var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
     var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
@@ -242,24 +242,23 @@ function resize(width, height) {
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
-          //this.scale.setGameSize(window.innerWidth*window.devicePixelRatio,window.innerHeight*window.devicePixelRatio)
-          this.bgRobot.width = window.innerWidth
-          this.bgRobot.height = (height*0.3)
-          this.bgRobot.x = 0
-          this.bgRobot.y = window.innerHeight*0.15
+          this.bgRobot.width = width
+          this.bgRobot.height = height*0.3
+          this.bgRobot.x = width*0.5
+          //this.bgRobot.y = height*0.15
 
-          this.boardRobot.width = (width*1.6)
-          this.boardRobot.height = (height*0.5)
+          this.boardRobot.width = width*1.6
+          this.boardRobot.height = height*0.5
 	      this.boardRobot.x = width*0.5
 	      //this.boardRobot.y = height*0.25
 
           this.bgPlayer.width = width
-          this.bgPlayer.height = (height*0.3)
+          this.bgPlayer.height = height*0.3
           this.bgPlayer.x = width*0.5
           //this.bgPlayer.y = height*0.65
 
-          this.boardPlayer.width = (width*1.6)
-          this.boardPlayer.height = (height*0.5)
+          this.boardPlayer.width = width*1.6
+          this.boardPlayer.height = height*0.5
           this.boardPlayer.x = width*0.5
          // this.boardPlayer.y = height*0.75
 
@@ -270,35 +269,35 @@ function resize(width, height) {
 
           //this.playerBg.x = width*0.15
           this.playerBg.y = height*0.5
-          this.scaleSprite(this.playerBg, width, height, 0 ,1*window.devicePixelRatio)
+          this.scaleSprite(this.playerBg, width, height/3, 0 ,1)
 
           //this.robotBg.x = width*0.85
           this.robotBg.y = height*0.5
-          this.scaleSprite(this.robotBg, width, height/3, 0 ,1*window.devicePixelRatio)
+          this.scaleSprite(this.robotBg, width, height/3, 0 ,1)
 
           //this.playerAvatar.x = width*0.2
           this.playerAvatar.y = height*0.49
-          this.scaleSprite(this.playerAvatar, width/3, height, 0 ,0.65*window.devicePixelRatio)
+          this.scaleSprite(this.playerAvatar, width/3, height, 0 ,0.65)
 
           //this.robotAvatar.x = width*0.8
           this.robotAvatar.y = height*0.49
-          this.scaleSprite(this.robotAvatar, width/3, height, 0 ,0.65*window.devicePixelRatio)
+          this.scaleSprite(this.robotAvatar, width/3, height, 0 ,0.65)
 
           this.uiLightning.x = width*0.5
           this.uiLightning.y = height*0.5
-          this.scaleSprite(this.uiLightning, width, height/3, 0 ,0.8*window.devicePixelRatio)
+          this.scaleSprite(this.uiLightning, width, height/3, 0 ,0.8)
 
-          this.scaleSprite(this.namePlayer, width, height, 0 ,0.25*window.devicePixelRatio)
+          this.scaleSprite(this.namePlayer, width, height, 0 ,0.25)
           //this.namePlayer.x = this.playerAvatar.x
           this.namePlayer.y = (this.playerAvatar.y + this.playerAvatar.height*0.5) + this.namePlayer.height*0.42
 
-          this.scaleSprite(this.nameRobot, width, height, 0 ,0.25*window.devicePixelRatio)
+          this.scaleSprite(this.nameRobot, width, height, 0 ,0.25)
          // this.nameRobot.x = this.robotAvatar.x
           this.nameRobot.y = (this.robotAvatar.y + this.robotAvatar.height*0.5) + this.nameRobot.height*0.42
 
-          this.versusIcon.x = (window.innerWidth*0.5)*window.devicePixelRatio
-          this.versusIcon.y = (window.innerHeight*0.5)*window.devicePixelRatio
-          this.versusIcon.scale.set(0.2*window.devicePixelRatio)
+          this.versusIcon.x = width*0.5
+          this.versusIcon.y = height*0.5
+          this.versusIcon.scale.set(0.2)
 
           if(this.isIntroFinished){
             this.bgRobot.x = width*0.5
@@ -315,7 +314,7 @@ function resize(width, height) {
           }
 
           //UI
-          this.scaleSprite(this.playerBar, width, height/3, 0 ,0.8*window.devicePixelRatio)
+          this.scaleSprite(this.playerBar, width, height/3, 0 ,0.8)
           this.playerBar.width = width*0.8
           this.playerBar.x = 10
           this.playerBar.y = height*0.47
@@ -324,7 +323,7 @@ function resize(width, height) {
           this.mask.drawRect(this.playerBar.x - (this.playerBar.width*0.4), this.playerBar.y, this.playerBar.width, this.playerBar.height);
           this.playerBar.mask = this.mask;
 
-          this.scaleSprite(this.robotBar, width, height/3, 0 ,0.8*window.devicePixelRatio)
+          this.scaleSprite(this.robotBar, width, height/3, 0 ,0.8)
           this.robotBar.width = width*0.8
           this.robotBar.x = width - (this.robotBar.width+10)
           this.robotBar.y = height*0.47
@@ -333,118 +332,110 @@ function resize(width, height) {
           this.mask2.drawRect(this.robotBar.x + (this.robotBar.width*0.4), this.robotBar.y, this.robotBar.width, this.robotBar.height);
           this.robotBar.mask = this.mask2;
 
-          this.scaleSprite(this.separator, width, height/3, 0 ,0.4*window.devicePixelRatio)
+          this.scaleSprite(this.separator, width, height/3, 0 ,0.4)
           this.separator.height = this.robotBar.height*1.2
           this.separator.x = width*0.5
           this.separator.y = height*0.499
 
-          this.scaleSprite(this.hudAvatarPlayer, width, height/3, 0 ,0.3*window.devicePixelRatio)
+          this.scaleSprite(this.hudAvatarPlayer, width, height/3, 0 ,0.3)
           this.hudAvatarPlayer.x = this.playerBar.x + this.hudAvatarPlayer.width*0.3
           this.hudAvatarPlayer.y = height*0.5
 
           this.hudAvatarPlayerFire.x = this.hudAvatarPlayer.x
           this.hudAvatarPlayerFire.y = this.hudAvatarPlayer.y + this.hudAvatarPlayerFire.height*0.05
 
-          this.scaleSprite(this.hudAvatarRobot, width, height/3, 0 ,0.3*window.devicePixelRatio)
+          this.scaleSprite(this.hudAvatarRobot, width, height/3, 0 ,0.3)
           this.hudAvatarRobot.x = width - this.hudAvatarRobot.width*0.45
           this.hudAvatarRobot.y = height*0.5
 
           this.hudAvatarRobotFire.x = this.hudAvatarRobot.x
           this.hudAvatarRobotFire.y = this.hudAvatarRobot.y + this.hudAvatarRobotFire.height*0.05
 
-          this.scaleSprite(this.hudLeftCoin, width, height/3, 0 ,0.2*window.devicePixelRatio)
+          this.scaleSprite(this.hudLeftCoin, width, height/3, 0 ,0.2)
           this.hudLeftCoin.x = this.hudAvatarPlayer.x + this.hudAvatarPlayer.width*0.7
           this.hudLeftCoin.y = height*0.5
 
-          this.scaleSprite(this.hudRightCoin, width, height/3, 0 ,0.2*window.devicePixelRatio)
+          this.scaleSprite(this.hudRightCoin, width, height/3, 0 ,0.2)
           this.hudRightCoin.x = this.hudAvatarRobot.x - this.hudAvatarRobot.width*0.7
           this.hudRightCoin.y = height*0.5
 
-          this.scaleSprite(this.hudPlayerPoints, width, height, 0 ,0.55*window.devicePixelRatio)
+          this.scaleSprite(this.hudPlayerPoints, width, height/3, 0 ,0.55)
           this.hudPlayerPoints.x = this.hudLeftCoin.x + (this.hudLeftCoin.width*1.1)
           this.hudPlayerPoints.y = height*0.5
 
-          this.scaleSprite(this.hudRobotPoints, width, height, 0 ,0.55*window.devicePixelRatio)
+          this.scaleSprite(this.hudRobotPoints, width, height/3, 0 ,0.55)
           this.hudRobotPoints.x = this.hudRightCoin.x - (this.hudRightCoin.width*1.1)
           this.hudRobotPoints.y = height*0.5
 
-          this.scaleSprite(this.hudArrowRight, width, height/3, 0 ,0.2*window.devicePixelRatio)
+          this.scaleSprite(this.hudArrowRight, width, height/3, 0 ,0.2)
           this.hudArrowRight.x = this.separator.x + this.hudArrowRight.width*0.8
           this.hudArrowRight.y = height*0.5
           this.hudArrowRight.width *= -1
 
-          this.scaleSprite(this.hudArrowLeft, width, height/3, 0 ,0.2*window.devicePixelRatio)
+          this.scaleSprite(this.hudArrowLeft, width, height/3, 0 ,0.2)
           this.hudArrowLeft.x = this.separator.x - this.hudArrowLeft.width*0.65
           this.hudArrowLeft.y = height*0.5
 
-          this.scaleSprite(this.clockBg, width, height, 0 ,0.22*window.devicePixelRatio)
-          this.clockBg.x = (width*0.5)
-          this.clockBg.y = (this.robotBar.y + this.robotBar.height*0.5)
+          this.scaleSprite(this.clockBg, width, height/3, 0 ,0.25)
+          this.clockBg.x = width*0.5
+          this.clockBg.y = this.robotBar.y + this.robotBar.height
 
           //GAME
           //this.scaleSprite(this.cookText, width, height/3, 0 ,0.7)
           this.cookText.x = width*0.5
           this.cookText.y = height*0.65
           
-          this.scaleSprite(this.defeatText, width, height/3, 0 ,0.7*window.devicePixelRatio)
+          this.scaleSprite(this.defeatText, width, height/3, 0 ,0.7)
           this.defeatText.x = width*0.5
           this.defeatText.y = height*1.5
 
-          this.scaleSprite(this.diceBtndummy, width, height/3, 0 ,0.4*window.devicePixelRatio)
-          this.diceBtndummy.x = width*0.1*window.devicePixelRatio
-          this.diceBtndummy.y = height*0.6*window.devicePixelRatio
+          this.scaleSprite(this.diceBtndummy, width, height/3, 0 ,0.4)
+          this.diceBtndummy.x = width*0.1
+          this.diceBtndummy.y = height*0.6
 
          // this.scaleSprite(this.diceBtn, width, height/3, 0 ,0.4)
-          this.diceBtn.x = (width*0.1)*window.devicePixelRatio
-          this.diceBtn.y = (height*0.6)*window.devicePixelRatio
+          this.diceBtn.x = width*0.1
+          this.diceBtn.y = height*0.6
 
-          this.scaleSprite(this.ingredientRobot1, width, height, 0 ,0.2*window.devicePixelRatio)
+          this.scaleSprite(this.ingredientRobot1, width/3, height, 0 ,0.5)
           this.ingredientRobot1.x = this.boardRobot.x + this.ingredientRobot1.width*0.5
           this.ingredientRobot1.y = this.boardRobot.y + this.ingredientRobot1.height*0.7
 
-          this.scaleSprite(this.ingredientRobot2, width, height, 0 ,0.2*window.devicePixelRatio)
+          this.scaleSprite(this.ingredientRobot2, width/3, height, 0 ,0.4)
           this.ingredientRobot2.x = this.boardRobot.x - this.ingredientRobot2.width*0.6
           this.ingredientRobot2.y = this.boardRobot.y + this.ingredientRobot2.height*0.6
 
-          this.scaleSprite(this.ingredientRobot3, width/3, height, 0 ,0.3*window.devicePixelRatio)
+          this.scaleSprite(this.ingredientRobot3, width/3, height, 0 ,0.4)
           this.ingredientRobot3.x = this.boardRobot.x + this.ingredientRobot3.width*0.6
           this.ingredientRobot3.y = (this.boardRobot.y + this.boardRobot.height*0.125) + this.ingredientRobot3.height*0.6
 
-          this.scaleSprite(this.ingredientPlayer1, width/3, height, 0 ,0.4*window.devicePixelRatio)
+          this.scaleSprite(this.ingredientPlayer1, width/3, height, 0 ,0.4)
           this.ingredientPlayer1.x = this.boardPlayer.x + this.ingredientPlayer1.width*0.6
           this.ingredientPlayer1.y = (this.boardPlayer.y + this.boardPlayer.height*0.15) + this.ingredientPlayer1.height*0.7
 
-          this.scaleSprite(this.ingredientPlayer2, width/3, height, 0 ,0.4*window.devicePixelRatio)
+          this.scaleSprite(this.ingredientPlayer2, width/3, height, 0 ,0.4)
           this.ingredientPlayer2.x = this.boardPlayer.x - this.ingredientPlayer2.width*0.55
           this.ingredientPlayer2.y = (this.boardPlayer.y + this.boardPlayer.height*0.15) + this.ingredientPlayer2.height*0.7
 
-          this.scaleSprite(this.dishesPlayer1, width/3, height, 0 ,0.45*window.devicePixelRatio)
+          this.scaleSprite(this.dishesPlayer1, width/3, height, 0 ,0.5)
           this.dishesPlayer1.x = this.boardPlayer.x - this.dishesPlayer1.width*0.1
-          this.dishesPlayer1.y = (this.boardPlayer.y - this.boardPlayer.height*0.03) + this.dishesPlayer1.height*0.35
+          this.dishesPlayer1.y = (this.boardPlayer.y - this.boardPlayer.height*0.03) + this.dishesPlayer1.height*0.5
 
-          this.scaleSprite(this.dishesPlayer2, width/3, height, 0 ,0.45*window.devicePixelRatio)
-          this.dishesPlayer2.x = (this.boardPlayer.x - this.boardPlayer.width*0.1) + this.dishesPlayer2.width*0.4
-          this.dishesPlayer2.y =((this.boardPlayer.y) + this.dishesPlayer2.height*0.45) - this.dishesPlayer2.height*0.2
+          this.scaleSprite(this.dishesPlayer2, width/3, height, 0 ,0.5)
+          this.dishesPlayer2.x = (this.boardPlayer.x - this.boardPlayer.width*0.1) - this.dishesPlayer2.width*0.25
+          this.dishesPlayer2.y = (this.boardPlayer.y) + this.dishesPlayer2.height*0.45
 
-          this.scaleSprite(this.dishesRobot1, width/3, height, 0 ,0.45*window.devicePixelRatio)
+          this.scaleSprite(this.dishesRobot1, width/3, height, 0 ,0.45)
           this.dishesRobot1.x = this.boardRobot.x - this.dishesRobot1.width*0.2
-          this.dishesRobot1.y = (this.boardRobot.y - this.boardRobot.height*0.1) + this.dishesRobot1.height*0.75
+          this.dishesRobot1.y = (this.boardRobot.y - this.boardRobot.height*0.1) + this.dishesRobot1.height*0.5
 
-          this.scaleSprite(this.dishesRobot2, width/3, height, 0 ,0.4*window.devicePixelRatio)
-          this.dishesRobot2.x = (this.boardRobot.x + this.boardRobot.width*0.12) - this.dishesRobot2.width
-          this.dishesRobot2.y = (this.boardRobot.y - this.boardRobot.height*0.12) + this.dishesRobot2.height*0.75
+          this.scaleSprite(this.dishesRobot2, width/3, height, 0 ,0.4)
+          this.dishesRobot2.x = (this.boardRobot.x + this.boardRobot.width*0.12) - this.dishesRobot2.width*0.5
+          this.dishesRobot2.y = (this.boardRobot.y - this.boardRobot.height*0.12) + this.dishesRobot2.height*0.5
 
           //this.scaleSprite(this.btnDownload, width, height/3, 0 ,0.8)
-          this.btnDownload.x = (width*0.5)*window.devicePixelRatio
-          this.btnDownload.y = (height*0.65)*window.devicePixelRatio
-
-          this.clientsRobotGroup.pivot.x = window.innerWidth
-          //this.clientsPlayerGroup.pivot.y = window.innerHeight*0.5
-          this.clientsRobotGroup2.pivot.x = window.innerWidth
-          //this.clientsPlayerGroup2.pivot.y = window.innerHeight*0.5
-          this.clientsPlayerGroup.pivot.x = window.innerWidth
-          this.clientsPlayerGroup2.pivot.x = window.innerWidth
-
+          this.btnDownload.x = width*0.5
+          this.btnDownload.y = height*0.65
 	   }
 	   else{
           this.bgRobot.width = width*0.5
@@ -617,7 +608,7 @@ function setBase(){
     this.nameRobot.anchor.set(0.5);
     this.nameRobot.x = this.game.width + this.nameRobot.width*0.5
 
-    this.versusIcon = this.game.add.spine(0,0, 'PK_VS2');
+    this.versusIcon = this.game.add.spine(this.game.width*0.5, this.game.height*0.5, 'PK_VS2');
     this.versusIcon.alpha = 0;
 
     // UI
@@ -677,9 +668,8 @@ function setBase(){
     this.clockBg.anchor.set(0.5);
     this.clockBg.alpha = 0
 
-    this.clockTimer = game.add.text(10, 0, '0:30', this.clockText);
+    this.clockTimer = game.add.text(20, 0, '0:30', this.clockText);
     this.clockTimer.anchor.set(0.5);
-    this.clockTimer.scale.set(0.28*window.devicePixelRatio);
     this.clockBg.addChild(this.clockTimer)
 
     this.timer = game.time.create();
@@ -697,13 +687,13 @@ function setBase(){
 
     this.diceBtndummy = game.add.sprite(0,0,'atlas','Dice.png');
     this.diceBtndummy.anchor.set(0.5);
-    this.diceBtndummy.scale.set(0.5*window.devicePixelRatio);
+    this.diceBtndummy.scale.set(0.5);
     this.diceBtndummy.alpha = 0
     this.diceBtndummy.inputEnabled = false;
     this.diceBtndummy.events.onInputDown.add(onClickSkill, this);
 
     this.diceBtn = game.add.spine(0,0,'UI_mofang');
-    this.diceBtn.scale.set(0.5*window.devicePixelRatio);
+    this.diceBtn.scale.set(0.5);
     this.diceBtn.alpha = 0
     const { animations } = this.diceBtn.animationStateData.skeletonData;
     this.diceBtn.animationState.setAnimation(0, animations[0].name,true);
@@ -742,10 +732,10 @@ function startBattleIntro(){
     var isLandscape = this.game.height / this.game.width  < 1.3 ? true: false;
 
     if(!isLandscape){
-        game.add.tween(this.bgRobot).to({ y:window.innerHeight*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.boardRobot).to({ y:window.innerHeight*0.25 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.bgPlayer).to({ y:window.innerHeight*0.65 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.boardPlayer).to({ y:(window.innerHeight*0.75) },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.bgRobot).to({ y:this.game.height*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.boardRobot).to({ y:this.game.height*0.25 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.bgPlayer).to({ y:this.game.height*0.65 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.boardPlayer).to({ y:this.game.height*0.75 },500,Phaser.Easing.Sinusoidal.In,true);
 
         game.add.tween(this.playerBg).to({ x:this.game.width*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.playerAvatar).to({ x:this.game.width*0.2 },500,Phaser.Easing.Sinusoidal.In,true);
@@ -925,19 +915,16 @@ function startGameRoutine1(){
 function runVFXHealer(){
     this.heartestealerSFX.play()
 
-    var vfx = this.game.add.spine(0,0, 'xiaoemo');
-    vfx.x = (window.innerWidth*0.5)*window.devicePixelRatio
-    vfx.y = (window.innerHeight*0.5)*window.devicePixelRatio
-    vfx.scale.set(0.2*window.devicePixelRatio)
-   // vfx.scale.set(0.2*window.devicePixelRatio)
+    var vfx = this.game.add.spine(this.game.width*0.5,this.game.height*0.7, 'xiaoemo');
+    vfx.scale.set(0.2)
 
     const { animations } = vfx.animationStateData.skeletonData;
     var anim = vfx.animationState.setAnimation(0, animations[0].name, false);
 
     var client1 = [this.clientsPlayerGroup.children[0].bubble.x-this.clientsPlayerGroup.children[0].bubble.width*0.5,this.clientsPlayerGroup.children[0].bubble.y-this.clientsPlayerGroup.children[0].bubble.height*0.25]
     var client2 = [this.clientsPlayerGroup2.children[0].bubble.x+this.clientsPlayerGroup2.children[0].bubble.width*0.5,this.clientsPlayerGroup2.children[0].bubble.y-this.clientsPlayerGroup2.children[0].bubble.height*0.25]
-    this.emitteHeartsTo(client1[0],client1[1],vfx.x-(vfx.width*0.5),vfx.y-(vfx.height),'Heart_2.png')
-    this.emitteHeartsTo(client2[0],client2[1],vfx.x-(vfx.width*0.5),vfx.y-(vfx.height),'Heart_2.png')
+    this.emitteHeartsTo(client1[0],client1[1],vfx.x,vfx.y-(vfx.height*0.4),'Heart_2.png')
+    this.emitteHeartsTo(client2[0],client2[1],vfx.x,vfx.y-(vfx.height*0.4),'Heart_2.png')
 
     this.game.time.events.add((animations[0].duration) *Phaser.Timer.SECOND, function(){
         vfx.destroy()
@@ -1236,13 +1223,10 @@ function runVFXink(){
 
 function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPlayer){
     var clientsFrame = ['Guke_waimaixiaoge','Guke_Nvshangren','Guke_laonainai','Guke_jianzhugongren','Guke_nvyouke','Guke_huanyaxiaonvhai']
-    var client = this.game.add.spine(0,0, this.rnd.pick(clientsFrame));
-    client.x = initialPosition[0]*window.devicePixelRatio
-    client.y = initialPosition[1]*window.devicePixelRatio
-    client.scale.set(0.28*window.devicePixelRatio)
-    client.premultipliedAlpha = true
+    var client = this.game.add.spine(initialPosition[0], initialPosition[1], this.rnd.pick(clientsFrame));
+    client.scale.set(0.28)
 
-    var bubble = this.game.add.sprite(0,0, 'atlas', 'Bubble_Ordinary order.png');
+    var bubble = this.game.add.sprite(targetPosition, initialPosition[1], 'atlas', 'Bubble_Ordinary order.png');
     
     if(isPlayer){
         this.lastPlayerDishe = this.createPlayerOrder()
@@ -1281,8 +1265,8 @@ function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPla
         client.spot = 1
     }
 
-    bubble.x += client.width*0.55*window.devicePixelRatio
-    bubble.y -= bubble.height*0.35*window.devicePixelRatio
+    bubble.x += client.width*0.55
+    bubble.y -= bubble.height*0.35
     bubble.anchor.set(0.5)
     bubble.scale.set(0)
 
@@ -1298,9 +1282,9 @@ function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPla
 
     const { animations } = client.animationStateData.skeletonData;
     client.animationState.setAnimation(0, animations[2].name, true);
-    var t = game.add.tween(client).to({ x: targetPosition*window.devicePixelRatio },1000,Phaser.Easing.Linear.None,true);
+    var t = game.add.tween(client).to({ x: targetPosition },1000,Phaser.Easing.Linear.None,true);
     t.onComplete.add(function(){
-        var tt = this.popup(bubble, this.game.width, this.game.height, 0 ,0.18*window.devicePixelRatio)
+        var tt = this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.18)
         client.heartsTimer.start()
 
         if(!isPlayer){
@@ -1316,8 +1300,8 @@ function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPla
 
 function SpawnRobotClients(){
     if(this.timeFrozen && this.timeFrozen == true) return
-    var initialPosition = [[(this.game.width), (this.boardRobot.y)],[(this.game.width), (this.boardRobot.y)]]
-    var targetPosition =  [this.game.width*0.4, this.game.width*0.58]
+    var initialPosition = [[this.game.width, (this.boardRobot.y)],[this.game.width, (this.boardRobot.y)]]
+    var targetPosition =  [this.game.width*0.38, this.game.width*0.68]
 
     if(this.clientsRobotGroup.length < 1){
         this.addClientToGroup(initialPosition[0], targetPosition[0], this.clientsRobotGroup,'left',false)
@@ -1328,8 +1312,8 @@ function SpawnRobotClients(){
 }
 
 function SpawnPlayerClients(){
-    var initialPosition = [[this.game.width, (this.boardPlayer.y)],[this.game.width, this.boardPlayer.y]]
-    var targetPosition =  [this.game.width*0.4, this.game.width*0.6]
+    var initialPosition = [[this.game.width, (this.boardPlayer.y)],[this.game.width, (this.boardPlayer.y)]]
+    var targetPosition =  [this.game.width*0.38, this.game.width*0.68]
 
     if(this.clientsPlayerGroup.length < 1){
         this.addClientToGroup(initialPosition[0], targetPosition[0], this.clientsPlayerGroup,'left',true)
@@ -1486,7 +1470,7 @@ function createRobotOrder(){
     var frames = ['steak3.png','steak4.png']
     var dishe = this.game.add.sprite(0,0, 'atlas', this.rnd.pick(frames));
     dishe.anchor.set(0.5)
-    dishe.scale.set(0.4*window.devicePixelRatio)
+    dishe.scale.set(0.8)
     dishe.valueType = dishe.frameName
     return dishe
 }
@@ -1495,7 +1479,7 @@ function createPlayerOrder(){
     var frames = ['burger1.png','burger2.png']
     var dishe = this.game.add.sprite(0,0, 'atlas', this.rnd.pick(frames));
     dishe.anchor.set(0.5)
-    dishe.scale.set(0.3*window.devicePixelRatio)
+    dishe.scale.set(0.7)
     dishe.valueType = dishe.frameName
     return dishe
 }
@@ -1505,9 +1489,9 @@ function removeClientToGroup(groupClients, dishe, client, isPlayer){
     client.animationState.setAnimation(0, 'Happy', true);
     game.add.tween(dishe).to({ alpha: 1 },600,Phaser.Easing.Linear.None,true);
     this.emitDisheTo(dishe.x,dishe.y,client.bubble.world.x,client.bubble.world.y,client.valueType)
-    client.scale.x *= -1
+    client.width *= -1
     
-    var t = game.add.tween(client).to({ x: (window.innerWidth*2)*window.devicePixelRatio },800,Phaser.Easing.Linear.None,true);
+    var t = game.add.tween(client).to({ x: this.game.width },800,Phaser.Easing.Linear.None,true);
     game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
     
     t.onComplete.add(function(){
