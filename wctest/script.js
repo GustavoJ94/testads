@@ -243,7 +243,7 @@ function resize(width, height) {
 
        if(!isLandscape){
           this.scale.setGameSize(window.innerWidth*window.devicePixelRatio,window.innerHeight*window.devicePixelRatio)
-          //this.scale.fresh()
+          this.scale.fresh()
           this.bgRobot.width = window.innerWidth*window.devicePixelRatio
           this.bgRobot.height = (height*0.3)*window.devicePixelRatio
           this.bgRobot.x = 0
