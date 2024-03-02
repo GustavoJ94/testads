@@ -3,7 +3,7 @@ var game = new Phaser.Game({
     width: window.innerWidth*window.devicePixelRatio,
     height: window.innerHeight*window.devicePixelRatio, 
     renderer: Phaser.WEBGL,
-    resolution:1,
+    resolution:window.devicePixelRatio,
     state: this
 });
 
@@ -243,23 +243,23 @@ function resize(width, height) {
 
        if(!isLandscape){
           //this.scale.setGameSize(window.innerWidth*window.devicePixelRatio,window.innerHeight*window.devicePixelRatio)
-          this.bgRobot.width = window.innerWidth
-          this.bgRobot.height = (height*0.3)
+          this.bgRobot.width = window.innerWidth*window.devicePixelRatio
+          this.bgRobot.height = (height*0.3)*window.devicePixelRatio
           this.bgRobot.x = 0
           this.bgRobot.y = window.innerHeight*0.15
 
-          this.boardRobot.width = (width*1.6)
-          this.boardRobot.height = (height*0.5)
+          this.boardRobot.width = (width*1.6)*window.devicePixelRatio
+          this.boardRobot.height = (height*0.5)*window.devicePixelRatio
           this.boardRobot.x = width*0.5
           //this.boardRobot.y = height*0.25
 
-          this.bgPlayer.width = width
-          this.bgPlayer.height = (height*0.3)
+          this.bgPlayer.width = width*window.devicePixelRatio
+          this.bgPlayer.height = (height*0.3)*window.devicePixelRatio
           this.bgPlayer.x = width*0.5
           //this.bgPlayer.y = height*0.65
 
-          this.boardPlayer.width = (width*1.6)
-          this.boardPlayer.height = (height*0.5)
+          this.boardPlayer.width = (width*1.6)*window.devicePixelRatio
+          this.boardPlayer.height = (height*0.5)*window.devicePixelRatio
           this.boardPlayer.x = width*0.5
          // this.boardPlayer.y = height*0.75
 
