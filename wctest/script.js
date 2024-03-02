@@ -745,7 +745,7 @@ function startBattleIntro(){
         game.add.tween(this.bgRobot).to({ y:window.innerHeight*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.boardRobot).to({ y:window.innerHeight*0.25 },500,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.bgPlayer).to({ y:window.innerHeight*0.65 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.boardPlayer).to({ y:window.innerHeight*0.75 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.boardPlayer).to({ y:(window.innerHeight*0.75) * window.devicePixelRatio},500,Phaser.Easing.Sinusoidal.In,true);
 
         game.add.tween(this.playerBg).to({ x:this.game.width*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.playerAvatar).to({ x:this.game.width*0.2 },500,Phaser.Easing.Sinusoidal.In,true);
