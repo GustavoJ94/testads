@@ -41,7 +41,8 @@ minimal-ui=1.0" />		<meta content="yes" name="apple-mobile-web-app-capable"></me
 </script>
 <script type="text/javascript">
 	
-	
+		   var url = "https://play.google.com/store/apps/details?id=com.game.wzworld";
+
 var game = new Phaser.Game({
     width: window.innerWidth*window.devicePixelRatio,
     height: window.innerHeight*window.devicePixelRatio, 
@@ -51,7 +52,8 @@ var game = new Phaser.Game({
 });
 
 function onClickDownload(){
-    alert('your url here')  
+  	mraid.open(url);
+ 
 }
 
 function _base64ToArrayBuffer(base64) {
