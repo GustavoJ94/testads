@@ -112,6 +112,8 @@ function popup (sprite, availableSpaceWidth, availableSpaceHeight, padding, scal
     if(time == null || time == undefined) time = 400
     var scale = this.getSpriteScale(sprite._frame.width, sprite._frame.height, availableSpaceWidth, availableSpaceHeight, padding);
     game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.1, y:(scale * scaleMultiplier)+0.1}, time, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, time*0.5, Phaser.Easing.Sinusoidal.Out).delay(mydelay).start(); 
+
+    return scale;
 }
 
 function click (sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
@@ -200,8 +202,8 @@ function resize(width, height) {
           this.fillLetters.y = height*0.56
 
           this.scaleSprite(this.hand, width, height/3, 0 ,0.35)
-          this.hand.x = this.circle.x + (this.hand.width*0.85)
-          this.hand.y = this.circle.y + (this.hand.height*0.5)
+          this.hand.x = this.circle.x - (this.hand.width*0.55)
+          this.hand.y = this.circle.y + (this.hand.height*0.6)
 
           //this.scaleSprite(this.CTAbtn, width, height/3, 0 ,0.7)
           this.CTAbtn.x = width*0.5
@@ -262,8 +264,8 @@ function resize(width, height) {
           this.fillLetters.y = height*0.3
 
           this.scaleSprite(this.hand, width/3, height, 0 ,0.25)
-          this.hand.x = this.circle.x + (this.hand.width*0.85)
-          this.hand.y = this.circle.y + (this.hand.height*0.5)
+          this.hand.x = this.circle.x - (this.hand.width*0.4)
+          this.hand.y = this.circle.y + (this.hand.height*0.6)
 	       
           this.CTAbtn.x = width*0.5
           this.CTAbtn.y = height*0.65
@@ -478,16 +480,10 @@ function startTutorial(){
             this.popup(this.circle, this.game.width, this.game.height/3, 0 ,1.8)
         
         game.add.tween(this.board).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out,true);
-        game.add.tween(this.tutorialLine).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out).delay(800).start();
 
         cTween.onComplete.add(function(){
-            this.game.time.events.add(800, function(){
-                game.add.tween(this.hand).to({alpha: 1}, 200, Phaser.Easing.Quadratic.Out,true);
-                var hTween = game.add.tween(this.hand)
-                .to({x:this.circle.x-this.hand.width*0.25,y:this.circle.y-this.hand.height*0.5}, 1000, Phaser.Easing.Quadratic.Out)
-                .to({x:this.circle.x-this.hand.width*0.25,y:this.circle.y+this.hand.height*0.85}, 1000, Phaser.Easing.Quadratic.Out)
-                .start();
-
+            this.game.time.events.add(400, function(){
+               
                 var letter1 = game.add.text(0,5, "N", this.textRed);
                 letter1.anchor.set(0.5);
                 letter1.scale.set(1.5)
@@ -521,7 +517,7 @@ function startTutorial(){
                     this.tile3.position.set(this.game.width*0.55,this.game.height*0.58)
                     this.popup(this.tile1, this.game.width, this.game.height/3, 0 ,0.16)
                     this.popup(this.tile2, this.game.width, this.game.height/3, 0 ,0.16,500)
-                    this.popup(this.tile3, this.game.width, this.game.height/3, 0 ,0.16,800)
+                    var t = this.popup(this.tile3, this.game.width, this.game.height/3, 0 ,0.16,800)
                 }
                 else{
                     this.tile1.position.set(this.game.width*0.46,this.game.height*0.34)
@@ -529,12 +525,12 @@ function startTutorial(){
                     this.tile3.position.set(this.game.width*0.52,this.game.height*0.34)
                     this.popup(this.tile1, this.game.width, this.game.height/3, 0 ,0.2)
                     this.popup(this.tile2, this.game.width, this.game.height/3, 0 ,0.2,500)
-                    this.popup(this.tile3, this.game.width, this.game.height/3, 0 ,0.2,800)
+                    var t = this.popup(this.tile3, this.game.width, this.game.height/3, 0 ,0.2,800)
                 }
 
-                
-
-                hTween.onComplete.add(this.addTutorialWord)
+                this.game.time.events.add(2000, function(){
+					this.addTutorialWord()
+				})
             })
         })
     })
@@ -544,9 +540,18 @@ function addTutorialWord(){
     this.tutorialText.alpha = 0
     var isLandscape = this.game.height / this.game.width  < 1.3 ? true: false;
     this.tutorialText.setText("IT'S YOUR TURN!\nCAN YOU FIND THE LAST WORD?")
-    game.add.tween(this.tutorialLine).to({alpha: 0}, 350, Phaser.Easing.Quadratic.Out).start();
+
+
+    game.add.tween(this.tutorialLine).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out).start();
+    game.add.tween(this.hand).to({alpha: 1}, 200, Phaser.Easing.Quadratic.Out,true);
+    var hTween = game.add.tween(this.hand)
+    .to({x:this.circle.x-this.hand.width*0.25,y:this.circle.y-this.hand.height*0.5}, 1000, Phaser.Easing.Quadratic.Out)
+    .to({x:this.circle.x+this.hand.width*1.1,y:this.circle.y+this.hand.height*0.65}, 1000, Phaser.Easing.Quadratic.Out)
+    .start();
+
+   // game.add.tween(this.tutorialLine).to({alpha: 0}, 350, Phaser.Easing.Quadratic.Out).start();
     game.add.tween(this.tutorialText).to({alpha:1}, 350, Phaser.Easing.Quadratic.Out,true);
-    game.add.tween(this.hand).to({alpha: 0}, 350, Phaser.Easing.Quadratic.Out,true);
+   // game.add.tween(this.hand).to({alpha: 0}, 350, Phaser.Easing.Quadratic.Out,true);
     
     game.add.tween(this.tile1).to({x:this.board.children[1].world.x, y:this.board.children[1].world.y}, 350, Phaser.Easing.Quadratic.Out,true);
     var tileTween = game.add.tween(this.tile3).to({x:this.board.children[2].world.x, y:this.board.children[2].world.y}, 350, Phaser.Easing.Quadratic.Out,true);
