@@ -542,12 +542,16 @@ function addTutorialWord(){
     this.tutorialText.setText("IT'S YOUR TURN!\nCAN YOU FIND THE LAST WORD?")
 
 
-    game.add.tween(this.tutorialLine).to({alpha: 1}, 350, Phaser.Easing.Quadratic.Out).start();
+    game.add.tween(this.tutorialLine).to({alpha: 1}, 1500, Phaser.Easing.Quadratic.Out).to({alpha: 0}, 500, Phaser.Easing.Quadratic.Out).start();
     game.add.tween(this.hand).to({alpha: 1}, 200, Phaser.Easing.Quadratic.Out,true);
     var hTween = game.add.tween(this.hand)
     .to({x:this.circle.x-this.hand.width*0.25,y:this.circle.y-this.hand.height*0.5}, 1000, Phaser.Easing.Quadratic.Out)
     .to({x:this.circle.x+this.hand.width*1.1,y:this.circle.y+this.hand.height*0.65}, 1000, Phaser.Easing.Quadratic.Out)
     .start();
+
+    hTween.onComplete.add(function(){
+    	game.add.tween(this.hand).to({alpha: 0}, 200, Phaser.Easing.Quadratic.Out,true);
+    })
 
    // game.add.tween(this.tutorialLine).to({alpha: 0}, 350, Phaser.Easing.Quadratic.Out).start();
     game.add.tween(this.tutorialText).to({alpha:1}, 350, Phaser.Easing.Quadratic.Out,true);
