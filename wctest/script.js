@@ -227,7 +227,7 @@ function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding
 
 function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight, minPadding) {
     var ratio = 1;
-    var currentDevicePixelRatio = getDevicePixelRatio();
+    var currentDevicePixelRatio = window.devicePixelRatio;
     // Sprite needs to fit in either width or height
     var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
     var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
@@ -242,7 +242,7 @@ function resize(width, height) {
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
-          this.scale.setGameSize(window.innerWidth*window.devicePixelRatio,window.innerHeight*window.devicePixelRatio)
+          //this.scale.setGameSize(window.innerWidth*window.devicePixelRatio,window.innerHeight*window.devicePixelRatio)
           this.bgRobot.width = window.innerWidth*window.devicePixelRatio
           this.bgRobot.height = (height*0.3)*window.devicePixelRatio
           this.bgRobot.x = 0
@@ -743,9 +743,9 @@ function startBattleIntro(){
 
     if(!isLandscape){
         game.add.tween(this.bgRobot).to({ y:window.innerHeight*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.boardRobot).to({ y:this.game.height*0.25 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.boardRobot).to({ y:window.innerHeight*0.25 },500,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.bgPlayer).to({ y:window.innerHeight*0.65 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.boardPlayer).to({ y:this.game.height*0.75 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.boardPlayer).to({ y:window.innerHeight*0.75 },500,Phaser.Easing.Sinusoidal.In,true);
 
         game.add.tween(this.playerBg).to({ x:this.game.width*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.playerAvatar).to({ x:this.game.width*0.2 },500,Phaser.Easing.Sinusoidal.In,true);
