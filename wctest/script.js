@@ -228,11 +228,7 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
     var ratio = 1;
     var currentDevicePixelRatio = getDevicePixelRatio();
     // Sprite needs to fit in either width or height
-    var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
-    var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
-    if(widthRatio > 1 || heightRatio > 1){
-        ratio = 1 / Math.max(widthRatio, heightRatio);
-    }
+
     return ratio * currentDevicePixelRatio;
 }
 
