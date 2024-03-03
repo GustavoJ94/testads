@@ -237,8 +237,8 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 
 function resize(width, height) {
 	   //console.log(width,height)
-       //this.scale.setGameSize(width,height)
-        //this.world.resize(width,height)
+       this.scale.setGameSize(width,height)
+       this.world.resize(width,height)
 
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
