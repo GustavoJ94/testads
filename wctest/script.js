@@ -238,28 +238,28 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
        this.scale.setGameSize(width,height)
-              this.world.resize(width,height)
+        this.world.resize(width,height)
 
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
-          this.bgRobot.width = width
-          this.bgRobot.height = height*0.3
+          this.bgRobot.width = window.innerWidth*window.devicePixelRatio
+          this.bgRobot.height = (window.innerHeight*0.3)*window.devicePixelRatio
           this.bgRobot.x = width*0.5
           //this.bgRobot.y = height*0.15
 
-          this.boardRobot.width = width*1.6
-          this.boardRobot.height = height*0.5
+          this.boardRobot.width = (width*1.6)*window.devicePixelRatio
+          this.boardRobot.height = (height*0.5)*window.devicePixelRatio
 	      this.boardRobot.x = width*0.5
 	      //this.boardRobot.y = height*0.25
 
-          this.bgPlayer.width = width
-          this.bgPlayer.height = height*0.3
+          this.bgPlayer.width = width*window.devicePixelRatio
+          this.bgPlayer.height = (height*0.3)*window.devicePixelRatio
           this.bgPlayer.x = width*0.5
           //this.bgPlayer.y = height*0.65
 
-          this.boardPlayer.width = width*1.6
-          this.boardPlayer.height = height*0.5
+          this.boardPlayer.width = (width*1.6)*window.devicePixelRatio
+          this.boardPlayer.height = (height*0.5)*window.devicePixelRatio
           this.boardPlayer.x = width*0.5
          // this.boardPlayer.y = height*0.75
 
@@ -733,10 +733,10 @@ function startBattleIntro(){
     var isLandscape = this.game.height / this.game.width  < 1.3 ? true: false;
 
     if(!isLandscape){
-        game.add.tween(this.bgRobot).to({ y:this.game.height*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.boardRobot).to({ y:this.game.height*0.25 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.bgPlayer).to({ y:this.game.height*0.65 },500,Phaser.Easing.Sinusoidal.In,true);
-        game.add.tween(this.boardPlayer).to({ y:this.game.height*0.75 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.bgRobot).to({ y:window.innerHeight*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.boardRobot).to({ y:window.innerHeight*0.25 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.bgPlayer).to({ y:window.innerHeight*0.65 },500,Phaser.Easing.Sinusoidal.In,true);
+        game.add.tween(this.boardPlayer).to({ y:window.innerHeight*0.75 },500,Phaser.Easing.Sinusoidal.In,true);
 
         game.add.tween(this.playerBg).to({ x:this.game.width*0.15 },500,Phaser.Easing.Sinusoidal.In,true);
         game.add.tween(this.playerAvatar).to({ x:this.game.width*0.2 },500,Phaser.Easing.Sinusoidal.In,true);
@@ -1225,7 +1225,7 @@ function runVFXink(){
 function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPlayer){
     var clientsFrame = ['Guke_waimaixiaoge','Guke_Nvshangren','Guke_laonainai','Guke_jianzhugongren','Guke_nvyouke','Guke_huanyaxiaonvhai']
     var client = this.game.add.spine(initialPosition[0], initialPosition[1], this.rnd.pick(clientsFrame));
-    client.scale.set(0.28)
+    client.scale.set(0.28*window.devicePixelRatio)
 
     var bubble = this.game.add.sprite(targetPosition, initialPosition[1], 'atlas', 'Bubble_Ordinary order.png');
     
