@@ -3,7 +3,7 @@ var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.WEBGL,
-    resolution:window.devicePixelRatio,
+    resolution:1,
 	state: this
 });
 
@@ -26,7 +26,7 @@ this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
     this.game.renderer.renderSession.roundPixels = true;
 	game.load.crossOrigin = 'anonymous';
-    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+    this.scale.scaleMode = Phaser.ScaleManager.NONE;
     this.scale.pageAlignHorizontally = true;
     this.scale.pageAlignVertically = true
 
