@@ -1,8 +1,9 @@
 
 var game = new Phaser.Game({
-	width: window.innerWidth,
-	height: window.innerHeight, 
+	width: window.innerWidth*window.devicePixelRatio,
+	height: window.innerHeight*window.devicePixelRatio, 
 	renderer: Phaser.WEBGL,
+    resolution:window.devicePixelRatio,
 	state: this
 });
 
@@ -228,12 +229,17 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
     var ratio = 1;
     var currentDevicePixelRatio = getDevicePixelRatio();
     // Sprite needs to fit in either width or height
-
+    var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
+    var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
+    if(widthRatio > 1 || heightRatio > 1){
+        ratio = 1 / Math.max(widthRatio, heightRatio);
+    }
     return ratio * currentDevicePixelRatio;
 }
 
 function resize(width, height) {
 	   //console.log(width,height)
+       //this.scale.setUserScale(window.devicePixelRatio)
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
