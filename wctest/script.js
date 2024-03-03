@@ -24,11 +24,9 @@ function _base64ToArrayBuffer(base64) {
 function preload() {
 this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
-    this.game.renderer.renderSession.roundPixels = true;
 	game.load.crossOrigin = 'anonymous';
     this.scale.scaleMode = Phaser.ScaleManager.NONE;
-    this.scale.pageAlignHorizontally = true;
-    this.scale.pageAlignVertically = true
+
 
 	this.bgColor = "#D3D3D3"; //Background Color
     this.nameTagText = { font: "bold 32px Arial", fill: "#fff",stroke: '#943417',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -239,7 +237,8 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 
 function resize(width, height) {
 	   //console.log(width,height)
-       //this.scale.setUserScale(window.devicePixelRatio)
+       this.scale.setUserScale(window.devicePixelRatio)
+       this.scale.refresh()
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
