@@ -239,16 +239,16 @@ function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
     let userRatio = this.game.device.pixelRatio * 1;
-    this.scale.setGameSize(window.innerWidth*userRatio, (window.innerHeight*userRatio));
+    this.scale.setGameSize(window.innerWidth, (window.innerHeight));
     //this.scale.setUserScale(1 / userRatio, 1 / userRatio);
 
     //this.scale.refresh()
 
-   // this.game.camera.setSize(width*userRatio, height*userRatio);
+    this.game.camera.setSize(width*userRatio, height*userRatio);
 
      //this.world.resize(width,height)
 
-      window.scrollTo(0, 1);
+      //window.scrollTo(0, 1);
 
 
       // this.scale.refresh()
