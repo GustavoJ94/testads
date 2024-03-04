@@ -245,23 +245,23 @@ function resize(width, height) {
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
-          this.bgRobot.width = window.innerWidth*window.devicePixelRatio
-          this.bgRobot.height = (window.innerHeight*0.3)*window.devicePixelRatio
+          this.bgRobot.width = window.innerWidth
+          this.bgRobot.height = (window.innerHeight*0.3)
           this.bgRobot.x = width*0.5
           //this.bgRobot.y = height*0.15
 
-          this.boardRobot.width = (width*1.6)*window.devicePixelRatio
-          this.boardRobot.height = (height*0.5)*window.devicePixelRatio
+          this.boardRobot.width = (width*1.6)
+          this.boardRobot.height = (height*0.5)
 	      this.boardRobot.x = width*0.5
 	      //this.boardRobot.y = height*0.25
 
-          this.bgPlayer.width = width*window.devicePixelRatio
-          this.bgPlayer.height = (height*0.3)*window.devicePixelRatio
+          this.bgPlayer.width = width
+          this.bgPlayer.height = (height*0.3)
           this.bgPlayer.x = width*0.5
           //this.bgPlayer.y = height*0.65
 
-          this.boardPlayer.width = (width*1.6)*window.devicePixelRatio
-          this.boardPlayer.height = (height*0.5)*window.devicePixelRatio
+          this.boardPlayer.width = (width*1.6)
+          this.boardPlayer.height = (height*0.5)
           this.boardPlayer.x = width*0.5
          // this.boardPlayer.y = height*0.75
 
@@ -541,7 +541,7 @@ function resize(width, height) {
 
 function create() {
 	setBase();
-    this.resize(window.innerWidth,window.innerHeight);
+    this.resize(window.innerWidth*window.devicePixelRatio,window.innerHeight*window.devicePixelRatio);
 }
 
 function setBase(){
