@@ -225,7 +225,7 @@ function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding
 
 function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight, minPadding) {
     var ratio = 1;
-    var currentDevicePixelRatio = getDevicePixelRatio();
+    var currentDevicePixelRatio = window.devicePixelRatio;
     // Sprite needs to fit in either width or height
     var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 * minPadding) / availableSpaceWidth;
     var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 * minPadding) / availableSpaceHeight;
@@ -237,10 +237,15 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 
 function resize(width, height) {
 	   //console.log(width,height)
-       this.scale.setGameSize(width,height)
-       this.world.resize(width,height)
-       this.scale.setUserScale(window.devicePixelRatio)
-       this.scale.refresh()
+       //this.scale.setGameSize(width,height)
+       //this.world.resize(width,height)
+       //this.scale.setUserScale(window.devicePixelRatio)
+       //this.scale.refresh()
+       this.clientsRobotGroup = this.game.add.group();
+       this.clientsRobotGroup2 = this.game.add.group();
+
+        this.clientsPlayerGroup = this.game.add.group();
+        this.clientsPlayerGroup2 = this.game.add.group();
 
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
@@ -440,8 +445,19 @@ function resize(width, height) {
           this.btnDownload.x = width*0.5
           this.btnDownload.y = height*0.65
 
-          //this.clientsRobotGroup.pivot.x = window.innerWidth
-          //this.clientsRobotGroup2.pivot.x = window.innerWidth
+          //this.clientsRobotGroup.pivot.x = window.innerWidth*window.devicePixelRatio;
+          // this.clientsRobotGroup2.width = window.innerWidth*window.devicePixelRatio;
+          //this.clientsRobotGroup2.scale.y=this.clientsRobotGroup2.scale.x; 
+          // myGroup.scale.y=myGroup.scale.x; 
+          //this.clientsRobotGroup.x = (window.innerWidth*0.5)
+          //this.clientsRobotGroup.x = (this.boardRobot.x + this.boardRobot.width*0.5)
+          //this.clientsRobotGroup2.x = (this.boardRobot.x + this.boardRobot.width*0.5)
+
+          //this.clientsRobotGroup2.x = (window.innerWidth*0.5)
+          //this.clientsRobotGroup2.pivot.y = (window.innerHeight*0.5)
+          //this.clientsRobotGroup.width = window.innerWidth
+          //this.clientsRobotGroup2.width = window.innerWidth
+
           //this.clientsPlayerGroup.pivot.x = window.innerWidth
           //this.clientsPlayerGroup2.pivot.x = window.innerWidth
 
@@ -566,8 +582,6 @@ function setBase(){
     this.bgRobot.anchor.set(0.5);
     this.bgRobot.y -= this.bgRobot.height*0.5
     
-    this.clientsRobotGroup = this.game.add.group();
-    this.clientsRobotGroup2 = this.game.add.group();
 
 	this.boardRobot = game.add.sprite(0,0,'steakL');
     this.boardRobot.anchor.set(0.5);
@@ -577,8 +591,7 @@ function setBase(){
     this.bgPlayer.anchor.set(0.5);
     this.bgPlayer.y = this.game.height + this.bgPlayer.height*0.5
 
-    this.clientsPlayerGroup = this.game.add.group();
-    this.clientsPlayerGroup2 = this.game.add.group();
+
 
     this.boardPlayer = game.add.sprite(0,0,'burgerL');
     this.boardPlayer.anchor.set(0.5);
@@ -1237,7 +1250,7 @@ function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPla
     var clientsFrame = ['Guke_waimaixiaoge','Guke_Nvshangren','Guke_laonainai','Guke_jianzhugongren','Guke_nvyouke','Guke_huanyaxiaonvhai']
     var client = this.game.add.spine(0, 0, this.rnd.pick(clientsFrame));
     client.x = initialPosition[0]*window.devicePixelRatio
-    client.y = initialPosition[1]*window.devicePixelRatio 
+    client.y = initialPosition[1]*window.devicePixelRatio
     client.scale.set(0.28*window.devicePixelRatio)
     client.premultipliedAlpha = true
 
