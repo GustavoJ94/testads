@@ -238,14 +238,14 @@ function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
       //this.scale.setGameSize(width,height)
-      this.game.renderer.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
+      this.game.renderer.resize(width, height);
 
             //  The Camera can never be smaller than the Game size
-     this.game.camera.setSize(width*window.devicePixelRatio, height*window.devicePixelRatio);
+     this.game.camera.setSize(width, height);
 
             //  This should only happen if the world is smaller than the new canvas size
      //this.game.world.resize(width, height);
-     this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+     this.world.resize(width,height)
       
       // this.scale.refresh()
 
@@ -464,7 +464,7 @@ function resize(width, height) {
 //this.clientsRobotGroup2.alignIn(this.boardRobot)
 
 
-          this.clientsRobotGroup.pivot.x = (window.innerWidth*0.5);
+          //this.clientsRobotGroup.pivot.x = (window.innerWidth*0.5);
           //this.clientsRobotGroup.width = (window.innerWidth*2)*window.devicePixelRatio;
           //this.clientsRobotGroup2.scale.y=this.clientsRobotGroup2.scale.x; 
           // myGroup.scale.y=myGroup.scale.x; 
@@ -472,7 +472,7 @@ function resize(width, height) {
           //this.clientsRobotGroup.x = (this.boardRobot.x + this.boardRobot.width*0.5)
           //this.clientsRobotGroup2.x = (this.boardRobot.x + this.boardRobot.width*0.5)
 
-          this.clientsRobotGroup2.pivot.x = (window.innerWidth*0.5)
+         // this.clientsRobotGroup2.pivot.x = (window.innerWidth*0.5)
           //this.clientsRobotGroup2.pivot.y = (window.innerHeight*0.5)
           //this.clientsRobotGroup.width = window.innerWidth
           //this.clientsRobotGroup2.width = window.innerWidth
@@ -1275,7 +1275,7 @@ function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPla
     var client = this.game.add.spine(0, 0, this.rnd.pick(clientsFrame));
     client.x = initialPosition[0]
     client.y = initialPosition[1]
-    client.scale.set(0.28*window.devicePixelRatio)
+    client.scale.set(0.28)
     client.premultipliedAlpha = true
 
     var bubble = this.game.add.sprite(targetPosition, initialPosition[1], 'atlas', 'Bubble_Ordinary order.png');
