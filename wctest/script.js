@@ -237,7 +237,7 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 
 function resize(width, height) {
 	   //console.log(width,height)
-     // this.scale.updateScalingAndBounds()
+      this.scale.updateScalingAndBounds()
 
        // this.game.renderer.resize(width, height);
 
