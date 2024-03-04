@@ -26,7 +26,7 @@ this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
     this.scale.scaleMode = Phaser.ScaleManager.NONE;
-this.game.renderer.autoResize = true
+    this.game.renderer.autoResize = true
 
 	this.bgColor = "#D3D3D3"; //Background Color
     this.nameTagText = { font: "bold 32px Arial", fill: "#fff",stroke: '#943417',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -239,7 +239,7 @@ function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
 
-      //this.game.renderer.autoResize = true(width, height);
+      this.game.renderer.resize(width, height);
 
             //  The Camera can never be smaller than the Game size
 
