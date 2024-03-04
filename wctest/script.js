@@ -3,7 +3,7 @@ var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.WEBGL,
-    resolution:window.devicePixelRatio,
+    resolution:1,
 	state: this
 });
 
@@ -238,16 +238,16 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
-      this.scale.setGameSize(width*window.devicePixelRatio,height*window.devicePixelRatio)
-      //this.game.renderer.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
+      //this.scale.setGameSize(width,height)
+      this.game.renderer.resize(width, height);
 
             //  The Camera can never be smaller than the Game size
-     this.game.camera.setSize(width*window.devicePixelRatio, height*window.devicePixelRatio);
 
             //  This should only happen if the world is smaller than the new canvas size
-     //this.game.world.resize(width, height);
-     this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
-      
+     this.game.world.resize(width, height);
+     //this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+           this.game.camera.setSize(width, height);
+
       // this.scale.refresh()
 
        // this.game.renderer.resize(width, height);
@@ -1274,9 +1274,9 @@ function runVFXink(){
 function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPlayer){
     var clientsFrame = ['Guke_waimaixiaoge','Guke_Nvshangren','Guke_laonainai','Guke_jianzhugongren','Guke_nvyouke','Guke_huanyaxiaonvhai']
     var client = this.game.add.spine(0, 0, this.rnd.pick(clientsFrame));
-    client.x = initialPosition[0]*window.devicePixelRatio
-    client.y = initialPosition[1]*window.devicePixelRatio
-    client.scale.set(0.28*window.devicePixelRatio)
+    client.x = initialPosition[0]
+    client.y = initialPosition[1]
+    client.scale.set(0.28)
     client.premultipliedAlpha = true
 
     var bubble = this.game.add.sprite(targetPosition, initialPosition[1], 'atlas', 'Bubble_Ordinary order.png');
