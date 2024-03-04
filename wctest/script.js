@@ -246,7 +246,9 @@ function resize(width, height) {
 
             //  This should only happen if the world is smaller than the new canvas size
            // this.game.world.resize(width, height);
-       //this.world.resize(width,height)
+       this.world.resize(width,height)
+
+       this.scale.refresh()
 
        // this.game.renderer.resize(width, height);
 
