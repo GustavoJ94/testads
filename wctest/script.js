@@ -26,7 +26,7 @@ this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
     this.scale.scaleMode = Phaser.ScaleManager.NONE;
-    this.game.renderer.autoResize = true
+    //this.game.renderer.autoResize = true
 
 	this.bgColor = "#D3D3D3"; //Background Color
     this.nameTagText = { font: "bold 32px Arial", fill: "#fff",stroke: '#943417',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -238,15 +238,15 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
-      //this.scale.setGameSize(width,height)
-      this.game.renderer.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
+      this.scale.setGameSize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+      //this.game.renderer.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
 
             //  The Camera can never be smaller than the Game size
-     this.game.camera.setSize(width*window.devicePixelRatio, height*window.devicePixelRatio);
+     //this.game.camera.setSize(width*window.devicePixelRatio, height*window.devicePixelRatio);
 
             //  This should only happen if the world is smaller than the new canvas size
      //this.game.world.resize(width, height);
-     this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+     //this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
       
       // this.scale.refresh()
 
