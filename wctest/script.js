@@ -26,7 +26,7 @@ this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
     this.scale.scaleMode = Phaser.ScaleManager.NONE;
-   // this.game.renderer.autoResize = true
+    this.game.renderer.autoResize = true
 
 	this.bgColor = "#D3D3D3"; //Background Color
     this.nameTagText = { font: "bold 32px Arial", fill: "#fff",stroke: '#943417',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -240,7 +240,7 @@ function resize(width, height) {
       //this.scale.updateScalingAndBounds()
     let userRatio = this.game.device.pixelRatio * 1;
     this.scale.setGameSize(window.innerWidth * userRatio, (window.innerHeight * userRatio));
-    this.scale.setUserScale(1 / userRatio, 1 / userRatio);
+    //this.scale.setUserScale(1 / userRatio, 1 / userRatio);
 
     this.scale.refresh()
      //this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
@@ -1274,7 +1274,7 @@ function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPla
     var client = this.game.add.spine(0, 0, this.rnd.pick(clientsFrame));
     client.x = initialPosition[0]*window.devicePixelRatio
     client.y = initialPosition[1]*window.devicePixelRatio
-    client.scale.set(0.28)*window.devicePixelRatio
+    client.scale.set(0.28*window.devicePixelRatio)
     client.premultipliedAlpha = true
 
     var bubble = this.game.add.sprite(targetPosition, initialPosition[1], 'atlas', 'Bubble_Ordinary order.png');
