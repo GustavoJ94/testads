@@ -26,7 +26,7 @@ this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
     this.scale.scaleMode = Phaser.ScaleManager.NONE;
-    this.game.renderer.autoResize = true
+    //this.game.renderer.autoResize = true
 
 	this.bgColor = "#D3D3D3"; //Background Color
     this.nameTagText = { font: "bold 32px Arial", fill: "#fff",stroke: '#943417',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -218,7 +218,7 @@ function pulse(sprite, availableSpaceWidth, availableSpaceHeight, padding, scale
 
 
 function scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, padding, scaleMultiplier) {
-    var scale = this.getSpriteScale(sprite._frame.width, sprite._frame.height, availableSpaceWidth, availableSpaceHeight, padding);
+    var scale = this.getSpriteScale(sprite.width, sprite.height, availableSpaceWidth, availableSpaceHeight, padding);
     sprite.scale.x = scale * scaleMultiplier;
     sprite.scale.y = scale * scaleMultiplier;
 }
@@ -239,14 +239,16 @@ function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
     let userRatio = this.game.device.pixelRatio * 1;
-    this.scale.setGameSize(window.innerWidth * userRatio, (window.innerHeight * userRatio));
+    this.scale.setGameSize(window.innerWidth, (window.innerHeight));
     //this.scale.setUserScale(1 / userRatio, 1 / userRatio);
 
-    this.scale.refresh()
+    //this.scale.refresh()
 
-        window.scrollTo(0, 1);
 
-     this.world.resize(width*userRatio,height*userRatio)
+     this.world.resize(width,height)
+
+             window.scrollTo(0, 1);
+
           // this.game.camera.setSize(width, height);
 
       // this.scale.refresh()
@@ -276,13 +278,13 @@ function resize(width, height) {
 	      this.boardRobot.x = width*0.5
 	      //this.boardRobot.y = height*0.25
 
-          this.bgPlayer.width = width
-          this.bgPlayer.height = (height*0.3)
+          this.bgPlayer.width = width*window.devicePixelRatio
+          this.bgPlayer.height = (height*0.3)*window.devicePixelRatio
           this.bgPlayer.x = width*0.5
           //this.bgPlayer.y = height*0.65
 
-          this.boardPlayer.width = (width*1.6)
-          this.boardPlayer.height = (height*0.5)
+          this.boardPlayer.width = (width*1.6)*window.devicePixelRatio
+          this.boardPlayer.height = (height*0.5)*window.devicePixelRatio
           this.boardPlayer.x = width*0.5
          // this.boardPlayer.y = height*0.75
 
