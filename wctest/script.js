@@ -243,10 +243,10 @@ function resize(width, height) {
         //this.game.renderer.resize(width, height);
 
             //  The Camera can never be smaller than the Game size
-        this.game.camera.setSize(width*window.devicePixelRatio, height*window.devicePixelRatio);
 
             //  This should only happen if the world is smaller than the new canvas size
         this.game.world.resize(width, height);
+        this.game.camera.setBoundsToWorld();
 
        //this.scale.setUserScale(window.devicePixelRatio)
        //this.scale.refresh()
