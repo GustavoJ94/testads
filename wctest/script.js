@@ -239,7 +239,7 @@ function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
 
-      this.game.renderer.resize(width, height);
+      this.game.renderer.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
 
             //  The Camera can never be smaller than the Game size
 
