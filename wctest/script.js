@@ -25,7 +25,7 @@ function preload() {
 this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
-    this.scale.scaleMode = Phaser.ScaleManager.USER_SCALE;
+    this.scale.scaleMode = Phaser.ScaleManager.NONE;
     this.game.renderer.autoResize = true
 
 	this.bgColor = "#D3D3D3"; //Background Color
@@ -246,7 +246,7 @@ function resize(width, height) {
 
         window.scrollTo(0, 1);
 
-     //this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+     this.world.resize(width*userRatio,height*userRatio)
           // this.game.camera.setSize(width, height);
 
       // this.scale.refresh()
