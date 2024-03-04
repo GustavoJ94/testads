@@ -237,15 +237,10 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 
 function resize(width, height) {
 	   //console.log(width,height)
-       //this.scale.setGameSize(width,height)
-       //this.world.resize(width,height)
+       this.scale.setGameSize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+       this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
        //this.scale.setUserScale(window.devicePixelRatio)
        //this.scale.refresh()
-       this.clientsRobotGroup = this.game.add.group();
-       this.clientsRobotGroup2 = this.game.add.group();
-
-        this.clientsPlayerGroup = this.game.add.group();
-        this.clientsPlayerGroup2 = this.game.add.group();
 
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
@@ -583,6 +578,10 @@ function setBase(){
     this.bgRobot.y -= this.bgRobot.height*0.5
     
 
+    this.clientsRobotGroup = this.game.add.group();
+    this.clientsRobotGroup2 = this.game.add.group();
+
+     
 	this.boardRobot = game.add.sprite(0,0,'steakL');
     this.boardRobot.anchor.set(0.5);
     this.boardRobot.y -= this.boardRobot.height*0.5
@@ -591,7 +590,8 @@ function setBase(){
     this.bgPlayer.anchor.set(0.5);
     this.bgPlayer.y = this.game.height + this.bgPlayer.height*0.5
 
-
+    this.clientsPlayerGroup = this.game.add.group();
+    this.clientsPlayerGroup2 = this.game.add.group();
 
     this.boardPlayer = game.add.sprite(0,0,'burgerL');
     this.boardPlayer.anchor.set(0.5);
