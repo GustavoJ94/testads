@@ -3,7 +3,7 @@ var game = new Phaser.Game({
 	width: window.innerWidth,
 	height: window.innerHeight, 
 	renderer: Phaser.WEBGL,
-    resolution:window.devicePixelRatio,
+    resolution:1,
 	state: this
 });
 
@@ -25,8 +25,8 @@ function preload() {
 this.game.plugins.add(SpinePlugin);
 	this.stage.disableVisibilityChange = true;
 	game.load.crossOrigin = 'anonymous';
-    this.scale.scaleMode = Phaser.ScaleManager.NONE;
-    //this.game.renderer.autoResize = true
+    this.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+    this.game.renderer.autoResize = true
 
 	this.bgColor = "#D3D3D3"; //Background Color
     this.nameTagText = { font: "bold 32px Arial", fill: "#fff",stroke: '#943417',strokeThickness:3, boundsAlignH: "center", boundsAlignV: "middle" ,align: "center" };
@@ -238,14 +238,14 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
-      this.scale.setGameSize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+      //this.scale.setGameSize(width,height)
       //this.game.renderer.resize(window.innerWidth*window.devicePixelRatio, window.innerHeight*window.devicePixelRatio);
 
             //  The Camera can never be smaller than the Game size
      //this.game.camera.setSize(window.innerWidth*window.devicePixelRatio, height*window.devicePixelRatio);
 
             //  This should only happen if the world is smaller than the new canvas size
-     this.game.world.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
+     //this.game.world.resize(width, height);
        //this.world.resize(width,height)
       
       // this.scale.refresh()
@@ -265,23 +265,23 @@ function resize(width, height) {
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
 	   if(!isLandscape){
-          this.bgRobot.width = window.innerWidth*window.devicePixelRatio
-          this.bgRobot.height = (window.innerHeight*0.3)*window.devicePixelRatio
+          this.bgRobot.width = window.innerWidth
+          this.bgRobot.height = (window.innerHeight*0.3)
           this.bgRobot.x = width*0.5
           //this.bgRobot.y = height*0.15
 
-          this.boardRobot.width = (width*1.6)*window.devicePixelRatio
-          this.boardRobot.height = (height*0.5)*window.devicePixelRatio
+          this.boardRobot.width = (width*1.6)
+          this.boardRobot.height = (height*0.5)
 	      this.boardRobot.x = width*0.5
 	      //this.boardRobot.y = height*0.25
 
-          this.bgPlayer.width = width*window.devicePixelRatio
-          this.bgPlayer.height = (height*0.3)*window.devicePixelRatio
+          this.bgPlayer.width = width
+          this.bgPlayer.height = (height*0.3)
           this.bgPlayer.x = width*0.5
           //this.bgPlayer.y = height*0.65
 
-          this.boardPlayer.width = (width*1.6)*window.devicePixelRatio
-          this.boardPlayer.height = (height*0.5)*window.devicePixelRatio
+          this.boardPlayer.width = (width*1.6)
+          this.boardPlayer.height = (height*0.5)
           this.boardPlayer.x = width*0.5
          // this.boardPlayer.y = height*0.75
 
@@ -465,7 +465,7 @@ function resize(width, height) {
 //this.clientsRobotGroup2.alignIn(this.boardRobot)
 
 
-          //this.clientsRobotGroup.pivot.x = (window.innerWidth);
+          this.clientsRobotGroup.pivot.x = (window.innerWidth*0.5);
           //this.clientsRobotGroup.width = (window.innerWidth*2)*window.devicePixelRatio;
           //this.clientsRobotGroup2.scale.y=this.clientsRobotGroup2.scale.x; 
           // myGroup.scale.y=myGroup.scale.x; 
@@ -473,7 +473,7 @@ function resize(width, height) {
           //this.clientsRobotGroup.x = (this.boardRobot.x + this.boardRobot.width*0.5)
           //this.clientsRobotGroup2.x = (this.boardRobot.x + this.boardRobot.width*0.5)
 
-          //this.clientsRobotGroup2.x = (window.innerWidth*0.5)
+          this.clientsRobotGroup2.pivot.x = (window.innerWidth*0.5)
           //this.clientsRobotGroup2.pivot.y = (window.innerHeight*0.5)
           //this.clientsRobotGroup.width = window.innerWidth
           //this.clientsRobotGroup2.width = window.innerWidth
@@ -1274,9 +1274,9 @@ function runVFXink(){
 function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPlayer){
     var clientsFrame = ['Guke_waimaixiaoge','Guke_Nvshangren','Guke_laonainai','Guke_jianzhugongren','Guke_nvyouke','Guke_huanyaxiaonvhai']
     var client = this.game.add.spine(0, 0, this.rnd.pick(clientsFrame));
-    client.x = initialPosition[0]*window.devicePixelRatio
-    client.y = initialPosition[1]*window.devicePixelRatio
-    client.scale.set(0.28*window.devicePixelRatio)
+    client.x = initialPosition[0]
+    client.y = initialPosition[1]
+    client.scale.set(0.28)
     client.premultipliedAlpha = true
 
     var bubble = this.game.add.sprite(targetPosition, initialPosition[1], 'atlas', 'Bubble_Ordinary order.png');
