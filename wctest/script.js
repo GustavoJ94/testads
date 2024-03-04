@@ -247,6 +247,7 @@ function resize(width, height) {
      this.game.world.resize(width, height);
      //this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
            this.game.camera.setSize(width, height);
+      this.game.renderer.renderSession.resolution = window.devicePixelRatio
 
       // this.scale.refresh()
 
