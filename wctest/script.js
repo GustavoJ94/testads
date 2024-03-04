@@ -238,15 +238,15 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
-       //this.scale.setGameSize(width,height)
-      //this.game.renderer.resize(width, height);
+     // this.scale.setGameSize(width,height)
+      //this.game.renderer.resize(window.innerWidth, window.innerHeight);
 
             //  The Camera can never be smaller than the Game size
 
             //  This should only happen if the world is smaller than the new canvas size
            // this.game.world.resize(width, height);
-       //this.game.camera.setSize(width*window.devicePixelRatio, height*window.devicePixelRatio);
-      // this.world.resize(width,height)
+       //this.game.camera.setSize(window.innerWidth*(height/width), height*window.devicePixelRatio);
+       //this.world.resize(width,height)
       
       // this.scale.refresh()
 
