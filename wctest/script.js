@@ -238,8 +238,15 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
        //this.scale.setGameSize(width,height)
-       this.scale.setGameSize(width,height)
-       this.world.resize(width,height)
+       //this.scale.setGameSize(width,height)
+       //this.world.resize(width,height)
+        this.game.renderer.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
+
+            //  The Camera can never be smaller than the Game size
+        this.game.camera.setSize(width*window.devicePixelRatio, height*window.devicePixelRatio);
+
+            //  This should only happen if the world is smaller than the new canvas size
+        this.game.world.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
 
        //this.scale.setUserScale(window.devicePixelRatio)
        //this.scale.refresh()
@@ -441,6 +448,11 @@ function resize(width, height) {
           //this.scaleSprite(this.btnDownload, width, height/3, 0 ,0.8)
           this.btnDownload.x = width*0.5
           this.btnDownload.y = height*0.65
+
+
+//this.clientsRobotGroup.alignIn(this.boardRobot)
+//this.clientsRobotGroup2.alignIn(this.boardRobot)
+
 
           //this.clientsRobotGroup.pivot.x = (window.innerWidth);
           //this.clientsRobotGroup.width = (window.innerWidth*2)*window.devicePixelRatio;
