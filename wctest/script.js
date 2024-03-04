@@ -237,8 +237,8 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 
 function resize(width, height) {
 	   //console.log(width,height)
-       this.scale.setGameSize(width,height)
-       this.world.resize(width,height)
+       this.scale.setGameSize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+       this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
 
 	   var isLandscape = height / width  < 1.3 ? true: false;
 
@@ -437,6 +437,15 @@ function resize(width, height) {
           //this.scaleSprite(this.btnDownload, width, height/3, 0 ,0.8)
           this.btnDownload.x = width*0.5
           this.btnDownload.y = height*0.65
+
+          //this.clientsRobotGroup.pivot.x = window.innerWidth
+          //this.clientsRobotGroup2.pivot.x = window.innerWidth
+          //this.clientsPlayerGroup.pivot.x = window.innerWidth
+          //this.clientsPlayerGroup2.pivot.x = window.innerWidth
+
+          //this.clientsPlayerGroup2.pivot.y = window.innerHeight*0.5
+          //this.clientsPlayerGroup.pivot.x = window.innerWidth*0.5
+          //this.clientsPlayerGroup2.pivot.x = window.innerWidth
 	   }
 	   else{
           this.bgRobot.width = width*0.5
@@ -1224,8 +1233,11 @@ function runVFXink(){
 
 function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPlayer){
     var clientsFrame = ['Guke_waimaixiaoge','Guke_Nvshangren','Guke_laonainai','Guke_jianzhugongren','Guke_nvyouke','Guke_huanyaxiaonvhai']
-    var client = this.game.add.spine(initialPosition[0], initialPosition[1], this.rnd.pick(clientsFrame));
+    var client = this.game.add.spine(0, 0, this.rnd.pick(clientsFrame));
+    client.x = initialPosition[0]*window.devicePixelRatio
+    client.y = initialPosition[1]*window.devicePixelRatio 
     client.scale.set(0.28*window.devicePixelRatio)
+    client.premultipliedAlpha = true
 
     var bubble = this.game.add.sprite(targetPosition, initialPosition[1], 'atlas', 'Bubble_Ordinary order.png');
     
@@ -1283,7 +1295,7 @@ function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPla
 
     const { animations } = client.animationStateData.skeletonData;
     client.animationState.setAnimation(0, animations[2].name, true);
-    var t = game.add.tween(client).to({ x: targetPosition },1000,Phaser.Easing.Linear.None,true);
+    var t = game.add.tween(client).to({ x: targetPosition*window.devicePixelRatio },1000,Phaser.Easing.Linear.None,true);
     t.onComplete.add(function(){
         var tt = this.popup(bubble, this.game.width, this.game.height/3, 0 ,0.18)
         client.heartsTimer.start()
@@ -1301,8 +1313,8 @@ function addClientToGroup(initialPosition,targetPosition,groupClients,type,isPla
 
 function SpawnRobotClients(){
     if(this.timeFrozen && this.timeFrozen == true) return
-    var initialPosition = [[this.game.width, (this.boardRobot.y)],[this.game.width, (this.boardRobot.y)]]
-    var targetPosition =  [this.game.width*0.38, this.game.width*0.68]
+    var initialPosition = [[window.innerWidth, (this.boardRobot.y)],[window.innerWidth, (this.boardRobot.y)]]
+    var targetPosition =  [window.innerWidth*0.35, window.innerWidth*0.65]
 
     if(this.clientsRobotGroup.length < 1){
         this.addClientToGroup(initialPosition[0], targetPosition[0], this.clientsRobotGroup,'left',false)
@@ -1313,8 +1325,8 @@ function SpawnRobotClients(){
 }
 
 function SpawnPlayerClients(){
-    var initialPosition = [[this.game.width, (this.boardPlayer.y)],[this.game.width, (this.boardPlayer.y)]]
-    var targetPosition =  [this.game.width*0.38, this.game.width*0.68]
+    var initialPosition = [[window.innerWidth, (this.boardPlayer.y)],[window.innerWidth, (this.boardPlayer.y)]]
+    var targetPosition =  [window.innerWidth*0.35, window.innerWidth*0.65]
 
     if(this.clientsPlayerGroup.length < 1){
         this.addClientToGroup(initialPosition[0], targetPosition[0], this.clientsPlayerGroup,'left',true)
@@ -1332,7 +1344,7 @@ function setHappinessLevelRobot(client,animation){
         client.heartsTimer.stop()
         client.scale.x *= -1
 
-        var t = game.add.tween(client).to({ x: this.game.width },800,Phaser.Easing.Linear.None,true);
+        var t = game.add.tween(client).to({ x: window.innerWidth*window.devicePixelRatio },800,Phaser.Easing.Linear.None,true);
         game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
             
         t.onComplete.add(function(){
@@ -1369,7 +1381,7 @@ function setHappinessLevelPlayer(client){
         client.heartsTimer.stop()
         client.scale.x *= -1
 
-        var t = game.add.tween(client).to({ x: this.game.width },800,Phaser.Easing.Linear.None,true);
+        var t = game.add.tween(client).to({ x: window.innerWidth*window.devicePixelRatio },800,Phaser.Easing.Linear.None,true);
         game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
             
         t.onComplete.add(function(){
@@ -1492,7 +1504,7 @@ function removeClientToGroup(groupClients, dishe, client, isPlayer){
     this.emitDisheTo(dishe.x,dishe.y,client.bubble.world.x,client.bubble.world.y,client.valueType)
     client.width *= -1
     
-    var t = game.add.tween(client).to({ x: this.game.width },800,Phaser.Easing.Linear.None,true);
+    var t = game.add.tween(client).to({ x: (window.innerWidth)*window.devicePixelRatio },800,Phaser.Easing.Linear.None,true);
     game.add.tween(client.bubble).to({ alpha: 0},650,Phaser.Easing.Linear.None,true);
     
     t.onComplete.add(function(){
