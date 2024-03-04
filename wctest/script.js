@@ -1,7 +1,7 @@
 
 var game = new Phaser.Game({
-	width: window.innerWidth*window.devicePixelRatio,
-	height: window.innerHeight*window.devicePixelRatio, 
+	width: window.innerWidth,
+	height: window.innerHeight, 
 	renderer: Phaser.WEBGL,
     resolution:window.devicePixelRatio,
 	state: this
@@ -238,14 +238,14 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 function resize(width, height) {
 	   //console.log(width,height)
       //this.scale.updateScalingAndBounds()
-     // this.scale.setGameSize(width,height)
-      //this.game.renderer.resize(window.innerWidth, window.innerHeight);
+      this.scale.setGameSize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+      //this.game.renderer.resize(window.innerWidth*window.devicePixelRatio, window.innerHeight*window.devicePixelRatio);
 
             //  The Camera can never be smaller than the Game size
+     //this.game.camera.setSize(window.innerWidth*window.devicePixelRatio, height*window.devicePixelRatio);
 
             //  This should only happen if the world is smaller than the new canvas size
-           // this.game.world.resize(width, height);
-       //this.game.camera.setSize(window.innerWidth*(height/width), height*window.devicePixelRatio);
+     this.game.world.resize(width*window.devicePixelRatio, height*window.devicePixelRatio);
        //this.world.resize(width,height)
       
       // this.scale.refresh()
