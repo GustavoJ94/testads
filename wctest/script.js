@@ -243,6 +243,9 @@ function resize(width, height) {
     //this.scale.setUserScale(1 / userRatio, 1 / userRatio);
 
     this.scale.refresh()
+
+        window.scrollTo(0, 1);
+
      //this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
           // this.game.camera.setSize(width, height);
 
