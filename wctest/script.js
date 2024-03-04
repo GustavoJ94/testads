@@ -237,7 +237,7 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 
 function resize(width, height) {
 	   //console.log(width,height)
-       this.scale.setGameSize(width,height)
+       //this.scale.setGameSize(width,height)
        this.world.resize(width,height)
        //this.scale.setUserScale(window.devicePixelRatio)
        //this.scale.refresh()
@@ -440,8 +440,8 @@ function resize(width, height) {
           this.btnDownload.x = width*0.5
           this.btnDownload.y = height*0.65
 
-          //this.clientsRobotGroup.pivot.x = window.innerWidth*window.devicePixelRatio;
-          // this.clientsRobotGroup2.width = window.innerWidth*window.devicePixelRatio;
+          //this.clientsRobotGroup.pivot.x = (window.innerWidth);
+          //this.clientsRobotGroup.width = (window.innerWidth*2)*window.devicePixelRatio;
           //this.clientsRobotGroup2.scale.y=this.clientsRobotGroup2.scale.x; 
           // myGroup.scale.y=myGroup.scale.x; 
           //this.clientsRobotGroup.x = (window.innerWidth*0.5)
