@@ -237,8 +237,8 @@ function getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availab
 
 function resize(width, height) {
 	   //console.log(width,height)
-       this.scale.setGameSize(width*window.devicePixelRatio,height*window.devicePixelRatio)
-       this.world.resize(width*window.devicePixelRatio,height*window.devicePixelRatio)
+       this.scale.setGameSize(width,height)
+       this.world.resize(width,height)
        //this.scale.setUserScale(window.devicePixelRatio)
        //this.scale.refresh()
 
