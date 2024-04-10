@@ -158,7 +158,9 @@ class Game extends Phaser.Scene {
       this.points = 12543
       this.robotPoints = 12326
       this.clockTimer = this.time.addEvent({ delay: 1000, callback: this.tick, callbackScope: this, loop: true, paused:true });
+            
 
+      this.input.once('pointerdown',function(){this.scale.startFullscreen();}, this)
       this.setGameScene()
       this.setMatchScene()
       this.setCTA()
@@ -503,6 +505,7 @@ class Game extends Phaser.Scene {
 
         this.scaleSprite(this.table,window.innerWidth,window.innerHeight, 1)
         this.table.displayWidth = width
+        this.table.displayHeight = height*0.52
         this.table.x = width*0.5
         this.table.y = height - this.table.displayHeight*0.5
 
@@ -755,8 +758,6 @@ let config = {
        autoCenter: Phaser.Scale.CENTER_BOTH,
        width: window.innerWidth,
        height: window.innerHeight,
-       autoRound: true,
-       resolution:window.devicePixelRatio
     },
 
     plugins: {
