@@ -228,7 +228,7 @@ class Game extends Phaser.Scene {
                 this.storesCTA.y = height*0.8
             }
 
-            if(height <= 512){
+            if(this.sys.game.device.os.iPhone && height <= 512){
                 this.logo.setScale(0.3)
                 this.textGame.setScale(0.4)
                 this.blackCar.setScale(0.4)
@@ -320,7 +320,7 @@ class Game extends Phaser.Scene {
                 this.storesCTA.y = height*0.87
             }
 
-             if(height <= 512){
+             if(this.sys.game.device.os.iPhone && height <= 512){
                 this.logo.setScale(0.5)
                 this.textGame.setScale(0.5)
                 this.blackCar.setScale(0.4)
