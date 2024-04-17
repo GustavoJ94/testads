@@ -98,10 +98,10 @@ class Game extends Phaser.Scene {
     setGameScene(){
         this.scene1 = this.add.group();
 
-        this.logo = this.add.sprite(0, 0, 'atlas', '99_logo.png').setScale(0.5)
-        this.textGame = this.add.sprite(0, 0, 'atlas', 'text.png').setScale(0.5)
-        this.blackCar = this.add.sprite(0, 0, 'atlas', 'grey.png').setScale(0.5).setTintFill(0x000000)
-        this.car = this.add.sprite(0, 0, 'atlas', 'green.png').setScale(0.5)
+        this.logo = this.add.sprite(0, 0, 'atlas', '99_logo.png')
+        this.textGame = this.add.sprite(0, 0, 'atlas', 'text.png')
+        this.blackCar = this.add.sprite(0, 0, 'atlas', 'grey.png').setTintFill(0x000000)
+        this.car = this.add.sprite(0, 0, 'atlas', 'green.png')
 
         this.scene1.addMultiple([this.logo,this.textGame,this.blackCar,this.car])
 
