@@ -231,18 +231,6 @@ class Game extends Phaser.Scene {
                 this.storesCTA.x = width*0.5
                 this.storesCTA.y = height*0.8
             }
-
-
-            if(this.sys.game.device.os && !this.sys.game.device.os.iPhone){
-                this.logo.setScale(0.8)
-                this.textGame.setScale(0.8)
-                this.blackCar.setScale(0.8)
-                this.car.setScale(0.8)
-                this.textCTA.setScale(1)
-                this.logoCTA.setScale(1)
-                this.text2CTA.setScale(1)
-                this.ctaTween = this.tweens.chain({tweens: [{targets: this.textCTA, x: window.innerWidth*0.45, duration: 200, ease: 'Quart.out'}, {targets: this.textCTA, x: window.innerWidth*0.5, duration: 100, ease: 'Sine.inOut'}, {targets: this.logoCTA, x: window.innerWidth*0.45, duration: 200, ease: 'Quart.out'}, {targets: this.logoCTA, x: window.innerWidth*0.5, duration: 100, ease: 'Sine.inOut'}, {targets: this.text2CTA, x: window.innerWidth*0.45, duration: 200, ease: 'Quart.out'}, {targets: this.text2CTA, x: window.innerWidth*0.5, duration: 100, ease: 'Sine.inOut'}, {targets: this.buttonCTA, scale: 1, duration: 200, ease: 'Sine.inOut'}, {targets: this.storesCTA, scale: 1, duration: 200, ease: 'Sine.inOut'} ], paused:true, delay:500, onComplete:()=>{this.tweens.add({targets: this.buttonCTA, scale: {value: this.buttonCTA.scaleX+0.1}, duration: 1000,  ease: 'sine.inOut', yoyo:true, loop:-1}); } });
-            }
         }
         else{
             this.logo.setScale(0.6)
