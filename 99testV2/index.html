@@ -273,11 +273,11 @@ class Game extends Phaser.Scene {
             }
         }
         else{
-            this.logo.setScale(0.6)
+            this.logo.setScale(0.5)
             this.logo.x = width*0.3
             this.logo.y = height*0.35
 
-            this.textGame.setScale(0.5)
+            this.textGame.setScale(0.6)
             this.textGame.x = width*0.3
             this.textGame.y = height*0.65
 
@@ -289,6 +289,10 @@ class Game extends Phaser.Scene {
             this.car.x = width*0.7
             this.car.y = height*0.83
 
+            this.hand.setScale(0.25)
+            this.hand.x = this.blackCar.x
+            this.hand.y = this.blackCar.y
+
             ///CTA
             this.textCTA.setScale(0.5)
             this.textCTA.x = width*2
@@ -298,7 +302,7 @@ class Game extends Phaser.Scene {
             this.logoCTA.x = width*2
             this.logoCTA.y = height*0.36
 
-            this.text2CTA.setScale(0.5)
+            this.text2CTA.setScale(0.65)
             this.text2CTA.x = width*2
             this.text2CTA.y = height*0.6
 
@@ -335,7 +339,7 @@ class Game extends Phaser.Scene {
                 this.logoCTA.x = width*0.5
                 this.logoCTA.y = height*0.36
 
-                this.text2CTA.setScale(0.5)
+                this.text2CTA.setScale(0.65)
                 this.text2CTA.x = width*0.5
                 this.text2CTA.y = height*0.6
 
@@ -346,14 +350,14 @@ class Game extends Phaser.Scene {
                 this.storesCTA.y = height*0.87
             }
 
-             if(height <= 512){
+             if(height <= 305){
                 this.logo.setScale(0.4)
-                this.textGame.setScale(0.4)
+                this.textGame.setScale(0.5)
                 this.blackCar.setScale(0.3)
                 this.car.setScale(0.3)
                 this.textCTA.setScale(0.3)
                 this.logoCTA.setScale(0.3)
-                this.text2CTA.setScale(0.3)
+                this.text2CTA.setScale(0.5)
                 this.ctaTween = this.tweens.chain({tweens: [{targets: this.textCTA, x: window.innerWidth*0.45, duration: 200, ease: 'Quart.out'}, {targets: this.textCTA, x: window.innerWidth*0.5, duration: 100, ease: 'Sine.inOut'}, {targets: this.logoCTA, x: window.innerWidth*0.45, duration: 200, ease: 'Quart.out'}, {targets: this.logoCTA, x: window.innerWidth*0.5, duration: 100, ease: 'Sine.inOut'}, {targets: this.text2CTA, x: window.innerWidth*0.45, duration: 200, ease: 'Quart.out'}, {targets: this.text2CTA, x: window.innerWidth*0.5, duration: 100, ease: 'Sine.inOut'}, {targets: this.buttonCTA, scale: 0.35, duration: 200, ease: 'Sine.inOut'}, {targets: this.storesCTA, scale: 0.35, duration: 200, ease: 'Sine.inOut'} ], paused:true, delay:500, onComplete:()=>{this.tweens.add({targets: this.buttonCTA, scale: {value: this.buttonCTA.scaleX+0.1}, duration: 1000,  ease: 'sine.inOut', yoyo:true, loop:-1}); } });
             }
 
