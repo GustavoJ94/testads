@@ -274,6 +274,7 @@ class Game extends Phaser.Scene {
 
     startInteraction(){
         this.textGame.setText("IT'S YOUR TURN TO WIN")
+        this.tweens.add({targets: this.textGame, scale: {value: this.textGame.scaleX+0.05}, duration: 800,  ease: 'sine.inOut', yoyo:true, loop:-1}); 
         var tile = this.tiles.list[14]
         tile.list[0].setInteractive()
         tile.list[0].once('pointerdown', this.startBingo, this);
