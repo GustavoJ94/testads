@@ -371,6 +371,10 @@ class Game extends Phaser.Scene {
         const width = gameSize.width;
         const height = gameSize.height;
         var isLandscape = height / width  < 1.3 ? true: false;
+ let clientWidth = document.documentElement.clientWidth
+ let clientHeight = document.documentElement.clientHeight
+     document.getElementsByTagName("canvas")[0].style.width = clientWidth + "px"
+         document.getElementsByTagName("canvas")[0].style.height = clientHeight + "px"
 
         if(!isLandscape){
             //INTRO
