@@ -61,7 +61,7 @@ class Game extends Phaser.Scene {
     }
 
     preload() {
-        this.style1 = { font: ' 72px Marvin', fill: "#ffffff",stroke: '#ffffff',strokeThickness:4, align:'center'};
+        this.style1 = { font: ' 32px Marvin', fill: "#ffffff",stroke: '#ffffff',strokeThickness:4, align:'center'};
         this.style2 = { font: ' 72px Marvin', fill: "#ffffff",stroke: '#ffffff',strokeThickness:4, align:'left'};
         this.style3 = { font: ' 72px Marvin', fill: "#ffffff",stroke: '#ffffff',strokeThickness:4, align:'center'};
         this.style4 = { font: ' 72px Marvin', fill: "#323232",stroke: '#323232',strokeThickness:2, align:'center'};
@@ -130,8 +130,6 @@ class Game extends Phaser.Scene {
             }
             else {
                 this.scale.startFullscreen();
-                 this.scale.setGameSize(window.innerWidth, window.innerHeight);
-        this.scale.displaySize.resize(window.innerWidth, window.innerHeight);
             }
         }, this)
 
@@ -141,9 +139,6 @@ class Game extends Phaser.Scene {
 
         this.scale.on('resize', this.resize, this)
         this.scale.resize(window.innerWidth,window.innerHeight)
-
-           this.scale.setGameSize(window.innerWidth, window.innerHeight);
-        this.scale.displaySize.resize(window.innerWidth, window.innerHeight);
     }
 
     addTile(x, y,frame) {
@@ -385,7 +380,6 @@ class Game extends Phaser.Scene {
         const height = gameSize.height;
         var isLandscape = height / width  < 1.3 ? true: false;
 
-     
 
     
         if(!isLandscape){
@@ -403,9 +397,9 @@ class Game extends Phaser.Scene {
             this.logo.x = width*0.5
             this.logo.y = height*0.45
 
-            this.textIntro.setWordWrapWidth(1000)
+            this.textIntro.setWordWrapWidth(600)
             this.scaleSprite(this.textIntro, width, height, 0.8)
-            //this.textIntro.setScale(0.35)
+            //this.textIntro.setScale(1)
             this.textIntro.x = width*0.5
             this.textIntro.y = height*0.7
 
