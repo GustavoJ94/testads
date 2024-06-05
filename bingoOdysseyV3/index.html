@@ -374,7 +374,7 @@ class Game extends Phaser.Scene {
         this.input.on('pointerdown', this.onClickDownload, this)
     }
 
-    
+
 
     resize (gameSize, baseSize, displaySize, resolution){
         const width = gameSize.width;
@@ -383,6 +383,9 @@ class Game extends Phaser.Scene {
 
         const widthDPR = Math.round(window.innerWidth * window.devicePixelRatio);
         const heightDPR = Math.round(window.innerHeight * window.devicePixelRatio);
+
+        this.scale.displaySize.setAspectRatio( width/height );
+        //this.scale.refresh();
         
         //this.scene.scale.setParentSize(window.innerWidth, window.innerHeight);
         //this.scene.scale.parent.width = Math.round(window.innerWidth);
@@ -410,7 +413,8 @@ class Game extends Phaser.Scene {
             this.logo.y = height*0.45
 
             this.textIntro.setWordWrapWidth(1000)
-            this.scaleSprite(this.textIntro, width, height, 0.8)
+            //this.scaleSprite(this.textIntro, width, height, 0.8)
+            this.textIntro.setScale(0.35)
             this.textIntro.x = width*0.5
             this.textIntro.y = height*0.7
 
@@ -572,10 +576,10 @@ let config = {
     scene: Game,
     scale: {
        parent: 'game',
-       mode: Phaser.Scale.FIT,
+       mode: Phaser.Scale.RESIZE,
        autoCenter: Phaser.Scale.CENTER_BOTH,
-       width: window.innerWidth* window.devicePixelRatio,
-       height: window.innerHeight* window.devicePixelRatio,
+       width: window.innerWidth,
+       height: window.innerHeight,
        autoRound: true,
        antialias: true,
     }
