@@ -130,7 +130,7 @@ class Game extends Phaser.Scene {
             }
             else {
                 this.scale.startFullscreen();
-                this.scale.scaleMode = Phaser.Scale.ScaleModes.HEIGHT_CONTROLS_WIDTH;
+                this.scale.refresh();
             }
         }, this)
 
@@ -384,7 +384,6 @@ class Game extends Phaser.Scene {
         const widthDPR = Math.round(window.innerWidth * window.devicePixelRatio);
         const heightDPR = Math.round(window.innerHeight * window.devicePixelRatio);
 
-        this.scale.displaySize.setAspectRatio( width/height );
         //this.scale.refresh();
         
         //this.scene.scale.setParentSize(window.innerWidth, window.innerHeight);
