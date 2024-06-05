@@ -109,7 +109,7 @@ class Game extends Phaser.Scene {
             ratio = 1 / Math.max(widthRatio, heightRatio);
         }
         //log(Math.round((ratio * currentDevicePixelRatio) * 10) / 10)
-        return Math.round((ratio * currentDevicePixelRatio) * 10) / 10;
+        return Math.round(ratio * currentDevicePixelRatio);
     }
 
     create() {
@@ -566,7 +566,6 @@ let config = {
        width: window.innerWidth,
        height: window.innerHeight,
        autoRound: true,
-       antialias: true,
     }
 }
 new Phaser.Game(config)
