@@ -62,7 +62,7 @@ class Game extends Phaser.Scene {
 
     preload() {
         this.style1 = { font: ' 32px Marvin', fill: "#ffffff",stroke: '#ffffff',strokeThickness:4, align:'center'};
-        this.style2 = { font: ' 72px Marvin', fill: "#ffffff",stroke: '#ffffff',strokeThickness:4, align:'left'};
+        this.style2 = { font: ' 32px Marvin', fill: "#ffffff",stroke: '#ffffff',strokeThickness:4, align:'left'};
         this.style3 = { font: ' 72px Marvin', fill: "#ffffff",stroke: '#ffffff',strokeThickness:4, align:'center'};
         this.style4 = { font: ' 72px Marvin', fill: "#323232",stroke: '#323232',strokeThickness:2, align:'center'};
 
@@ -109,7 +109,7 @@ class Game extends Phaser.Scene {
             ratio = 1 / Math.max(widthRatio, heightRatio);
         }
         //log(Math.round((ratio * currentDevicePixelRatio) * 10) / 10)
-        return Math.round(ratio * currentDevicePixelRatio);
+        return Math.round((ratio * currentDevicePixelRatio) * 10) / 10;
     }
 
     create() {
@@ -422,7 +422,7 @@ class Game extends Phaser.Scene {
             this.bingoWindow.y = (this.bingoLetters.y-this.bingoLetters.displayHeight*0.5) + (this.bingoWindow.height*0.35)
 
             this.textGame.setWordWrapWidth(null)
-            this.scaleSprite(this.textGame, width, height, 0.95)
+            this.scaleSprite(this.textGame, width, height, 0.85)
             this.textGame.x = width*0.5
             this.textGame.y = height*0.25
 
