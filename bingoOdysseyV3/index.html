@@ -102,12 +102,7 @@ class Game extends Phaser.Scene {
         var ratio = 1;
         var currentDevicePixelRatio = window.devicePixelRatio;
 
-        // Sprite needs to fit in either width or height
-        var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 ) / availableSpaceWidth;
-        var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 ) / availableSpaceHeight;
-        if(widthRatio > 1 || heightRatio > 1){
-            ratio = 1 / Math.max(widthRatio, heightRatio);
-        }
+      
         //log(Math.round((ratio * currentDevicePixelRatio) * 10) / 10)
         return Math.round((ratio * currentDevicePixelRatio) * 10) / 10;
     }
