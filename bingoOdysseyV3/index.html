@@ -130,7 +130,7 @@ class Game extends Phaser.Scene {
             }
             else {
                 this.scale.startFullscreen();
-                //this.cameraUpdate()
+                this.scale.scaleMode = Phaser.Scale.ScaleModes.HEIGHT_CONTROLS_WIDTH;
             }
         }, this)
 
