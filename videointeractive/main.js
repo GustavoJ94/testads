@@ -98,6 +98,7 @@ class Game extends Phaser.Scene {
         if(this.mainVideo.getCurrentTime() > 0.9 && !this.interaction1){
             log(1)
             this.interaction1 = true
+            this.hand.setPosition(window.innerWidth*0.8,window.innerHeight*0.9)
             this.hand.setAlpha(1)
             this.handTween.paused = false
             this.hand.once('pointerdown', this.firstEvent, this);
@@ -105,6 +106,7 @@ class Game extends Phaser.Scene {
         else if(this.mainVideo.getCurrentTime() > 3.9 && !this.interaction2){
             log(2)
             this.interaction2 = true
+            this.hand.setPosition(window.innerWidth*0.8,window.innerHeight*0.9)
             this.hand.setAlpha(1)
             this.handTween.paused = false
             this.hand.once('pointerdown', this.firstEvent2, this);
@@ -112,6 +114,7 @@ class Game extends Phaser.Scene {
         else if(this.mainVideo.getCurrentTime() > 5.8 && !this.interaction3){
             log(3)
             this.interaction3 = true
+            this.hand.setPosition(window.innerWidth*0.8,window.innerHeight*0.9)
             this.hand.setAlpha(1)
             this.handTween.paused = false
             this.hand.once('pointerdown', this.firstEvent3, this);
@@ -119,6 +122,7 @@ class Game extends Phaser.Scene {
         else if(this.mainVideo.getCurrentTime() > 8.5 && !this.interaction4){
             log(4)
             this.interaction4 = true
+            this.hand.setPosition(window.innerWidth*0.8,window.innerHeight*0.9)
             this.hand.setAlpha(1)
             this.handTween.paused = false
             this.hand.once('pointerdown', this.firstEvent4, this);
@@ -200,6 +204,8 @@ class Game extends Phaser.Scene {
             log(width,height)
             this.mainVideo.x = width*0.5
             this.mainVideo.y = height*0.5
+
+            this.hand.setPosition(window.innerWidth*0.8,window.innerHeight*0.9)
            
            
         }
@@ -211,6 +217,8 @@ class Game extends Phaser.Scene {
             //this.mainVideo.setDisplaySize(width*0.2, height*0.2)
             this.mainVideo.x = width*0.5
             this.mainVideo.y = height*0.5
+
+            this.hand.setPosition(window.innerWidth*0.65,window.innerHeight*0.9)
         }
     }       
 }
