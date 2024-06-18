@@ -46,14 +46,14 @@ class Game extends Phaser.Scene {
 	   // this.setCTA()
 
 	    this.scale.on('resize', this.resize, this)
-	    this.scale.resize(window.innerWidth,window.innerHeight)
+	    //this.scale.emit('resize')
     }
 
     setGameScene(){
-        this.mainVideo = this.add.video();
+        this.mainVideo = this.add.video(window.innerWidth*0.5,window.innerHeight*0.5);
         this.mainVideo.loadURL('assets/tennis.mp4', true);
 
-
+        this.scaleSprite(this.mainVideo,window.innerWidth/2,window.innerHeight/2, 0.5)
         this.mark1 = this.mainVideo.addMarker('init',0,1)
         this.mark2 = this.mainVideo.addMarker('play1',1,4)
         this.mark3 = this.mainVideo.addMarker('play2',4,5.8)
@@ -188,7 +188,10 @@ class Game extends Phaser.Scene {
         //this.scaleSprite(this.logo,window.innerWidth,window.innerHeight/3, 0.5)
         //GAME
         if(!isLandscape){
-            this.scaleSprite(this.mainVideo,window.innerWidth/2,window.innerHeight/2, 0.5)
+            //this.scaleSprite(this.mainVideo,window.innerWidth/2,window.innerHeight/2, 0.5)
+            this.mainVideo.displayWidth = width
+            this.mainVideo.displayHeight = height
+            //this.scaleSprite(this.mainVideo,window.innerWidth/2,window.innerHeight/2, 0.5)
             //this.logo.setScale(0.5)
            // this.logo.x = width*0.5
            // this.logo.y = height*0.15
@@ -201,6 +204,9 @@ class Game extends Phaser.Scene {
            
         }
         else{
+            this.mainVideo.displayWidth = width*0.5
+            this.mainVideo.displayHeight = height
+            //this.scaleSprite(this.mainVideo,window.innerWidth/2,window.innerHeight, 1)
             //this.mainVideo.setSize(width, height)
             //this.mainVideo.setDisplaySize(width*0.2, height*0.2)
             this.mainVideo.x = width*0.5
