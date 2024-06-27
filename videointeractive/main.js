@@ -248,7 +248,8 @@ let config = {
        antialias: true
     },
     fps: {
-        target: 30,
+        target: 60,
+        minFps: 30
     },
 }
 new Phaser.Game(config)
