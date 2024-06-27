@@ -1,4 +1,5 @@
 let log = console.log
+let musicBg,playingOnHide
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -18,7 +19,7 @@ class Game extends Phaser.Scene {
         this.load.image('logo', 'assets/logo.png');
         this.load.audio('music', 'assets/sport.mp3');
 
-        this.musicBg = new Howl({src: ['assets/sport.mp3'], loop: true,volume: 0.3,});
+        musicBg = new Howl({src: ['assets/sport.mp3'], loop: true,volume: 0.1,});
         //this.load.atlas('atlas', atlas, atlasJSON);
     }
 
@@ -56,7 +57,7 @@ class Game extends Phaser.Scene {
 
     setGameScene(){
         //this.musicBg = this.sound.add('music');
-        this.musicBg.play()
+        musicBg.play()
 
         this.mainVideo = this.add.video(window.innerWidth*0.5,window.innerHeight*0.5);
         this.mainVideo.loadURL('assets/tennis.mp4', true);
@@ -237,6 +238,18 @@ class Game extends Phaser.Scene {
         }
     }       
 }
+
+document.addEventListener('visibilitychange',() => {
+   if (document.hidden) {
+    playingOnHide = !musicBg.muted;
+    musicBg.pause();
+  } else {
+    // Resume playing if audio was "playing on hide"
+    if (playingOnHide) {
+      musicBg.play();
+    }
+  }
+});
 
 let config = {
     type: Phaser.WEBGL,
