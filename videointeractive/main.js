@@ -17,6 +17,8 @@ class Game extends Phaser.Scene {
         this.load.image('ctabtn', 'assets/ctabtn.png');
         this.load.image('logo', 'assets/logo.png');
         this.load.audio('music', 'assets/sport.mp3');
+
+        this.musicBg = new Howl({src: ['assets/sport.mp3'], loop: true,volume: 0.3,});
         //this.load.atlas('atlas', atlas, atlasJSON);
     }
 
@@ -53,8 +55,8 @@ class Game extends Phaser.Scene {
     }
 
     setGameScene(){
-        this.musicBg = this.sound.add('music');
-        this.musicBg.play({loop:true, volume:0.3})
+        //this.musicBg = this.sound.add('music');
+        this.musicBg.play()
 
         this.mainVideo = this.add.video(window.innerWidth*0.5,window.innerHeight*0.5);
         this.mainVideo.loadURL('assets/tennis.mp4', true);
