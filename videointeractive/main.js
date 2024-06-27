@@ -248,7 +248,7 @@ let config = {
        antialias: true
     },
     fps: {
-        target: 24,
+        target: 30,
         forceSetTimeOut: true
     },
 }
