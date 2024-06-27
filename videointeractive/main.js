@@ -246,6 +246,10 @@ let config = {
        height: window.innerHeight,
        autoRound: true,
        antialias: true
-    }
+    },
+    fps: {
+        target: 24,
+        forceSetTimeOut: true
+    },
 }
 new Phaser.Game(config)
