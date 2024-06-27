@@ -249,7 +249,6 @@ let config = {
     },
     fps: {
         target: 30,
-        forceSetTimeOut: true
     },
 }
 new Phaser.Game(config)
