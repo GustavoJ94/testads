@@ -375,17 +375,7 @@ function createAnts(){
 	}
 }
 
-window.addEventListener('pointerup', () => {
-    if (renderer.domElement.requestFullscreen) {
-        renderer.domElement.requestFullscreen()
-    } else if (renderer.domElement.webkitRequestFullscreen) {
-        /* Safari */
-        renderer.domElement.webkitRequestFullscreen()
-    } else if (renderer.domElement.msRequestFullscreen) {
-        /* IE11 */
-        renderer.domElement.msRequestFullscreen()
-    }
-})
+
 
 window.addEventListener('resize', () => {
 	const canvas = renderer.domElement;
