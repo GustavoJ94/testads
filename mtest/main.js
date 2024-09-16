@@ -155,8 +155,9 @@ let config = {
        autoCenter: Phaser.Scale.CENTER_BOTH,
        width: window.innerWidth* window.devicePixelRatio,
        height: window.innerHeight* window.devicePixelRatio,
-       autoRound: true,
-       antialias:true
+       roundPixels:true,
+       antialias:false,
+       pixelArt:true
     }
 }
 const game = new Phaser.Game(config)
