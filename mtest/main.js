@@ -116,7 +116,7 @@ class Game extends Phaser.Scene {
             this.logo.setDisplaySize(width*0.7,height*0.2)
             
             this.text_inicio.setTexture('atlas','texto_inicio.png')
-            this.text_inicio.setPosition(width*0.5, height*0.425)
+            this.text_inicio.setPosition(Math.round(width*0.5), Math.round(height*0.425))
             this.text_inicio.setDisplaySize(Math.round(width*0.65),Math.round(height*0.07))
 
 
@@ -153,7 +153,7 @@ let config = {
     scene: Game,
     scale: {
        parent:"container",
-       mode: Phaser.Scale.FIT,
+       mode: Phaser.Scale.RESIZE,
        autoCenter: Phaser.Scale.CENTER_BOTH,
        width: clientWidth,
        height: clientHeight,
