@@ -98,14 +98,12 @@ class Game extends Phaser.Scene {
     }
 
     resize (gameSize, baseSize, displaySize, resolution){
-            const canvas = this.game.canvas;
-
         const width = gameSize.width;
         const height = gameSize.height;
         var isLandscape = height / width  < 1.3 ? true: false;
-
-        //game.scene.scenes[0].scale.canvas.style.width = width + 'px';
-        //game.scene.scenes[0].scale.canvas.style.height = height + 'px';
+        var texto_inicio = document.getElementById('texto_inicio');
+        texto_inicio.style.visibility = 'visible'
+        texto_inicio.style.fontSize = '24px'
         //GAME
         //log(game.scale.width)
         if(!isLandscape){
@@ -116,6 +114,9 @@ class Game extends Phaser.Scene {
             this.logo.setPosition(width*0.5, height*0.25)
             this.logo.setDisplaySize(width*0.7,height*0.2)
             
+            texto_inicio.style.top = '37%'
+            texto_inicio.textContent ='ENTREGUE OS ENVIOS\nNO MENOR TEMPO POSSÍVEL'
+            
             //this.text_inicio.setTexture('atlas','texto_inicio.png')
             //this.text_inicio.setPosition(Math.round(width*0.5), Math.round(height*0.425))
             //this.text_inicio.setDisplaySize(Math.round(width*0.65),Math.round(height*0.07))
@@ -123,6 +124,7 @@ class Game extends Phaser.Scene {
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 this.logo.setDisplaySize(width*0.6,height*0.25)
+                texto_inicio.style.fontSize = '40px'
                // this.text_inicio.setDisplaySize(width*0.6,height*0.07)
             }
         }
@@ -134,12 +136,14 @@ class Game extends Phaser.Scene {
             this.logo.setPosition(width*0.5, height*0.25)
             this.logo.setDisplaySize(width*0.45,height*0.4)
 
+            texto_inicio.style.top = '46%'
+            texto_inicio.textContent = 'ENTREGUE OS ENVIOS NO MENOR TEMPO POSSÍVEL'
             //this.text_inicio.setTexture('atlas','texto_inicio_l.png')
             //this.text_inicio.setPosition(width*0.5, height*0.5)
             //this.text_inicio.setDisplaySize(width*0.55,height*0.05)
 
             if(this.sys.game.device.os.iOS && !this.sys.game.device.os.iPhone){
-
+                texto_inicio.style.fontSize = '40px'
             }
         }
     }
