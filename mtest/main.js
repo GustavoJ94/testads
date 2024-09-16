@@ -157,9 +157,7 @@ let config = {
        autoCenter: Phaser.Scale.CENTER_BOTH,
        width: clientWidth,
        height: clientHeight,
-       roundPixels:true,
-       antialias:false,
-       pixelArt:true
+       autoRound:true,
     },
 
 }
