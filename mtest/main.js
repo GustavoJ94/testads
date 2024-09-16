@@ -47,18 +47,6 @@ class Game extends Phaser.Scene {
         sprite.setScale(scale * scaleMultiplier);
     }
 
-    getSpriteScale (spriteWidth, spriteHeight, availableSpaceWidth, availableSpaceHeight) {
-        var ratio = 1;
-        var currentDevicePixelRatio = window.devicePixelRatio;
-        // Sprite needs to fit in either width or height
-        var widthRatio = (spriteWidth * currentDevicePixelRatio + 2 ) / availableSpaceWidth;
-        var heightRatio = (spriteHeight * currentDevicePixelRatio + 2 ) / availableSpaceHeight;
-        if(widthRatio > 1 || heightRatio > 1){
-            ratio = 1 / Math.max(widthRatio, heightRatio);
-        }
-        return ratio * currentDevicePixelRatio;
-    }
-
     create() {
         this.phase = 0
     	this.isDone = false
@@ -82,6 +70,15 @@ class Game extends Phaser.Scene {
         //this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-0.1'},duration: 350, yoyo:true,paused:true, repeat:2, callbackScope: this ,ease: 'sine.inOut'})
 
         //this.tapInput = this.input.on('pointerdown', this.checkMatch, this)
+
+          this.input.once('pointerup',  function(){
+             if (this.scale.isFullscreen) {
+                this.scale.stopFullscreen();
+            }
+            else {
+                this.scale.startFullscreen();
+            }
+        }, this)
     }
 
     setCTA(){
@@ -121,6 +118,8 @@ class Game extends Phaser.Scene {
         //game.scene.scenes[0].scale.canvas.style.width = width + 'px';
         //game.scene.scenes[0].scale.canvas.style.height = height + 'px';
         //GAME
+                    this.cameras.main.setViewport(0, 0, width*3, height);
+
         //log(game.scale.width)
         if(!isLandscape){
             this.bg.setPosition(width*0.5, height*0.5)
