@@ -62,6 +62,7 @@ class Game extends Phaser.Scene {
     setGameScene(){
        this.bg = this.add.sprite(0, 0, 'bg1P')
        this.logo = this.add.sprite(0, 0, 'atlas', 'logo_inicio.png')
+       this.text_inicio = this.add.sprite(0, 0, 'atlas', 'texto_inicio.png')
 
        // this.scene1 = this.add.group();
 
@@ -118,8 +119,6 @@ class Game extends Phaser.Scene {
         //game.scene.scenes[0].scale.canvas.style.width = width + 'px';
         //game.scene.scenes[0].scale.canvas.style.height = height + 'px';
         //GAME
-                    this.cameras.main.setViewport(0, 0, width*3, height);
-
         //log(game.scale.width)
         if(!isLandscape){
             this.bg.setPosition(width*0.5, height*0.5)
@@ -128,15 +127,15 @@ class Game extends Phaser.Scene {
 
             this.logo.setPosition(width*0.5, height*0.25)
             this.logo.setDisplaySize(width*0.7,height*0.2)
-           
-            //this.scaleSprite(this.logo,window.innerWidth,window.innerHeight/3, 0.5)
-            //this.logo.setScale(0.5)
-            //this.logo.x = width*0.5
-            //this.logo.y = height*0.15
+            
+            this.text_inicio.setTexture('atlas','texto_inicio.png')
+            this.text_inicio.setPosition(width*0.5, height*0.425)
+            this.text_inicio.setDisplaySize(width*0.65,height*0.07)
 
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 this.logo.setDisplaySize(width*0.6,height*0.25)
+                this.text_inicio.setDisplaySize(width*0.6,height*0.07)
             }
         }
         else{
@@ -146,6 +145,10 @@ class Game extends Phaser.Scene {
 
             this.logo.setPosition(width*0.5, height*0.25)
             this.logo.setDisplaySize(width*0.45,height*0.4)
+
+            this.text_inicio.setTexture('atlas','texto_inicio_l.png')
+            this.text_inicio.setPosition(width*0.5, height*0.5)
+            this.text_inicio.setDisplaySize(width*0.55,height*0.05)
 
             if(this.sys.game.device.os.iOS && !this.sys.game.device.os.iPhone){
 
