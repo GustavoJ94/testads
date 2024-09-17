@@ -84,6 +84,7 @@ class Game extends Phaser.Scene {
             }
             else {
                 this.scale.startFullscreen();
+                this.scale.resize(window.innerWidth,window.innerHeight)
             }
         }, this)
     }
@@ -157,7 +158,6 @@ class Game extends Phaser.Scene {
     }
 
     truckCollision(truck, obstacle){
-        console.log(obstacle.frame.name);
         if(obstacle.frame.name == 'box.png'){
             this.points++
             texto_score.textContent = 'x ' + this.points
