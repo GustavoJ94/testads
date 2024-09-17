@@ -123,6 +123,7 @@ class Game extends Phaser.Scene {
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 this.logo.setDisplaySize(width*0.6,height*0.25)
                 texto_inicio.style.fontSize = '40px'
+                this.play.setScale(1)
             }
         }
         else{
@@ -136,12 +137,13 @@ class Game extends Phaser.Scene {
             texto_inicio.style.top = '46%'
             texto_inicio.textContent = 'ENTREGUE OS ENVIOS NO MENOR TEMPO POSSÍVEL'
 
-            this.play.setPosition(width*0.5, height*0.61)
-            this.play.setScale(0.6)
+            this.play.setPosition(width*0.5, height*0.73)
+            this.play.setScale(0.5)
          
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 texto_inicio.style.fontSize = '45px'
+                this.play.setScale(0.8)
             }
         }
         //TWEENS
@@ -153,7 +155,7 @@ class Game extends Phaser.Scene {
  let clientHeight = Math.round(document.documentElement.clientHeight)
 
 let config = {
-    type: Phaser.WEBGL,
+    type: Phaser.CANVAS,
     scene: Game,
     scale: {
        parent:"container",
