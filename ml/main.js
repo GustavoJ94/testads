@@ -78,14 +78,14 @@ class Game extends Phaser.Scene {
 
         this.tapInput = this.input.once('pointerdown', this.startGame, this)
 
-        /*this.input.once('pointerup',  function(){
+        this.input.once('pointerup',  function(){
              if (this.scale.isFullscreen) {
                 this.scale.stopFullscreen();
             }
             else {
                 this.scale.startFullscreen();
             }
-        }, this)*/
+        }, this)
     }
 
     setGameScene(){
