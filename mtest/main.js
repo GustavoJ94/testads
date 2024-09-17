@@ -1,4 +1,5 @@
 let log = console.log
+var texto_inicio = document.getElementById('texto_inicio');
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -61,13 +62,12 @@ class Game extends Phaser.Scene {
        this.bg = this.add.sprite(0, 0, 'bg1P')
        this.logo = this.add.sprite(0, 0, 'atlas', 'logo_inicio.png')
        this.play = this.add.sprite(0, 0, 'atlas', 'play.png')
-       // this.scene1 = this.add.group();
 
         //this.hand = this.add.sprite(0, 0, 'hand').setAlpha(0)
         //this.scene1.addMultiple([this.logo,this.textGame,this.blackCar,this.car, this.hand])
         //this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-0.1'},duration: 350, yoyo:true,paused:true, repeat:2, callbackScope: this ,ease: 'sine.inOut'})
 
-        //this.tapInput = this.input.on('pointerdown', this.checkMatch, this)
+        this.tapInput = this.input.once('pointerdown', this.startCTA, this)
 
         this.input.once('pointerup',  function(){
              if (this.scale.isFullscreen) {
@@ -75,53 +75,67 @@ class Game extends Phaser.Scene {
             }
             else {
                 this.scale.startFullscreen();
+                this.scale.resize(window.innerWidth,window.innerHeight)
             }
         }, this)
     }
 
     setCTA(){
-         
+        this.bgCTA = this.add.sprite(0, 0, 'bg3P').setAlpha(0)
+        this.logoCTA = this.add.sprite(0, 0, 'atlas', 'logo_final.png').setAlpha(0)
+
     }
   
     startCTA(){
         this.phase = 3
+        texto_inicio.style.visibility = 'hidden'
     	//this.cameras.main.fadeOut(300, 255, 220, 4)
     	
-    	this.cameras.main.on('camerafadeoutcomplete', function () {
+    	/*this.cameras.main.on('camerafadeoutcomplete', function () {
             this.cameras.main.fadeIn(0, 255, 220, 4)
             this.cameras.main.setBackgroundColor(0xFFDC04)
-        }, this);
+        }, this);*/
 
-        //this.input.on('pointerdown', this.onClickDownload)
+        this.input.on('pointerdown', this.onClickDownload)
     }
 
     resize (gameSize, baseSize, displaySize, resolution){
         const width = gameSize.width;
         const height = gameSize.height;
         var isLandscape = height / width  < 1.3 ? true: false;
-        var texto_inicio = document.getElementById('texto_inicio');
-        texto_inicio.style.visibility = 'visible'
-        texto_inicio.style.fontSize = '24px'
-        //GAME
-        //log(game.scale.width)
+
+        if(this.phase!=3){
+            texto_inicio.style.visibility = 'visible'
+            texto_inicio.style.fontSize = '24px'
+        }
+
         if(!isLandscape){
+            //INTRO
             this.bg.setPosition(width*0.5, height*0.5)
             this.bg.setTexture('bg1P')
             this.bg.setDisplaySize(width,height)
 
             this.logo.setPosition(width*0.5, height*0.25)
-            this.logo.setDisplaySize(width*0.7,height*0.2)
+            this.logo.setScale(0.5)
 
             this.play.setPosition(width*0.5, height*0.61)
-            //this.play.setDisplaySize(width*0.17,height*0.1)
             this.play.setScale(0.6)
 
             texto_inicio.style.top = '37%'
             texto_inicio.textContent ='ENTREGUE OS ENVIOS\nNO MENOR TEMPO POSSÍVEL'
+
+
+            //CTA
+            this.bgCTA.setPosition(width*0.5, height*0.5)
+            this.bgCTA.setTexture('bg3P')
+            this.bgCTA.setDisplaySize(width,height)
+
+            this.logoCTA.setPosition(width*0.5, height*0.25)
+            this.logoCTA.setScale(0.6)
             
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
-                this.logo.setDisplaySize(width*0.6,height*0.25)
+                this.logo.setScale(0.8)
                 texto_inicio.style.fontSize = '40px'
                 this.play.setScale(1)
             }
@@ -132,16 +146,25 @@ class Game extends Phaser.Scene {
             this.bg.setDisplaySize(width,height)
 
             this.logo.setPosition(width*0.5, height*0.25)
-            this.logo.setDisplaySize(width*0.45,height*0.4)
+            this.logo.setScale(0.5)
 
             texto_inicio.style.top = '46%'
             texto_inicio.textContent = 'ENTREGUE OS ENVIOS NO MENOR TEMPO POSSÍVEL'
 
             this.play.setPosition(width*0.5, height*0.73)
             this.play.setScale(0.5)
+
+            //CTA
+            this.bgCTA.setPosition(width*0.5, height*0.5)
+            this.bgCTA.setTexture('bg3L')
+            this.bgCTA.setDisplaySize(width,height)
+
+            this.logoCTA.setPosition(width*0.5, height*0.1)
+            this.logoCTA.setScale(0.5)
          
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
+                this.logo.setScale(0.7)
                 texto_inicio.style.fontSize = '45px'
                 this.play.setScale(0.8)
             }
