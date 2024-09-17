@@ -295,7 +295,7 @@ class Game extends Phaser.Scene {
             this.truckGame.setScale(0.5)
 
             this.houses.setPosition(width*0.5, height*0.725)
-            this.houses.setSize(width*window.devicePixelRatio,171)
+            this.houses.setSize(width*4,171)
             this.houses.setScale(0.5)
 
             this.timerIcon.setPosition(width*0.08, height*0.25)
@@ -386,7 +386,7 @@ class Game extends Phaser.Scene {
             this.truckGame.setScale(0.5)
 
             this.houses.setPosition(width*0.5, height*0.85)
-            this.houses.setSize(width*window.devicePixelRatio,171)
+            this.houses.setSize(width*3,171)
             this.houses.setScale(0.55)
 
             this.timerIcon.setPosition(width*0.08, height*0.1)
