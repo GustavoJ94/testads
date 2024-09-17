@@ -81,8 +81,8 @@ class Game extends Phaser.Scene {
     }
 
     setCTA(){
-        this.bgCTA = this.add.sprite(0, 0, 'bg3P').setAlpha(0)
-        this.logoCTA = this.add.sprite(0, 0, 'atlas', 'logo_final.png').setAlpha(0)
+        this.bgCTA = this.add.sprite(0, 0, 'bg3P')
+        this.logoCTA = this.add.sprite(0, 0, 'atlas', 'logo_final.png')
 
     }
   
