@@ -42,7 +42,7 @@ class Game extends Phaser.Scene {
 
     pulse(sprite) {
         log(sprite.scale)
-        this.tweens.add({targets: sprite, scale: sprite.scale+0.1,duration: 800, yoyo:true,paused:false, repeat:-1, callbackScope: this })
+        this.tweens.add({targets: sprite, scale: {value: sprite.scaleX+0.1},duration: 800, yoyo:true, repeat:-1, ease: 'sine.inOut'})
     }
 
     create() {
@@ -61,7 +61,6 @@ class Game extends Phaser.Scene {
        this.bg = this.add.sprite(0, 0, 'bg1P')
        this.logo = this.add.sprite(0, 0, 'atlas', 'logo_inicio.png')
        this.play = this.add.sprite(0, 0, 'atlas', 'play.png')
-       log(this.play)
        // this.scene1 = this.add.group();
 
         //this.hand = this.add.sprite(0, 0, 'hand').setAlpha(0)
