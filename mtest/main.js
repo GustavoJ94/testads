@@ -1,9 +1,4 @@
 let log = console.log
-const Rectangle = Phaser.Geom.Rectangle;
-const RectangleToRectangle = Phaser.Geom.Intersects.RectangleToRectangle;
-const GetBounds = Phaser.Display.Bounds.GetBounds;
-const rect1 = new Rectangle();
-const rect2 = new Rectangle();
 
 class Game extends Phaser.Scene {
     constructor() {
@@ -36,14 +31,18 @@ class Game extends Phaser.Scene {
         this.load.atlas('atlas', atlas, atlasJSON);
     }
 
-    scaleSpriteTween (sprite, availableSpaceWidth, availableSpaceHeight, scaleMultiplier) {
+    scaleSpriteTween(sprite, availableSpaceWidth, availableSpaceHeight, scaleMultiplier) {
         var scale = this.getSpriteScale(sprite.width, sprite.height, availableSpaceWidth, availableSpaceHeight);
         this.tweens.chain({targets: sprite, tweens:[{scale: {value:scale * (scaleMultiplier+0.2)}, duration: 400,  ease: 'sine.in'}, {scale: {value:scale * scaleMultiplier}, duration: 250,  ease: 'sine.out'}]}); 
     }
 
-    scaleSprite (sprite, availableSpaceWidth, availableSpaceHeight, scaleMultiplier) {
-        var scale = this.getSpriteScale(sprite.width, sprite.height, availableSpaceWidth, availableSpaceHeight);
-        sprite.setScale(scale * scaleMultiplier);
+    popup(sprite) {
+        game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.1, y:(scale * scaleMultiplier)+0.1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, 250, Phaser.Easing.Sinusoidal.Out).start(); 
+    }
+
+    pulse(sprite) {
+        log(sprite.scale)
+        this.tweens.add({targets: sprite, scale: sprite.scale+0.1,duration: 800, yoyo:true,paused:false, repeat:-1, callbackScope: this })
     }
 
     create() {
@@ -61,8 +60,8 @@ class Game extends Phaser.Scene {
     setGameScene(){
        this.bg = this.add.sprite(0, 0, 'bg1P')
        this.logo = this.add.sprite(0, 0, 'atlas', 'logo_inicio.png')
-       //this.text_inicio = this.add.sprite(0, 0, 'atlas', 'texto_inicio.png')
-
+       this.play = this.add.sprite(0, 0, 'atlas', 'play.png')
+       log(this.play)
        // this.scene1 = this.add.group();
 
         //this.hand = this.add.sprite(0, 0, 'hand').setAlpha(0)
@@ -71,7 +70,7 @@ class Game extends Phaser.Scene {
 
         //this.tapInput = this.input.on('pointerdown', this.checkMatch, this)
 
-          this.input.once('pointerup',  function(){
+        this.input.once('pointerup',  function(){
              if (this.scale.isFullscreen) {
                 this.scale.stopFullscreen();
             }
@@ -113,19 +112,18 @@ class Game extends Phaser.Scene {
 
             this.logo.setPosition(width*0.5, height*0.25)
             this.logo.setDisplaySize(width*0.7,height*0.2)
-            
+
+            this.play.setPosition(width*0.5, height*0.61)
+            //this.play.setDisplaySize(width*0.17,height*0.1)
+            this.play.setScale(0.6)
+
             texto_inicio.style.top = '37%'
             texto_inicio.textContent ='ENTREGUE OS ENVIOS\nNO MENOR TEMPO POSSÍVEL'
             
-            //this.text_inicio.setTexture('atlas','texto_inicio.png')
-            //this.text_inicio.setPosition(Math.round(width*0.5), Math.round(height*0.425))
-            //this.text_inicio.setDisplaySize(Math.round(width*0.65),Math.round(height*0.07))
-
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 this.logo.setDisplaySize(width*0.6,height*0.25)
                 texto_inicio.style.fontSize = '40px'
-               // this.text_inicio.setDisplaySize(width*0.6,height*0.07)
             }
         }
         else{
@@ -138,20 +136,22 @@ class Game extends Phaser.Scene {
 
             texto_inicio.style.top = '46%'
             texto_inicio.textContent = 'ENTREGUE OS ENVIOS NO MENOR TEMPO POSSÍVEL'
-            //this.text_inicio.setTexture('atlas','texto_inicio_l.png')
-            //this.text_inicio.setPosition(width*0.5, height*0.5)
-            //this.text_inicio.setDisplaySize(width*0.55,height*0.05)
+
+            this.play.setPosition(width*0.5, height*0.61)
+            this.play.setScale(0.6)
+         
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 texto_inicio.style.fontSize = '45px'
             }
         }
+        //TWEENS
+        this.pulse(this.play)
     }
 }
 
- let clientWidth = document.documentElement.clientWidth
- let clientHeight = document.documentElement.clientHeight
-
+ let clientWidth = Math.round(document.documentElement.clientWidth)
+ let clientHeight = Math.round(document.documentElement.clientHeight)
 
 let config = {
     type: Phaser.WEBGL,
