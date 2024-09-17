@@ -59,7 +59,6 @@ class Game extends Phaser.Scene {
     }
 
     setGameScene(){
-       this.scale.fullscreenTarget = document.getElementById('container');
        this.bg = this.add.sprite(0, 0, 'bg1P')
        this.logo = this.add.sprite(0, 0, 'atlas', 'logo_inicio.png')
        //this.text_inicio = this.add.sprite(0, 0, 'atlas', 'texto_inicio.png')
@@ -159,6 +158,7 @@ let config = {
     scene: Game,
     scale: {
        parent:"container",
+       fullscreenTarget:"container",
        mode: Phaser.Scale.RESIZE,
        autoCenter: Phaser.Scale.CENTER_BOTH,
        width: clientWidth,
