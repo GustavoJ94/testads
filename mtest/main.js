@@ -37,12 +37,15 @@ class Game extends Phaser.Scene {
         this.tweens.chain({targets: sprite, tweens:[{scale: {value:scale * (scaleMultiplier+0.2)}, duration: 400,  ease: 'sine.in'}, {scale: {value:scale * scaleMultiplier}, duration: 250,  ease: 'sine.out'}]}); 
     }
 
+    moveTo(sprite,_x,_y){
+        this.tweens.add({targets: sprite, x:_x, y:_y, duration: 600, ease: 'Sine.InOut'});
+    }
+
     popup(sprite) {
-        game.add.tween(sprite.scale).to({ x: (scale * scaleMultiplier)+0.1, y:(scale * scaleMultiplier)+0.1}, 400, Phaser.Easing.Sinusoidal.In).to({ x: scale * scaleMultiplier, y: scale * scaleMultiplier}, 250, Phaser.Easing.Sinusoidal.Out).start(); 
+        this.tweens.add({targets: sprite, scale: {value: sprite.scaleX+0.1}, duration: 400, yoyo:true, ease: 'Sine.In'});
     }
 
     pulse(sprite) {
-        log(sprite.scale)
         this.tweens.add({targets: sprite, scale: {value: sprite.scaleX+0.1},duration: 800, yoyo:true, repeat:-1, ease: 'sine.inOut'})
     }
 
@@ -51,23 +54,21 @@ class Game extends Phaser.Scene {
     	this.isDone = false
 	  	this.cameras.main.setBackgroundColor(0xffffff)
 
-	    this.setGameScene()
+	    this.setIntroScene()
+        this.setGameScene()
 	    this.setCTA()
 
 	    this.scale.on('resize', this.resize, this)
 	    this.scale.resize(window.innerWidth,window.innerHeight)
     }
 
-    setGameScene(){
+    setIntroScene(){
        this.bg = this.add.sprite(0, 0, 'bg1P')
        this.logo = this.add.sprite(0, 0, 'atlas', 'logo_inicio.png')
        this.play = this.add.sprite(0, 0, 'atlas', 'play.png')
+       //this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-0.1'},duration: 350, yoyo:true,paused:true, repeat:2, callbackScope: this ,ease: 'sine.inOut'})
 
-        //this.hand = this.add.sprite(0, 0, 'hand').setAlpha(0)
-        //this.scene1.addMultiple([this.logo,this.textGame,this.blackCar,this.car, this.hand])
-        //this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-0.1'},duration: 350, yoyo:true,paused:true, repeat:2, callbackScope: this ,ease: 'sine.inOut'})
-
-        this.tapInput = this.input.once('pointerdown', this.startCTA, this)
+        this.tapInput = this.input.once('pointerdown', this.startGame, this)
 
         this.input.once('pointerup',  function(){
              if (this.scale.isFullscreen) {
@@ -75,20 +76,37 @@ class Game extends Phaser.Scene {
             }
             else {
                 this.scale.startFullscreen();
-                this.scale.resize(window.innerWidth,window.innerHeight)
             }
         }, this)
     }
 
-    setCTA(){
-        this.bgCTA = this.add.sprite(0, 0, 'bg3P')
-        this.logoCTA = this.add.sprite(0, 0, 'atlas', 'logo_final.png')
+    setGameScene(){
+       this.bgGame = this.add.sprite(0, 0, 'bg2P').setAlpha(0)
 
+    }
+
+    startGame(){
+        this.phase = 1
+        this.bgGame.setAlpha(1)
+        texto_inicio.style.visibility = 'hidden'
+
+        this.cameras.main.fadeIn(500, 255, 220, 4)
+        
+        this.cameras.main.on('camerafadeoutcomplete', function () {
+            this.cameras.main.fadeOut(300, 255, 220, 4)
+        }, this);
+    }
+
+    setCTA(){
+        this.bgCTA = this.add.sprite(0, 0, 'bg3P').setAlpha(0)
+        this.logoCTA = this.add.sprite(0, 0, 'atlas', 'logo_final.png').setAlpha(0)
+        this.starsCTA = this.add.sprite(0, 0, 'atlas', 'cta_stars.png').setAlpha(0)
+        this.couponCTA = this.add.sprite(0, 0, 'atlas', 'cta_cupon.png').setAlpha(0)
+        this.btnCTA = this.add.sprite(0, 0, 'atlas', 'cta_boton.png').setAlpha(0)
     }
   
     startCTA(){
         this.phase = 3
-        texto_inicio.style.visibility = 'hidden'
     	//this.cameras.main.fadeOut(300, 255, 220, 4)
     	
     	/*this.cameras.main.on('camerafadeoutcomplete', function () {
@@ -104,7 +122,7 @@ class Game extends Phaser.Scene {
         const height = gameSize.height;
         var isLandscape = height / width  < 1.3 ? true: false;
 
-        if(this.phase!=3){
+        if(this.phase<=0){
             texto_inicio.style.visibility = 'visible'
             texto_inicio.style.fontSize = '24px'
         }
@@ -115,7 +133,7 @@ class Game extends Phaser.Scene {
             this.bg.setTexture('bg1P')
             this.bg.setDisplaySize(width,height)
 
-            this.logo.setPosition(width*0.5, height*0.25)
+            this.logo.setPosition(width*0.5, height*-1)
             this.logo.setScale(0.5)
 
             this.play.setPosition(width*0.5, height*0.61)
@@ -123,6 +141,11 @@ class Game extends Phaser.Scene {
 
             texto_inicio.style.top = '37%'
             texto_inicio.textContent ='ENTREGUE OS ENVIOS\nNO MENOR TEMPO POSSÍVEL'
+
+            //GAME
+            this.bgGame.setPosition(width*0.5, height*0.5)
+            this.bgGame.setTexture('bg2P')
+            this.bgGame.setDisplaySize(width,height)
 
 
             //CTA
@@ -132,20 +155,36 @@ class Game extends Phaser.Scene {
 
             this.logoCTA.setPosition(width*0.5, height*0.25)
             this.logoCTA.setScale(0.6)
+
+            this.starsCTA.setPosition(width*0.5, height*0.37)
+            this.starsCTA.setScale(0.5)
+
+            this.couponCTA.setPosition(width*0.5, height*0.5)
+            this.couponCTA.setScale(0.5)
+
+            this.btnCTA.setPosition(width*0.5, height*0.6)
+            this.btnCTA.setScale(0.5)
             
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 this.logo.setScale(0.8)
                 texto_inicio.style.fontSize = '40px'
                 this.play.setScale(1)
+                this.logoCTA.setScale(1)
+                this.starsCTA.setScale(1)
+                this.couponCTA.setPosition(width*0.5, height*0.53)
+                this.couponCTA.setScale(1)
+                this.btnCTA.setPosition(width*0.5, height*0.65)
+                this.btnCTA.setScale(1)
             }
         }
         else{
+            //INTRO
             this.bg.setPosition(width*0.5, height*0.5)
             this.bg.setTexture('bg1L')
             this.bg.setDisplaySize(width,height)
 
-            this.logo.setPosition(width*0.5, height*0.25)
+            this.logo.setPosition(width*0.5, height*-1)
             this.logo.setScale(0.5)
 
             texto_inicio.style.top = '46%'
@@ -154,6 +193,11 @@ class Game extends Phaser.Scene {
             this.play.setPosition(width*0.5, height*0.73)
             this.play.setScale(0.5)
 
+            //GAME
+            this.bgGame.setPosition(width*0.5, height*0.5)
+            this.bgGame.setTexture('bg2L')
+            this.bgGame.setDisplaySize(width,height)
+
             //CTA
             this.bgCTA.setPosition(width*0.5, height*0.5)
             this.bgCTA.setTexture('bg3L')
@@ -161,16 +205,31 @@ class Game extends Phaser.Scene {
 
             this.logoCTA.setPosition(width*0.5, height*0.1)
             this.logoCTA.setScale(0.5)
+
+            this.starsCTA.setPosition(width*0.5, height*0.3)
+            this.starsCTA.setScale(0.55)
+
+            this.couponCTA.setPosition(width*0.5, height*0.525)
+            this.couponCTA.setScale(0.55)
+
+            this.btnCTA.setPosition(width*0.5, height*0.7)
+            this.btnCTA.setScale(0.5)
          
 
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 this.logo.setScale(0.7)
                 texto_inicio.style.fontSize = '45px'
                 this.play.setScale(0.8)
+                this.logoCTA.setScale(1)
+                this.starsCTA.setScale(1)
+                this.couponCTA.setScale(1)
+                this.btnCTA.setPosition(width*0.5, height*0.68)
+                this.btnCTA.setScale(1)
             }
         }
         //TWEENS
         this.pulse(this.play)
+        this.moveTo(this.logo,this.logo.x, height*0.25)
     }
 }
 
