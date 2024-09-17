@@ -63,7 +63,7 @@ class Game extends Phaser.Scene {
     }
 
     setIntroScene(){
-       this.bg = this.add.sprite(0, 0, 'bg1P')
+       this.bg = this.add.tileSprite(0, 0,window.innerWidth,window.innerHeight, 'bg1P')
        this.logo = this.add.sprite(0, 0, 'atlas', 'logo_inicio.png')
        this.play = this.add.sprite(0, 0, 'atlas', 'play.png')
        //this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-0.1'},duration: 350, yoyo:true,paused:true, repeat:2, callbackScope: this ,ease: 'sine.inOut'})
@@ -117,6 +117,12 @@ class Game extends Phaser.Scene {
         this.input.on('pointerdown', this.onClickDownload)
     }
 
+     update ()
+    {   
+        if(this.phase==0)
+            this.bg.tilePositionX -= 1;
+    }
+
     resize (gameSize, baseSize, displaySize, resolution){
         const width = gameSize.width;
         const height = gameSize.height;
@@ -131,6 +137,7 @@ class Game extends Phaser.Scene {
             //INTRO
             this.bg.setPosition(width*0.5, height*0.5)
             this.bg.setTexture('bg1P')
+            this.bg.setSize(720,1280)
             this.bg.setDisplaySize(width,height)
 
             this.logo.setPosition(width*0.5, height*-1)
@@ -146,7 +153,6 @@ class Game extends Phaser.Scene {
             this.bgGame.setPosition(width*0.5, height*0.5)
             this.bgGame.setTexture('bg2P')
             this.bgGame.setDisplaySize(width,height)
-
 
             //CTA
             this.bgCTA.setPosition(width*0.5, height*0.5)
@@ -182,6 +188,7 @@ class Game extends Phaser.Scene {
             //INTRO
             this.bg.setPosition(width*0.5, height*0.5)
             this.bg.setTexture('bg1L')
+            this.bg.setSize(1280,720)
             this.bg.setDisplaySize(width,height)
 
             this.logo.setPosition(width*0.5, height*-1)
