@@ -46,7 +46,7 @@ class Game extends Phaser.Scene {
     }
 
     pulse(sprite) {
-        this.tweens.add({targets: sprite, scale: {value: sprite.scaleX+0.1},duration: 800, yoyo:true, repeat:-1, ease: 'sine.inOut'})
+        this.tweens.add({targets: sprite, scale: {value: sprite.scaleX+0.05},duration: 500, yoyo:true, repeat:-1, ease: 'sine.inOut'})
     }
 
     create() {
