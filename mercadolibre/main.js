@@ -84,7 +84,6 @@ class Game extends Phaser.Scene {
             }
             else {
                 this.scale.startFullscreen();
-                this.scale.resize(window.innerWidth,window.innerHeight)
             }
         }, this)
     }
