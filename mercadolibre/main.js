@@ -76,7 +76,7 @@ class Game extends Phaser.Scene {
        this.play = this.add.sprite(0, 0, 'atlas', 'play.png')
        //this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-0.1'},duration: 350, yoyo:true,paused:true, repeat:2, callbackScope: this ,ease: 'sine.inOut'})
 
-        this.tapInput = this.input.once('pointerdown', this.startGame, this)
+        this.tapInput = this.input.once('pointerdown', this.startGameTimer, this)
 
         this.input.once('pointerup',  function(){
              if (this.scale.isFullscreen) {
@@ -86,6 +86,10 @@ class Game extends Phaser.Scene {
                 this.scale.startFullscreen();
             }
         }, this)
+    }
+
+    startGameTimer(){
+        this.time.delayedCall(500, this.startGame, [], this)
     }
 
     setGameScene(){
@@ -112,6 +116,7 @@ class Game extends Phaser.Scene {
             texto_inicio.style.top = '20%'
             this.moveTo(this.logoGame,this.logoGame.x, window.innerHeight*0.1)
             this.moveTo(this.truckGame,window.innerWidth*0.38, this.truckGame.y)
+
             texto_score.style.top = '5%'
             texto_score.style.left = '43%'
         }
@@ -119,6 +124,7 @@ class Game extends Phaser.Scene {
             texto_inicio.style.top = '34%'
             this.moveTo(this.logoGame,this.logoGame.x, window.innerHeight*0.125)
             this.moveTo(this.truckGame,window.innerWidth*0.38, this.truckGame.y)
+
             texto_score.style.top = '22%'
             texto_score.style.left = '40%'
         }
@@ -247,7 +253,7 @@ class Game extends Phaser.Scene {
         const width = gameSize.width;
         const height = gameSize.height;
         var isLandscape = height / width  < 1.3 ? true: false;
-
+        
         if(this.phase<=0){
             texto_inicio.style.visibility = 'visible'
             texto_inicio.style.fontSize = '24px'
