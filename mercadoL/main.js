@@ -552,8 +552,14 @@ document.addEventListener('visibilitychange',() => {
   }
 });
 
- let clientWidth = Math.round(document.documentElement.clientWidth)
- let clientHeight = Math.round(document.documentElement.clientHeight)
+const roundHalf = num => Math.round(num * 2) / 2
+const DPR = roundHalf(window.devicePixelRatio)
+const { width, height } = window.screen
+
+const WIDTH = width * DPR
+const HEIGHT = height * DPR
+
+log(width, height)
 
 let config = {
     type: Phaser.CANVAS,
@@ -564,9 +570,10 @@ let config = {
        fullscreenTarget:"container",
        mode: Phaser.Scale.RESIZE,
        autoCenter: Phaser.Scale.CENTER_BOTH,
-       width: clientWidth,
-       height: clientHeight,
+       width: WIDTH,
+       height: HEIGHT,
        autoRound:true,
+       resolution:DPR
     },
      physics: {
         default: 'arcade',
