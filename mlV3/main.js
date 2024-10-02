@@ -456,6 +456,29 @@ class Game extends Phaser.Scene {
                 this.timerBarLight.setPosition(this.timerIcon.x+(this.timerBarLight.width*1.1), height*0.245)
                 this.timerBarLight.setScale(1,1.1)
                 texto_score.style.fontSize = '38px'
+                texto_legales.style.fontSize = '18px'
+            }
+            else if(this.sys.game.device.os.desktop){
+                this.logo.setScale(0.8)
+                texto_inicio.style.fontSize = '40px'
+                this.play.setScale(0.8)
+                this.logoCTA.setScale(0.8)
+                this.starsCTA.setScale(0.8)
+                this.couponCTA.setPosition(width*0.5, height*0.53)
+                this.couponCTA.setScale(0.8)
+                this.btnCTA.setPosition(width*0.5, height*0.65)
+                this.btnCTA.setScale(0.8)
+                this.logoGame.setScale(0.8)
+                this.iconGame.setScale(0.8)
+                this.truckGame.setScale(0.8)
+                this.timerIcon.setScale(0.8)
+                this.timerBgBar.setPosition(this.timerIcon.x+(this.timerIcon.width*2.25), height*0.25)
+                this.timerBgBar.setScale(0.8)
+                this.timerBar.setPosition(this.timerIcon.x+(this.timerIcon.width*2.25), height*0.25)
+                this.timerBar.setScale(0.8)
+                this.timerBarLight.setPosition(this.timerIcon.x+(this.timerBarLight.width*1.1), height*0.245)
+                this.timerBarLight.setScale(0.8,0.9)
+                texto_score.style.fontSize = '38px'
             }
         }
         else{
@@ -554,6 +577,29 @@ class Game extends Phaser.Scene {
                 this.timerBar.setScale(1)
                 this.timerBarLight.setPosition(this.timerIcon.x+(this.timerBarLight.width*1.1), height*0.095)
                 this.timerBarLight.setScale(1,1.1)
+                texto_score.style.fontSize = '38px'
+                texto_legales.style.fontSize = '18px'
+            }
+            else if(this.sys.game.device.os.desktop){
+                this.logo.setScale(0.8)
+                texto_inicio.style.fontSize = '40px'
+                this.play.setScale(0.8)
+                this.logoCTA.setScale(0.8)
+                this.starsCTA.setScale(0.8)
+                this.couponCTA.setPosition(width*0.5, height*0.53)
+                this.couponCTA.setScale(0.8)
+                this.btnCTA.setPosition(width*0.5, height*0.7)
+                this.btnCTA.setScale(0.8)
+                this.logoGame.setScale(0.8)
+                this.iconGame.setScale(0.8)
+                this.truckGame.setScale(0.8)
+                this.timerIcon.setScale(0.8)
+                this.timerBgBar.setPosition(this.timerIcon.x+(this.timerIcon.width*2.25), height*0.1)
+                this.timerBgBar.setScale(0.8)
+                this.timerBar.setPosition(this.timerIcon.x+(this.timerIcon.width*2.25), height*0.1)
+                this.timerBar.setScale(0.8)
+                this.timerBarLight.setPosition(this.timerIcon.x+(this.timerBarLight.width*1.08), height*0.09)
+                this.timerBarLight.setScale(0.8,0.9)
                 texto_score.style.fontSize = '38px'
             }
         }
