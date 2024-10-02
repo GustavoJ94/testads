@@ -44,7 +44,7 @@ class Game extends Phaser.Scene {
     }
 
     create() {
-	  	this.cameras.main.setBackgroundColor(0x000000)
+	  	this.cameras.main.setBackgroundColor(0x74C5F0)
 	    
 	    this.setGameScene()
 	   // this.setCTA()
@@ -212,7 +212,7 @@ class Game extends Phaser.Scene {
 
         //GAME
         if(!isLandscape){
-            this.mainVideo.setSize(720,480)
+            this.mainVideo.setSize(720,720)
             this.mainVideo.setDisplaySize(width, height)
             this.mainVideo.x = width*0.5
             this.mainVideo.y = height*0.5
