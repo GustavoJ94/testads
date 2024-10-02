@@ -186,7 +186,7 @@ class Game extends Phaser.Scene {
         texto_inicio.style.visibility = 'hidden'
         this.isTruckOn = true
         this.time.delayedCall(16000, this.startCTA, [], this)
-        this.timerTime = this.time.addEvent({ delay: 1500, callback: this.countTime, callbackScope: this, loop: true})
+        this.timerTime = this.time.addEvent({ delay: 1000, callback: this.countTime, callbackScope: this, loop: true})
         this.timerObstacles = this.time.addEvent({ delay: this.timeForObstacles , callback: this.createRandomSprite, callbackScope: this, loop: true})
         this.createRandomSprite()
         this.truckTween = this.tweens.add({targets: this.truckGame, y:this.truckGame.y-2,duration: 500, yoyo:true, repeat:-1, ease: 'sine.inOut'})
