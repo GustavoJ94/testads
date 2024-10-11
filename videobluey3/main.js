@@ -175,6 +175,7 @@ class Game extends Phaser.Scene {
         this.opc2.setAlpha(1)
         this.popup(this.opc1)
         this.popup(this.opc2)
+        musicBg.stop()
         introSFX.play()
         text_timer.style.visibility = 'visible'
         this.cameras.main.fadeIn(500, 181, 228, 249)
