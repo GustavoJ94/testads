@@ -191,7 +191,6 @@ class Game extends Phaser.Scene {
         this.selectedObject.postFX.clear()
         this.selectedObject.disableInteractive()
         this.selectedObject.isDone = true
-        this.searchObject()
         option.setTexture('atlas', 'tab_furniture_selection.png')
         this.tweens.add({targets: this.options, alpha:0, duration: 600})
         var str = this.selectedObject.frame.name.split("_")
@@ -207,10 +206,12 @@ class Game extends Phaser.Scene {
         text_score.textContent = this.points+'/3'
 
         if(this.points ==1){
+            this.searchObject()
             this.bar1.setTexture('atlas', 'barpoint_2.png')
             this.popup(this.bar1)
         }
         else if(this.points ==2){
+            this.searchObject()
             this.bar2.setTexture('atlas', 'barpoint_2.png')
             this.popup(this.bar2)
         }
