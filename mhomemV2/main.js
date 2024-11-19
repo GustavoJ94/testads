@@ -453,6 +453,11 @@ class Game extends Phaser.Scene {
         this.input.on('pointerdown', this.onClickDownload)
     }
 
+     isMobile() {
+      const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      return regex.test(navigator.userAgent);
+    }
+
     resize (gameSize, baseSize, displaySize, resolution){
         log(gameSize.width)
         log(baseSize.width)
@@ -673,10 +678,10 @@ class Game extends Phaser.Scene {
                 this.barcontainer.setScale(1)
                 this.ashleyTutorial.setScale(0.8)
                 this.ashleyTutorial.setPosition(this.ashleyTutorial.displayWidth*0.5, height-this.ashleyTutorial.displayHeight*0.2)
-                this.ashleyBg.setPosition(this.ashleyTutorial.x+(this.ashleyBg.displayWidth*0.57), this.ashleyTutorial.y+(this.ashleyBg.displayHeight*0.25))
+                this.ashleyBg.setPosition(this.ashleyTutorial.x+(this.ashleyBg.displayWidth*0.46), this.ashleyTutorial.y+(this.ashleyBg.displayHeight*0.25))
                 this.ashleyTutorial.x = -width
-                text_tutorial.style.left = '32%'
-                text_tutorial.style.bottom = '8%'
+                text_tutorial.style.left = '30%'
+                text_tutorial.style.bottom = '4%'
                 text_tutorial.style.fontSize = '42px'
 
                 text_end.style.bottom = '48%'
@@ -881,7 +886,7 @@ class Game extends Phaser.Scene {
             this.appstoreCTA.setScale(0.3)
             this.appstoreCTA.setPosition(width*0.6, height*0.8)
             
-            if(this.sys.game.device.os.iPad){
+            if(this.sys.game.device.os.iPad ){
                 log('ipad')
                 text_score.style.left = '6%'
                 text_score.style.top = '12%'
@@ -973,98 +978,8 @@ class Game extends Phaser.Scene {
                     }
                 )
             }
-             else if(this.sys.game.device.os.desktop && this.sys.game.device.os.macOS){
-                log('desktop mac')
-                text_score.style.left = '6%'
-                text_score.style.top = '12%'
-                var  text_posicion = text_score.getBoundingClientRect();
-                this.barcontainer.setPosition(text_posicion.x+(text_posicion.width*0.5)+(this.bar.width*0.41), text_posicion.top-(text_posicion.height*0.65))
             
-                this.staircase.setScale(1)
-                this.staircase.setPosition(width*0.15, height*0.55)
-
-                this.door1.setScale(1.2)
-                this.door1.setPosition(width*0.24, height*0.32)
-
-                this.door2.setScale(1.2)
-                this.door2.setPosition(width*0.36, height*0.574)
-                this.carpet.setScale(0.95)
-                this.sofabed.setScale(1)
-                this.table.setScale(1)
-                this.daybed.setScale(0.95)
-                this.barcontainer.setScale(1)
-                this.ashleyTutorial.setScale(0.8)
-                this.ashleyTutorial.setPosition(this.ashleyTutorial.displayWidth*0.5, height-this.ashleyTutorial.displayHeight*0.2)
-                this.ashleyBg.setPosition(this.ashleyTutorial.x+(this.ashleyBg.displayWidth*0.57), this.ashleyTutorial.y+(this.ashleyBg.displayHeight*0.25))
-                this.ashleyTutorial.x = -width
-                text_tutorial.style.left = '32%'
-                text_tutorial.style.bottom = '8%'
-                text_tutorial.style.fontSize = '42px'
-
-                text_end.style.bottom = '48%'
-
-                this.confeti.setConfig(
-                {
-                    frame: ['confeti1.png','confeti2.png','confeti3.png','confeti4.png','confeti5.png','confeti6.png'],
-                    x: { min: 0, max: window.innerWidth },
-                    quantity: 6,
-                    frequency:500,
-                    lifespan: 3500,
-                    emitting: false,
-                    scale: { min: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) *0.8, max: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) * 1.5},
-                    speedX: { min: -300, max: 300 },
-                    speedY: { min: 100, max: 300 },
-                    rotate: { min: 0, max: 360 },
-                    advance: 500
-                    }
-                )
-
-                this.confetiL.setConfig(
-                {
-                        frame: ['confeti1.png','confeti2.png','confeti3.png','confeti4.png','confeti5.png','confeti6.png'],
-                        x:0,
-                        y:window.innerHeight*0.7,
-                        quantity: 20,
-                        frequency:850,
-                        lifespan: 3500,
-                        emitting: false,
-                        scale: { min: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) *0.8, max: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) * 1.5},
-                        speedX: { min: 50, max: 300 },
-                        speedY: { min: -600, max: 350 },
-                        rotate: { min: 0, max: 360 },
-                        advance: 500
-                    }
-                )
-
-                this.confetiR.setConfig(
-                {
-                    frame: ['confeti1.png','confeti2.png','confeti3.png','confeti4.png','confeti5.png','confeti6.png'],
-                    x:window.innerWidth,
-                    y:window.innerHeight*0.7,
-                    quantity: 20,
-                    frequency:850,
-                    lifespan: 3500,
-                    emitting: false,
-                    scale: { min: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) *0.8, max: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) * 1.5},
-                    speedX: { min: -300, max: 50 },
-                    speedY: { min: -400, max: 150 },
-                    rotate: { min: 0, max: 360 },
-                    advance: 500
-
-                    }
-                )
-
-                this.options.setScale(0.8)
-                this.options.setPosition(width*0.5, height-(this.bgOptions.displayHeight*0.5))
-
-                this.ashleyCTA.setScale(0.8)
-                this.logoCTA.setScale(0.8)
-                this.btnCTA.setScale(0.8)
-                this.playstoreCTA.setScale(0.6)
-                this.appstoreCTA.setScale(0.6)
-            }
-
-            else if(this.sys.game.device.os.macOS){
+            else if(this.sys.game.device.os.macOS && this.sys.game.device.input.touch){
                 log('mac')
                 text_score.style.left = '6%'
                 text_score.style.top = '12%'
@@ -1091,7 +1006,7 @@ class Game extends Phaser.Scene {
                 this.ashleyBg.setPosition(this.ashleyTutorial.x+(this.ashleyBg.displayWidth*0.57), this.ashleyTutorial.y+(this.ashleyBg.displayHeight*0.25))
                 this.ashleyTutorial.x = -width
                 text_tutorial.style.left = '32%'
-                text_tutorial.style.bottom = '8%'
+                text_tutorial.style.bottom = '6%'
                 text_tutorial.style.fontSize = '42px'
 
                 text_end.style.bottom = '48%'
@@ -1155,6 +1070,97 @@ class Game extends Phaser.Scene {
 
                     }
                 )
+            }
+
+             else if(this.sys.game.device.os.desktop && this.sys.game.device.os.macOS){
+                log('desktop mac')
+                text_score.style.left = '6%'
+                text_score.style.top = '12%'
+                var  text_posicion = text_score.getBoundingClientRect();
+                this.barcontainer.setPosition(text_posicion.x+(text_posicion.width*0.5)+(this.bar.width*0.41), text_posicion.top-(text_posicion.height*0.65))
+            
+                this.staircase.setScale(1)
+                this.staircase.setPosition(width*0.15, height*0.55)
+
+                this.door1.setScale(1.2)
+                this.door1.setPosition(width*0.24, height*0.32)
+
+                this.door2.setScale(1.2)
+                this.door2.setPosition(width*0.36, height*0.574)
+                this.carpet.setScale(0.95)
+                this.sofabed.setScale(1)
+                this.table.setScale(1)
+                this.daybed.setScale(0.95)
+                this.barcontainer.setScale(1)
+                this.ashleyTutorial.setScale(0.8)
+                this.ashleyTutorial.setPosition(this.ashleyTutorial.displayWidth*0.5, height-this.ashleyTutorial.displayHeight*0.2)
+                this.ashleyBg.setPosition(this.ashleyTutorial.x+(this.ashleyBg.displayWidth*0.45), this.ashleyTutorial.y+(this.ashleyBg.displayHeight*0.25))
+                this.ashleyTutorial.x = -width
+                text_tutorial.style.left = '22%'
+                text_tutorial.style.bottom = '6%'
+                text_tutorial.style.fontSize = '42px'
+
+                text_end.style.bottom = '48%'
+
+                this.confeti.setConfig(
+                {
+                    frame: ['confeti1.png','confeti2.png','confeti3.png','confeti4.png','confeti5.png','confeti6.png'],
+                    x: { min: 0, max: window.innerWidth },
+                    quantity: 6,
+                    frequency:500,
+                    lifespan: 3500,
+                    emitting: false,
+                    scale: { min: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) *0.8, max: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) * 1.5},
+                    speedX: { min: -300, max: 300 },
+                    speedY: { min: 100, max: 300 },
+                    rotate: { min: 0, max: 360 },
+                    advance: 500
+                    }
+                )
+
+                this.confetiL.setConfig(
+                {
+                        frame: ['confeti1.png','confeti2.png','confeti3.png','confeti4.png','confeti5.png','confeti6.png'],
+                        x:0,
+                        y:window.innerHeight*0.7,
+                        quantity: 20,
+                        frequency:850,
+                        lifespan: 3500,
+                        emitting: false,
+                        scale: { min: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) *0.8, max: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) * 1.5},
+                        speedX: { min: 50, max: 300 },
+                        speedY: { min: -600, max: 350 },
+                        rotate: { min: 0, max: 360 },
+                        advance: 500
+                    }
+                )
+
+                this.confetiR.setConfig(
+                {
+                    frame: ['confeti1.png','confeti2.png','confeti3.png','confeti4.png','confeti5.png','confeti6.png'],
+                    x:window.innerWidth,
+                    y:window.innerHeight*0.7,
+                    quantity: 20,
+                    frequency:850,
+                    lifespan: 3500,
+                    emitting: false,
+                    scale: { min: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) *0.8, max: this.getSpriteScale(8, 16, window.innerWidth, window.innerHeight) * 1.5},
+                    speedX: { min: -300, max: 50 },
+                    speedY: { min: -400, max: 150 },
+                    rotate: { min: 0, max: 360 },
+                    advance: 500
+
+                    }
+                )
+
+                this.options.setScale(0.8)
+                this.options.setPosition(width*0.5, height-(this.bgOptions.displayHeight*0.5))
+
+                this.ashleyCTA.setScale(0.8)
+                this.logoCTA.setScale(0.8)
+                this.btnCTA.setScale(0.8)
+                this.playstoreCTA.setScale(0.6)
+                this.appstoreCTA.setScale(0.6)
             }
             else if(this.sys.game.device.os.desktop && !this.sys.game.device.os.macOS){
                 log('desktop')
