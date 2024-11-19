@@ -136,8 +136,8 @@ class Game extends Phaser.Scene {
         text_tutorial.style.visibility = 'hidden'
         this.time.delayedCall(500, this.startGame, [], this)
         this.hand.setAlpha(1)
-        this.tweens.add({targets: this.hand, scale:{value:'+0.1'}, duration: 500, repeat:-1,yoyo:true})
-
+        //this.tweens.add({targets: this.hand, scale:{value:0.5}, duration: 500, repeat:-1,yoyo:true,delay:100,ease: 'sine.inout'})
+        gsap.to(this.hand, { scale: "+=0.1" }).yoyo(true).repeat(-1);
         this.nointeraction = this.time.delayedCall(20000, this.startFailedScreen, [], this)
     }
 
@@ -371,7 +371,7 @@ class Game extends Phaser.Scene {
         this.blueprint.setCrop(0, 0, 0, this.blueprint.height);
         this.blueprint.bprintWidth = 0
 
-        this.introTween = this.tweens.add({targets: this.blueprint, bprintWidth:this.blueprint.width, duration: 1000, delay:500, 
+        this.introTween = this.tweens.add({targets: this.blueprint, bprintWidth:this.blueprint.width, duration: 500, delay:500, 
          onUpdate: ()=>{
             this.blueprint.setCrop(0, 0, this.blueprint.bprintWidth, this.blueprint.height);
         }});
@@ -383,15 +383,24 @@ class Game extends Phaser.Scene {
             this.introTween2.on('complete', function(){
                 this.introTween3 = this.tweens.add({targets: this.blueprint, alpha:1, duration: 500, delay:800})
 
+                var me = this
                 this.introTween3.on('complete', function(){
-                this.roomCompleted.setAlpha(0)
-                this.introTween3 = this.tweens.add({targets: this.blueprint, bprintWidth:0, duration: 1000, 
+                me.roomCompleted.setAlpha(0)
+                gsap.to(me.blueprint, { bprintWidth: 0,
+                    onUpdate (){
+                        me.blueprint.setCrop(0, 0, me.blueprint.bprintWidth, me.blueprint.height);
+                    },
+                    onComplete(){me.startTutorial()}
+                })
+                .duration(0.5);
+
+                /*this.introTween3 = this.tweens.add({targets: this.blueprint, bprintWidth:0, duration: 1000, 
                 onUpdate: ()=>{
                     this.blueprint.setCrop(0, 0, this.blueprint.bprintWidth, this.blueprint.height);
                 },
                 onComplete: ()=>{this.startTutorial()}
+                })*/
                 })
-                }.bind(this))
            }.bind(this))
         }.bind(this))
     }
@@ -1007,7 +1016,6 @@ let config = {
        autoCenter: Phaser.Scale.CENTER_BOTH,
        width: WIDTH,
        height: HEIGHT,
-       autoRound:true,
     },
 
 }
