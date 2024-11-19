@@ -123,6 +123,15 @@ class Game extends Phaser.Scene {
 
     setIntroScene(){
        this.bg = this.add.sprite(0, 0, 'room1')
+
+           this.input.once('pointerup',  function(){
+             if (this.scale.isFullscreen) {
+                this.scale.stopFullscreen();
+            }
+            else {
+                this.scale.startFullscreen();
+            }
+        }, this)
     }
 
     startTutorial(){
