@@ -257,12 +257,11 @@ class Game extends Phaser.Scene {
         this.confetiL.start()
         this.confetiR.start()
 
-        this.hand.setAlpha(0)
-        //this.gameobjects.setAlpha(0)
-        //this.carpet.setAlpha(0)
-        //this.staircase.setAlpha(0)
+        /*this.hand.setAlpha(0)
+        this.gameobjects.setAlpha(0)
+        this.carpet.setAlpha(0)
 
-        /*var isLandscape = height / width  < 1.3 ? true: false;
+        let isLandscape = screen.orientation.type.includes('landscape');
         if(isLandscape)
             this.bg.setTexture('roomCompleted')
         else
@@ -295,7 +294,7 @@ class Game extends Phaser.Scene {
         this.door2.on('pointerdown', this.tapObject.bind(this,this.door2));
         this.door2.isDone = false
         this.staircase = this.add.sprite(0, 0, 'room_0', 'Staircase_Room1_Crappy.png').setInteractive()
-        //this.staircase.on('pointerdown', this.tapObject.bind(this,this.staircase));
+        this.staircase.on('pointerdown', this.tapObject.bind(this,this.staircase));
         this.staircase.isDone = false
         this.carpet = this.add.sprite(0, 0, 'room_0', 'Carpet_Room1_Crappy.png')
         //this.carpet.on('pointerdown', this.tapObject.bind(this,this.carpet));
@@ -399,7 +398,7 @@ class Game extends Phaser.Scene {
             rotate: { min: 0, max: 360 }
         }).setDepth(10);
 
-        this.gameobjects.addMultiple([this.table,this.daybed,this.door1,this.door2,this.sofabed])
+        this.gameobjects.addMultiple([this.table,this.daybed,this.door1,this.door2,this.staircase,this.sofabed])
 
         this.roomCompleted = this.add.sprite(0, 0, 'roomCompleted').setAlpha(0)
         this.blueprint = this.add.sprite(0, 0, 'roomBlueprint')
@@ -649,9 +648,11 @@ class Game extends Phaser.Scene {
                 text_tutorial.style.fontSize = '32px'
                 text_tutorial.textContent = "The guests are arriving soon.\nLet's fix the decor!"
                 this.ashleyTutorial.setPosition(this.ashleyTutorial.displayWidth*0.35, height-this.ashleyTutorial.displayHeight*0.2)
+                this.ashleyTutorial.x = -width
 
                 this.staircase.setScale(1)
                 this.door1.setScale(1)
+                this.door1.setPosition(width*0.18, height*0.36)
                 this.door2.setScale(1)
                 this.door2.setPosition(width*0.35, height*0.556)
                 this.carpet.setScale(0.95)
@@ -691,11 +692,25 @@ class Game extends Phaser.Scene {
                 this.scaleSprite(this.staircase,window.innerWidth/3,window.innerHeight, 0.9)
                 this.staircase.setPosition(width*0.15, height*0.55)
 
-                this.scaleSprite(this.door1,window.innerWidth/3,window.innerHeight, 0.7)
-                this.door1.setPosition(width*0.22, height*0.4)
+                this.door1.setScale(1.2)
 
-                this.scaleSprite(this.door2,window.innerWidth/3,window.innerHeight, 0.7)
+                //this.scaleSprite(this.door1,window.innerWidth,window.innerHeight/3, 0.7)
+                this.door1.setPosition(width*0.22, height*0.4)
+                
+                this.door2.setScale(1.2)
+                //this.scaleSprite(this.door2,window.innerWidth,window.innerHeight/3, 0.7)
                 this.door2.setPosition(width*0.38, height*0.55)
+
+
+                if(height >=1366){
+                    this.staircase.setScale(1)
+                    this.staircase.setPosition(width*0.1, height*0.55)
+                    this.door1.setScale(1.2)
+                    this.door1.setPosition(width*0.2, height*0.41)
+                    this.door2.setScale(1.2)
+                    this.door2.setPosition(width*0.35, height*0.562)
+                }
+
                 //this.door1.setScale(1)
                 //this.door2.setScale(1)
                 this.carpet.setScale(0.95)
@@ -1038,14 +1053,21 @@ class Game extends Phaser.Scene {
                 var  text_posicion = text_score.getBoundingClientRect();
                 this.barcontainer.setPosition(text_posicion.x+(text_posicion.width*0.5)+(this.bar.width*0.41), text_posicion.top-(text_posicion.height*0.65))
             
-                this.scaleSprite(this.staircase,window.innerWidth/3,window.innerHeight, 0.9)
-                this.staircase.setPosition(width*0.15, height*0.55)
+                this.scaleSprite(this.staircase,window.innerWidth/3,window.innerHeight, 0.8)
+                this.staircase.setPosition(width*0.18, height*0.57)
+                
+               
+                this.door1.setScale(1.2)
+                this.door2.setScale(1.2)
+                this.door1.setPosition(width*0.27, height*0.32)
+                this.door2.setPosition(width*0.36, height*0.58)
 
-                this.scaleSprite(this.door1,window.innerWidth/3,window.innerHeight, 0.8)
-                this.door1.setPosition(width*0.24, height*0.3)
-
-                this.scaleSprite(this.door2,window.innerWidth/3,window.innerHeight, 0.8)
-                this.door2.setPosition(width*0.36, height*0.57)
+                if(width >=1366){
+                    this.door1.setScale(1.3)
+                    this.door2.setScale(1.3)
+                    this.door1.setPosition(width*0.27, height*0.355)
+                    this.door2.setPosition(width*0.36, height*0.6)
+                }
                 //this.door1.setScale(1)
                 //this.door2.setScale(1)
                 this.carpet.setScale(0.95)
@@ -1306,6 +1328,8 @@ class Game extends Phaser.Scene {
             }
 
              if(height <= 320){
+                this.door1.setPosition(width*0.24, height*0.3)
+
                 this.barcontainer.setScale(0.7)
                 text_score.style.left = '-16%'
                 text_score.style.fontSize = '10px'
