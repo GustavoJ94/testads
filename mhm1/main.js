@@ -258,9 +258,9 @@ class Game extends Phaser.Scene {
         this.confetiR.start()
 
         this.hand.setAlpha(0)
-        this.gameobjects.setAlpha(0)
-        this.carpet.setAlpha(0)
-        this.staircase.setAlpha(0)
+        //this.gameobjects.setAlpha(0)
+        //this.carpet.setAlpha(0)
+        //this.staircase.setAlpha(0)
 
         /*var isLandscape = height / width  < 1.3 ? true: false;
         if(isLandscape)
