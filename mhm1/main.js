@@ -591,8 +591,9 @@ class Game extends Phaser.Scene {
             this.ashleyTutorial.x = -width
 
             text_tutorial.style.left = '30%'
-            text_tutorial.style.bottom = '12%'
-            text_tutorial.style.fontSize = '16px'
+            text_tutorial.style.bottom = '7%'
+            text_tutorial.style.fontSize = '22px'
+            text_tutorial.textContent = "The guests are\narriving soon.\nLet's fix the decor!"
 
             this.hand.setScale(0.4)
             this.hand.setPosition(this.sofabed.x+(this.hand.displayWidth), this.sofabed.y-(this.hand.displayHeight))
