@@ -260,12 +260,13 @@ class Game extends Phaser.Scene {
         this.hand.setAlpha(0)
         this.gameobjects.setAlpha(0)
         this.carpet.setAlpha(0)
+        this.staircase.setAlpha(0)
 
-        var isLandscape = height / width  < 1.3 ? true: false;
+        /*var isLandscape = height / width  < 1.3 ? true: false;
         if(isLandscape)
             this.bg.setTexture('roomCompleted')
         else
-            this.bg.setTexture('roomCompleted_p')
+            this.bg.setTexture('roomCompleted_p')*/
 
         this.cameras.main.flash();
         this.nointeraction.remove()
@@ -294,7 +295,7 @@ class Game extends Phaser.Scene {
         this.door2.on('pointerdown', this.tapObject.bind(this,this.door2));
         this.door2.isDone = false
         this.staircase = this.add.sprite(0, 0, 'room_0', 'Staircase_Room1_Crappy.png').setInteractive()
-        this.staircase.on('pointerdown', this.tapObject.bind(this,this.staircase));
+        //this.staircase.on('pointerdown', this.tapObject.bind(this,this.staircase));
         this.staircase.isDone = false
         this.carpet = this.add.sprite(0, 0, 'room_0', 'Carpet_Room1_Crappy.png')
         //this.carpet.on('pointerdown', this.tapObject.bind(this,this.carpet));
@@ -398,7 +399,7 @@ class Game extends Phaser.Scene {
             rotate: { min: 0, max: 360 }
         }).setDepth(10);
 
-        this.gameobjects.addMultiple([this.table,this.daybed,this.door1,this.door2,this.staircase,this.sofabed])
+        this.gameobjects.addMultiple([this.table,this.daybed,this.door1,this.door2,this.sofabed])
 
         this.roomCompleted = this.add.sprite(0, 0, 'roomCompleted').setAlpha(0)
         this.blueprint = this.add.sprite(0, 0, 'roomBlueprint')
