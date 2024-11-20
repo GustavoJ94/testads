@@ -774,6 +774,25 @@ class Game extends Phaser.Scene {
                     }
                 )
             }
+            if(width <= 320){
+                this.barcontainer.setScale(0.7)
+                var  text_posicion = text_score.getBoundingClientRect();
+                this.barcontainer.setPosition(text_posicion.x+(text_posicion.width*0.37)+(this.bar.width*0.41), text_posicion.top-(text_posicion.height*0.5))
+                text_score.style.fontSize = '10px'
+
+                this.options.setScale(0.3)
+                this.options.setPosition(width*0.5, height-(this.bgOptions.displayHeight*0.5))
+
+                this.ashleyCTA.setScale(0.3)
+                this.logoCTA.setScale(0.4)
+                this.btnCTA.setScale(0.4)
+                this.playstoreCTA.setScale(0.2)
+                this.appstoreCTA.setScale(0.2)
+                this.ashleyCTA.setPosition(-width, height-this.ashleyCTA.displayHeight*0.45)
+                text_tutorial.style.left = '35%'
+                text_tutorial.style.bottom = '12%'
+                text_tutorial.style.fontSize = '19px'
+            }
         }
         else{
              this.confeti.setConfig(
@@ -1284,7 +1303,36 @@ class Game extends Phaser.Scene {
                 this.playstoreCTA.setScale(0.6)
                 this.appstoreCTA.setScale(0.6)
             }
+
+             if(height <= 320){
+                this.barcontainer.setScale(0.7)
+                text_score.style.left = '-16%'
+                text_score.style.fontSize = '10px'
+                var  text_posicion = text_score.getBoundingClientRect();
+                this.barcontainer.setPosition(text_posicion.x+(text_posicion.width*0.415)+(this.bar.width*0.41), text_posicion.top-(text_posicion.height*0.5))
+                
+
+                this.options.setScale(0.3)
+                this.options.setPosition(width*0.5, height-(this.bgOptions.displayHeight*0.5))
+
+                this.ashleyCTA.setScale(0.3)
+                this.logoCTA.setScale(0.4)
+                this.btnCTA.setScale(0.4)
+                this.playstoreCTA.setScale(0.2)
+                this.appstoreCTA.setScale(0.2)
+                this.ashleyCTA.setPosition(-width, height-this.ashleyCTA.displayHeight*0.45)
+                text_tutorial.style.left = '33%'
+                text_tutorial.style.bottom = '10%'
+                text_tutorial.style.fontSize = '18px'
+
+                this.ashleyTutorial.setScale(0.35)
+                this.ashleyTutorial.setPosition(this.ashleyTutorial.displayWidth*0.5, height-this.ashleyTutorial.displayHeight*0.2)
+                this.ashleyBg.setPosition(this.ashleyTutorial.x+(this.ashleyBg.displayWidth*0.57), this.ashleyTutorial.y+(this.ashleyBg.displayHeight*0.25))
+                this.ashleyTutorial.x = -width
+            }
         }
+
+
 
         if(this.phase == 1){
         
