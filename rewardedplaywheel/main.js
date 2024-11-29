@@ -637,6 +637,10 @@ class Game extends Phaser.Scene {
             this.arrowWheel.setScale(0.45)
             this.arrowWheel.setPosition(width*0.5,height*0.45)
 
+            var  btn_position = spinBtn.getBoundingClientRect();
+            this.spinWheel.x = btn_position.x + btn_position.width*0.5
+            this.arrowWheel.x = this.spinWheel.x
+
             this.hand.setScale(0.6)
 
             this.logoCTA.setScale(0.6)
@@ -837,6 +841,10 @@ class Game extends Phaser.Scene {
         this.hand.angle = 65
         this.hand.flipX = true
         this.hand.setPosition(btn_position.x-handW, btn_position.y+btn_position.height-handH)
+
+        //var  btn_position = spinBtn.getBoundingClientRect();
+        //this.spinWheel.x = btn_position.x + btn_position.width*0.5
+        //this.arrowWheel.x = this.spinWheel.x
 
         this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-=0.1' },duration: 500, loop: -1,yoyo: true,});
     }
