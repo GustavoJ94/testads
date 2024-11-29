@@ -73,6 +73,9 @@ class Game extends Phaser.Scene {
  
 	    this.scale.on('resize', this.resize, this)
 	    this.scale.resize(window.innerWidth,window.innerHeight)
+
+        var body = document.body;
+        body.style.display = 'block'
     }
 
     spawnSpin(pointer, gameObjects){
@@ -121,6 +124,9 @@ class Game extends Phaser.Scene {
        this.spinWheel = this.add.sprite(0, 0, 'wheel')
        this.arrowWheel = this.add.sprite(0, 0, 'arrow')
        this.hand = this.add.sprite(0, 0, 'atlas', 'hand.png')
+
+       logo.style.visibility = 'visible'
+       spinBtn.style.visibility = 'visible'
        
         spinBtn.onclick = () =>{
             if(this.canSpin){
@@ -617,7 +623,8 @@ class Game extends Phaser.Scene {
         else{
             log('landscape')
             spinBtn.style.top = '80%'
-            spinBtn.style.left = '40%'
+            spinBtn.style.left = '41%'
+            spinBtn.style.fontSize = '30px'
 
             logo.style.width = '30%'
             textTutorial.style.left = '0%'
@@ -832,7 +839,6 @@ class Game extends Phaser.Scene {
         this.hand.setPosition(btn_position.x-handW, btn_position.y+btn_position.height-handH)
 
         this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-=0.1' },duration: 500, loop: -1,yoyo: true,});
-        
     }
 }
 
