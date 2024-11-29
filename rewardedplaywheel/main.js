@@ -78,9 +78,6 @@ class Game extends Phaser.Scene {
     spawnSpin(pointer, gameObjects){
         if(this.phase == 3) return
         this.tutorialEnded = true
-        this.hand.setAlpha(0)
-        this.handTween.stop()
-        this.handTween.completeAfterLoop(0)
         var isLandscape = height / width  < 1.3 ? true: false;
         
         if(!music.playing())
