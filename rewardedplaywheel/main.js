@@ -831,9 +831,8 @@ class Game extends Phaser.Scene {
         this.hand.flipX = true
         this.hand.setPosition(btn_position.x-handW, btn_position.y+btn_position.height-handH)
 
-        if(!this.tutorialEnded){
-            this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-=0.1' },duration: 500, loop: -1,yoyo: true,});
-        }
+        this.handTween = this.tweens.add({targets: this.hand, scale:{value:'-=0.1' },duration: 500, loop: -1,yoyo: true,});
+        
     }
 }
 
