@@ -76,6 +76,7 @@ class Game extends Phaser.Scene {
 
         var body = document.body;
         body.style.display = 'block'
+        
     }
 
     spawnSpin(pointer, gameObjects){
@@ -125,8 +126,10 @@ class Game extends Phaser.Scene {
        this.arrowWheel = this.add.sprite(0, 0, 'arrow')
        this.hand = this.add.sprite(0, 0, 'atlas', 'hand.png')
 
-       logo.style.visibility = 'visible'
-       spinBtn.style.visibility = 'visible'
+        this.time.delayedCall(500,()=>{
+                logo.style.visibility = 'visible'
+                spinBtn.style.visibility = 'visible'
+        },this)
        
         spinBtn.onclick = () =>{
             if(this.canSpin){
