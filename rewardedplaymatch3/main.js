@@ -142,7 +142,6 @@ class Game extends Phaser.Scene {
             this.music.play()
 
         //this.hand.setAlpha(0)
-        this.flipSFX.play()
         this.step++
         object.ready = false
         object.disableInteractive()
@@ -170,6 +169,7 @@ class Game extends Phaser.Scene {
             this.hand.setAlpha(0)
             this.tweens.add({targets:  this.myCards[4], x: this.myCards[5].x, scaleX: '+=0.025', scaleY:'+=0.025', delay:300, duration: 400, ease: 'Sine.InOut'});
             this.tweens.add({targets:  this.myCards[5], x: this.myCards[4].x, scaleX: '+=0.025', scaleY:'+=0.025', delay:300, duration: 400, ease: 'Sine.InOut',onComplete: this.matchCompleted.bind(this)});
+            this.flipSFX.play()
         }
     }
 
@@ -189,7 +189,7 @@ class Game extends Phaser.Scene {
         this.myCards[5].postFX.addShine(0.8)
 
         this.time.delayedCall(1400,()=>{
-            this.scaleSpriteTween(this.myCards[5], window.innerWidth/2, window.innerHeight/2, 1)
+            this.scaleSpriteTween(this.myCards[5], window.innerWidth/2, window.innerHeight/2, 1.2)
             this.time.delayedCall(1000,()=>{
                 this.cameras.main.fadeOut(500, 241, 198, 68);
                     this.cameras.main.on('camerafadeoutcomplete', function () {
