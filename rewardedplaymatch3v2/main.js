@@ -92,6 +92,7 @@ class Game extends Phaser.Scene {
     }
 
     create() {
+        this.maxCards = 25
         this.step = 0
         this.canTap = false
         this.percent = 0
@@ -152,9 +153,9 @@ class Game extends Phaser.Scene {
 
         if(this.step == 1){
             this.hand.setFlipX(true)
-            this.hand.setPosition(this.myCards[4].x - this.myCards[4].displayWidth*0.5, this.myCards[4].y+ this.myCards[4].displayHeight*0.5)
-            this.myCards[4].setInteractive()
-            var glow2 = this.myCards[4].postFX.addGlow(0xffffff,2,0,false,0.3,12)
+            this.hand.setPosition(this.myCards[12].x - this.myCards[12].displayWidth*0.5, this.myCards[12].y+ this.myCards[12].displayHeight*0.5)
+            this.myCards[12].setInteractive()
+            var glow2 = this.myCards[12].postFX.addGlow(0xffffff,2,0,false,0.3,12)
 
             this.tweens.add({
                 targets: glow2,
@@ -167,8 +168,8 @@ class Game extends Phaser.Scene {
         }
         else if (this.step == 2){
             this.hand.setAlpha(0)
-            this.tweens.add({targets:  this.myCards[4], x: this.myCards[5].x, scaleX: '+=0.025', scaleY:'+=0.025', delay:300, duration: 400, ease: 'Sine.InOut'});
-            this.tweens.add({targets:  this.myCards[5], x: this.myCards[4].x, scaleX: '+=0.025', scaleY:'+=0.025', delay:300, duration: 400, ease: 'Sine.InOut',onComplete: this.matchCompleted.bind(this)});
+            this.tweens.add({targets:  this.myCards[12], x: this.myCards[13].x, scaleX: '+=0.025', scaleY:'+=0.025', delay:300, duration: 400, ease: 'Sine.InOut'});
+            this.tweens.add({targets:  this.myCards[13], x: this.myCards[12].x, scaleX: '+=0.025', scaleY:'+=0.025', delay:300, duration: 400, ease: 'Sine.InOut',onComplete: this.matchCompleted.bind(this)});
             this.flipSFX.play()
         }
     }
@@ -177,19 +178,14 @@ class Game extends Phaser.Scene {
         textTutorial.style.visibility = 'hidden'
         this.confetti.start()
 
-        this.popdown(this.myCards[0])
-        this.popdown(this.myCards[2],100)
-        this.popdown(this.myCards[3],200)
-        this.popdown(this.myCards[4],300)
-        this.popdown(this.myCards[6],400)
-        this.popdown(this.myCards[8],500)
-
-        this.popdown(this.myCards[1],700)
-        this.popdown(this.myCards[7],800)
-        this.myCards[5].postFX.addShine(0.8)
+        for (var i = 0; i < this.maxCards; i++)
+        {
+            this.popdown(this.myCards[i],i*50)
+        }
+        this.myCards[13].postFX.addShine(0.9)
 
         this.time.delayedCall(1400,()=>{
-            this.scaleSpriteTween(this.myCards[5], window.innerWidth/2, window.innerHeight/2, 1.2)
+            this.scaleSpriteTween(this.myCards[13], window.innerWidth/2, window.innerHeight/2, 1.2)
             this.time.delayedCall(1000,()=>{
                 this.cameras.main.fadeOut(500, 241, 198, 68);
                     this.cameras.main.on('camerafadeoutcomplete', function () {
@@ -205,9 +201,13 @@ class Game extends Phaser.Scene {
        this.myCards = []
 
         const cards = [];
-        const cardList = ['gift_cards_adidas.png','gift_cards_amazon.png','gift_cards_fanatics.png','gift_cards_target.png','gift_cards_walmart.png','gift_cards_amazon.png','gift_cards_victoriassecret.png','gift_cards_amazon.png','gift_cards_adidas.png']
+        const cardList = ['gift_cards_adidas.png','gift_cards_walmart.png','gift_cards_amazon.png','gift_cards_target.png','gift_cards_walmart.png',
+            'gift_cards_fanatics.png','gift_cards_victoriassecret.png','gift_cards_amazon.png','gift_cards_adidas.png','gift_cards_adidas.png',
+            'gift_cards_target.png','gift_cards_walmart.png','gift_cards_victoriassecret.png','gift_cards_amazon.png','gift_cards_fanatics.png',
+            'gift_cards_victoriassecret.png','gift_cards_adidas.png','gift_cards_adidas.png','gift_cards_target.png','gift_cards_walmart.png',
+            'gift_cards_target.png','gift_cards_amazon.png','gift_cards_fanatics.png','gift_cards_target.png','gift_cards_adidas.png']
 
-        for (var i = 0; i < 9; i++)
+        for (var i = 0; i < this.maxCards; i++)
         {
             this.myCards.push(this.add.sprite(0, 0, 'atlas', cardList[i]));
             this.popup(this.myCards[i],i*50)
@@ -223,11 +223,11 @@ class Game extends Phaser.Scene {
 
        this.time.delayedCall(1000,()=>{
             //this.myCards[4].setInteractive()
-            this.myCards[5].setInteractive()
-            this.myCards[4].on('pointerdown', this.tapObject.bind(this,this.myCards[4]));
-            this.myCards[5].on('pointerdown', this.tapObject.bind(this,this.myCards[5]));
+            this.myCards[13].setInteractive()
+            this.myCards[12].on('pointerdown', this.tapObject.bind(this,this.myCards[12]));
+            this.myCards[13].on('pointerdown', this.tapObject.bind(this,this.myCards[13]));
 
-            var glow = this.myCards[5].postFX.addGlow(0xffffff,2,0,false,0.3,12)
+            var glow = this.myCards[13].postFX.addGlow(0xffffff,2,0,false,0.3,12)
             this.hand.setAlpha(1)
             this.canTap = true
 
@@ -308,7 +308,7 @@ class Game extends Phaser.Scene {
     }
   
     startCTA(){
-         for (var i = 0; i < 9; i++)
+         for (var i = 0; i < this.maxCards; i++)
         {
             this.myCards[i].setAlpha(0)
         }
@@ -361,11 +361,11 @@ class Game extends Phaser.Scene {
             this.card3.scaleXcopy = this.card3.scaleX
             this.card3.scaleYcopy = this.card3.scaleY*/
 
-            for (var i = 0; i < 9; i++){
-                this.scaleSprite (this.myCards[i], width/2, height/2, 0.6)
+            for (var i = 0; i < this.maxCards; i++){
+                this.scaleSprite (this.myCards[i], width/2, height/2, 0.35)
             }
 
-            this.hand.setScale(0.6)
+            this.hand.setScale(0.4)
 
             this.logoCTA.setScale(0.6)
             this.logoCTA.setPosition(width*0.45,height*0.28)
@@ -393,8 +393,8 @@ class Game extends Phaser.Scene {
                 textTutorial.style.bottom = '10%'
                 textTutorial.style.fontSize = '38px'
 
-               for (var i = 0; i < 9; i++){
-                    this.scaleSprite (this.myCards[i], width/2, height/2, 0.6)
+               for (var i = 0; i < this.maxCards; i++){
+                    this.scaleSprite (this.myCards[i], width/2, height/2, 0.35)
                 }
                  
 
@@ -549,7 +549,7 @@ class Game extends Phaser.Scene {
             log('landscape')
             logo.style.width = '20%'
             textTutorial.style.left = '0%'
-            textTutorial.style.bottom = '2%'
+            textTutorial.style.bottom = '0%'
             textTutorial.style.fontSize = '18px'
 
            /* this.scaleSprite (this.card, width/3, height/3, 0.9)
@@ -570,11 +570,11 @@ class Game extends Phaser.Scene {
             this.card3.scaleXcopy = this.card3.scaleX
             this.card3.scaleYcopy = this.card3.scaleY*/
 
-            for (var i = 0; i < 9; i++){
-                this.scaleSprite (this.myCards[i], width/3, height/3, 0.6)
+            for (var i = 0; i < this.maxCards; i++){
+                this.scaleSprite (this.myCards[i], width/3, height/3, 0.4)
             }
 
-            this.hand.setScale(0.6)
+            this.hand.setScale(0.4)
 
             this.logoCTA.setScale(0.6)
             this.logoCTA.setPosition(width*0.25,height*0.5)
@@ -597,7 +597,7 @@ class Game extends Phaser.Scene {
             if(this.sys.game.device.os.iPad || this.sys.game.device.os.macOS){
                 logo.style.width = '30%'
                 textTutorial.style.left = '0%'
-                textTutorial.style.bottom = '15%'
+                textTutorial.style.bottom = '11%'
                 textTutorial.style.fontSize = '34px'
 
                /*  this.scaleSprite (this.card, width/3, height/3, 0.9)
@@ -618,8 +618,8 @@ class Game extends Phaser.Scene {
                 this.card3.scaleXcopy = this.card3.scaleX
                 this.card3.scaleYcopy = this.card3.scaleY*/
 
-                for (var i = 0; i < 9; i++){
-                    this.scaleSprite (this.myCards[i], width/3, height/3, 0.5)
+                for (var i = 0; i < this.maxCards; i++){
+                    this.scaleSprite (this.myCards[i], width/3, height/3, 0.4)
                 }
 
                 this.hand.setScale(1)
@@ -646,7 +646,7 @@ class Game extends Phaser.Scene {
             else if(this.sys.game.device.os.desktop){
                textTutorial.style.left = '0%'
                textTutorial.style.bottom = '1%'
-               textTutorial.style.fontSize = '32px'
+               textTutorial.style.fontSize = '28px'
                log('hh')
                 this.hand.setScale(1)
 
@@ -742,30 +742,30 @@ class Game extends Phaser.Scene {
 
         if(!isLandscape){
             Phaser.Actions.GridAlign(this.myCards, {
-                width: 3,
-                height: 3,
+                width: 5,
+                height: 5,
                 cellWidth: this.myCards[0].displayWidth*1.05,
                 cellHeight: this.myCards[0].displayHeight*1.1,
                 position:Phaser.Display.Align.CENTER,
-                x: this.myCards[0].displayWidth*0.1,
+                x: this.myCards[0].displayWidth*0.25,
                 y: height*0.2
             }); 
         }
         else{
             Phaser.Actions.GridAlign(this.myCards, {
-                width: 3,
-                height: 3,
+                width: 5,
+                height: 5,
                 cellWidth: this.myCards[0].displayWidth*1.05,
                 cellHeight: this.myCards[0].displayHeight*1.1,
                 position:Phaser.Display.Align.CENTER,
-                x:  (width*0.5)-this.myCards[0].displayWidth*1.5,
-                y: height*0.2
+                x:  (width*0.5)-this.myCards[0].displayWidth*2.5,
+                y: height*0.15
             });
         }
 
         if(this.handTween)this.handTween.stop()
-        var cardX = this.myCards[5].x 
-        var cardY = this.myCards[5].y + this.myCards[5].displayHeight*0.5
+        var cardX = this.myCards[13].x 
+        var cardY = this.myCards[13].y + this.myCards[13].displayHeight*0.5
         var handW = this.hand.displayWidth*0.4
         var handH = this.hand.displayHeight*0.4
         this.hand.setPosition(cardX+handW, cardY)
