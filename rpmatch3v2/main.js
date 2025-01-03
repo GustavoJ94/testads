@@ -292,14 +292,14 @@ class Game extends Phaser.Scene {
 
        //this.confetti.start()
 
-       this.input.once('pointerup',  function(){
+       /* this.input.once('pointerup',  function(){
              if (this.scale.isFullscreen) {
                 this.scale.stopFullscreen();
             }
             else {
                 this.scale.startFullscreen();
             }
-        }, this)
+        }, this)*/
     }
 
     setCTA(){
