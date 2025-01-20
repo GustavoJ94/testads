@@ -131,6 +131,20 @@
         font-size: 24px;
     }
 
+    #text_score{
+        visibility: hidden;
+        position: absolute;
+        top: 15%;
+        width: 100%;
+        text-align: center;
+        z-index: 100;
+        display:block;
+        color: #000000;
+        white-space: pre-line;
+        font-family: 'Hoop';
+        font-size: 52px;
+    }
+
     .myanimation {
         animation: scaleAnimation 1s infinite alternate ease-out;
         transform-origin: center center;
@@ -153,6 +167,7 @@
  
     <div id="container">
         <div id="text_rewarded">Rewarded Play</div>
+        <div id="text_score">0</div>
         <div id="text_cta">PLAY GAMES</div>
         <div id="text_cta2">EARN GIFT CARDS</div>
         <div id="text_tutorial">Match the card and
