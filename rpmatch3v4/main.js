@@ -291,7 +291,6 @@ class Game extends Phaser.Scene {
        
        this.time.delayedCall(250,()=>{
                 this.music =  this.sound.add('music', {volume:0.5, loop:true});
-                this.music.play()
                 this.flipSFX =  this.sound.add('flip', {volume:0.8});
                 this.correctSFX =  this.sound.add('correct', {volume:0.8});
         },this)
