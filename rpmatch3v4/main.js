@@ -158,8 +158,13 @@ class Game extends Phaser.Scene {
         this.match3.generateField();
         this.canPick = true;
         this.dragging = false;
+        this.selectedGem = null;
         this.drawField();
+        //this.input.on("pointerdown", this.gemSelect, this);
+
         this.input.on("pointerdown", this.gemSelect, this);
+        this.input.on("pointermove", this.startSwipe, this);
+        this.input.on("pointerup", this.stopSwipe, this);
 
 	    this.setIntroScene()
 	    this.setCTA()
@@ -286,6 +291,7 @@ class Game extends Phaser.Scene {
        
        this.time.delayedCall(250,()=>{
                 this.music =  this.sound.add('music', {volume:0.5, loop:true});
+                this.music.play()
                 this.flipSFX =  this.sound.add('flip', {volume:0.8});
                 this.correctSFX =  this.sound.add('correct', {volume:0.8});
         },this)
@@ -460,10 +466,45 @@ class Game extends Phaser.Scene {
             }
         }
     }
+
+    startSwipe(pointer){
+        if(this.dragging && this.match3.getSelectedItem()){
+            let deltaX = pointer.downX - pointer.x;
+            let deltaY = pointer.downY - pointer.y;
+            let deltaRow = 0;
+            let deltaCol = 0;
+            if(deltaX > gameOptions.gemSize / 2 && Math.abs(deltaY) < gameOptions.gemSizeY / 4){
+                deltaCol = -1;
+            }
+            if(deltaX < -gameOptions.gemSize / 2 && Math.abs(deltaY) < gameOptions.gemSizeY / 4){
+                deltaCol = 1;
+            }
+            if(deltaY > gameOptions.gemSizeY / 2 && Math.abs(deltaX) < gameOptions.gemSize / 4){
+                deltaRow = -1;
+            }
+            if(deltaY < -gameOptions.gemSizeY / 2 && Math.abs(deltaX) < gameOptions.gemSize / 4){
+                deltaRow = 1;
+            }
+            if(deltaRow + deltaCol != 0){
+                let selectedGem = this.match3.getSelectedItem();
+                let pickedGem = this.match3.validPick(selectedGem.row + deltaRow, selectedGem.column + deltaCol);
+                if(pickedGem){
+                    this.match3.customDataOf(selectedGem.row, selectedGem.column).postFX.clear()
+                    this.swapGems(selectedGem.row + deltaRow, selectedGem.column + deltaCol, selectedGem.row, selectedGem.column, true);
+                }
+            }
+        }
+    }
+
+    stopSwipe(){
+        this.dragging = false;
+    }
+
     swapGems(row, col, row2, col2, swapBack){
         let movements = this.match3.swapItems(row, col, row2, col2);
         this.swappingGems = 2;
         this.canPick = false;
+        this.dragging = false;
         movements.forEach(function(movement){
             this.tweens.add({
                 targets: this.match3.customDataOf(movement.row, movement.column),
