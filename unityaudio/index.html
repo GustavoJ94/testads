@@ -1394,7 +1394,7 @@ function onSdkReady() {
 }
 
 function onAudioChange(audio){
-    if (audio >= 1.0)
+    if (audio && audio >= 1.0)
         game.sound.setMute(false);
     else
         game.sound.setMute(true);
