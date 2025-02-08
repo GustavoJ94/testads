@@ -1115,7 +1115,7 @@ function onSdkReady() {
     // The viewableChange event fires if the ad container's viewability status changes.
     // Add a listener for the viewabilityChange event, to handle pausing and resuming: 
     mraid.addEventListener('viewableChange', viewableChangeHandler);
-    mraid.addEventListener('audioVolumeChange', viewableChangeHandler);
+    mraid.addEventListener('audioVolumeChange', onAudioChange);
     // The isViewable method returns whether the ad container is viewable on the screen.
     if (mraid.isViewable()) {
         // If the ad container is visible, play the ad:
